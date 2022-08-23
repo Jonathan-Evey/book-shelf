@@ -23,8 +23,48 @@ header {
 
 h1 {
 	margin-left: 2rem;
-	padding: 1.5rem 0;
+	padding: 1.5rem 0.75rem;
 	max-width: 9ch;
+}
+
+.book-container {
+	display: grid;
+	place-content: center;
+	grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+	padding: 1.5rem 0.75rem;
+}
+
+.book-card {
+	display: flex;
+	padding: 0.5rem 0.75rem 0rem 1rem;
+	margin: 0 0.75rem 1.5rem 0.75rem;
+	background-color: var(--clr-black);
+	color: var(--clr-white);
+}
+
+.book-cover-img {
+	padding: 0.125rem;
+	background-color: darkgray;
+	transform: translateY(-1.5rem);
+}
+
+.book-cover-img img {
+	max-height: 150px;
+	aspect-ratio: auto;
+}
+
+.book-right {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 100%;
+	padding: 0 0 0.5rem 0.5rem;
+	text-align: center;
+}
+
+.book-right h4 {
+	font-size: 1.125rem;
+	padding-bottom: 0.5rem;
 }
 
 dialog {
