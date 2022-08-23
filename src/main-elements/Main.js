@@ -6,12 +6,20 @@ const Main = ({ savedBooks }) => {
 			<div className="book-container">
 				{savedBooks.map((book) => (
 					<div className="book-card" key={book.id}>
-						<div>
+						<div className="book-cover-img">
 							<img src={book.thumbnail} alt="" />
+							<p>Read</p>
 						</div>
 						<div className="book-right">
-							<h4>{book.title}</h4>
-							<p>{book.author[0]}</p>
+							<div className="book-right-top">
+								<h4>{book.title}</h4>
+								<p>{book.author[0]}</p>
+							</div>
+							<div className="book-right-bottom">
+								<button>Own</button>
+								<p>Personal Rating: 4.5/5</p>
+								<p>fantasy</p>
+							</div>
 						</div>
 					</div>
 				))}
