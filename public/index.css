@@ -30,7 +30,7 @@ aside {
 	top: 1.5rem;
 	width: 150px;
 	height: 65vh;
-	margin: 1rem 0 0 1rem;
+	margin: 0.75rem 0 0 0.75rem;
 	background-color: aquamarine;
 }
 
@@ -134,35 +134,43 @@ dialog::backdrop {
 }
 
 /* Nav Bar Styles */
-.read-status-fieldset {
-	padding: 0.25rem 0 0.5rem 0;
+.filter-container-fieldset {
+	border: none;
+}
+.filter-container-legend {
+	padding-left: 0.5rem;
 }
 
-.read-status-legend {
+.filter-option-fieldset {
+	padding: 0.25rem 0 0.5rem 0;
+	border: none;
+}
+
+.filter-option-legend {
 	position: relative;
 }
 
-.read-status-btn {
+.filter-option-btn {
 	display: flex;
 	justify-content: space-between;
-	width: 96%;
+	width: 100%;
 	margin: auto;
 	border: none;
 	border-bottom: solid 1px var(--clr-black);
 }
 
-.read-status-dropdown {
+.filter-option-dropdown {
 	position: absolute;
-	width: 95%;
+	width: 100%;
 	pointer-events: none;
 }
-.read-status-option {
+.filter-option {
 	list-style: none;
 	pointer-events: all;
-	width: 95%;
+	width: 100%;
 	margin: auto;
 }
-.read-status-option:hover {
+.filter-option:hover {
 	cursor: pointer;
 	background-color: cadetblue;
 }
