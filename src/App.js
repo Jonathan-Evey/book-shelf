@@ -11,6 +11,7 @@ function App() {
 			thumbnail:
 				"http://books.google.com/books/content?id=yl4dILkcqm4C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
 			title: "The Lord of the Rings",
+			readStatus: "Read",
 		},
 		{
 			author: ["J.R.R. Tolkien"],
@@ -18,10 +19,13 @@ function App() {
 			thumbnail:
 				"http://books.google.com/books/content?id=aWZzLPhY4o0C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
 			title: "The Fellowship Of The Ring",
+			readStatus: "Read",
 		},
 	]);
 
 	useEffect(() => {}, []);
+
+	function setReadStatus() {}
 
 	return (
 		<div className="App">
