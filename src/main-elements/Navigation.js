@@ -74,15 +74,15 @@ const Navigation = ({ filterByReadStatus, filterByRatingStatus }) => {
 							<li className="filter-option"
 								onClick={updateRatingFilter}>No Rating</li>
 							<li className="filter-option"
-								onClick={updateRatingFilter}>Ratings 0 - 1</li>
+								onClick={updateRatingFilter}>1</li>
 							<li className="filter-option"
-								onClick={updateRatingFilter}>Ratings 1 - 2</li>
+								onClick={updateRatingFilter}>2</li>
 							<li className="filter-option"
-								onClick={updateRatingFilter}>Ratings 2 - 3</li>
+								onClick={updateRatingFilter}>3</li>
 							<li className="filter-option"
-								onClick={updateRatingFilter}>Ratings 3 - 4</li>
+								onClick={updateRatingFilter}>4</li>
 							<li className="filter-option"
-								onClick={updateRatingFilter}>Ratings 4 - 5</li>
+								onClick={updateRatingFilter}>5</li>
 							<li className="filter-option"
 								onClick={updateRatingFilter}>Ratings 5</li>
 						</ol> : null}
