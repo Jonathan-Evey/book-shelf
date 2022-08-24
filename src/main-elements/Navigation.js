@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Navigation = () => {
+const Navigation = ({ filterByReadStatus, filterByRatingStatus }) => {
 	const [readStatusFilter, setReadStatusFilter] = useState("All")
 	const [isReadStatusDropdownOpen, setIsReadStatusDropdownOpen] = useState(false)
 
@@ -16,6 +16,7 @@ const Navigation = () => {
 	}
 	function updateReadStatusFilter(e) {
 		setReadStatusFilter(e.target.textContent)
+		filterByReadStatus(e.target.textContent)
 		openReadStatusDropdown();
 	}
 
@@ -29,6 +30,7 @@ const Navigation = () => {
 
 	function updateRatingFilter(e) {
 		setRatingFilter(e.target.textContent)
+		filterByRatingStatus(e.target.textContent);
 		openRatingFilterDropdown();
 	}
 	return (
