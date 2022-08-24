@@ -5,7 +5,6 @@ Project to save books that you would like to read, are reading, or have read alr
 Ability to sort books by:
 
 -   read, reading and unread.
--   owned/unowned.
 -   rating system (0 to 5 with half points)
 -   read next (toggled by user)
 -   genres
