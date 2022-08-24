@@ -27,7 +27,11 @@ const BookCard = ({ book }) => {
 					{book.readStatus === "Read" ? null : (
 						<button className="prioritize-btn">Prioritize</button>
 					)}
-					<p>fantasy</p>
+					{!book.genres[1] ? (
+						<p>{book.genres[0]}</p>
+					) : (
+						<p>{book.genres[0] + " / " + book.genres[1]}</p>
+					)}
 				</div>
 			</div>
 		</div>
