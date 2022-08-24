@@ -12,6 +12,7 @@ function App() {
 				"http://books.google.com/books/content?id=yl4dILkcqm4C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
 			title: "The Lord of the Rings",
 			readStatus: "Unread",
+			genres: ["Fiction", "Fantasy"],
 			isPrioritized: false,
 		},
 		{
@@ -21,6 +22,7 @@ function App() {
 				"http://books.google.com/books/content?id=aWZzLPhY4o0C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
 			title: "The Fellowship Of The Ring",
 			readStatus: "Read",
+			genres: ["Fiction"],
 			isPrioritized: false,
 		},
 		{
@@ -30,6 +32,7 @@ function App() {
 				"http://books.google.com/books/content?id=yl4dILkcqm4C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
 			title: "The Lord of the Rings",
 			readStatus: "Unread",
+			genres: ["Fiction", "Fantasy"],
 			isPrioritized: false,
 		},
 		{
@@ -39,6 +42,7 @@ function App() {
 				"http://books.google.com/books/content?id=aWZzLPhY4o0C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
 			title: "The Fellowship Of The Ring",
 			readStatus: "Read",
+			genres: ["Fiction", "Fantasy"],
 			isPrioritized: false,
 		},
 		{
@@ -47,6 +51,7 @@ function App() {
 			thumbnail:
 				"http://books.google.com/books/content?id=yl4dILkcqm4C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
 			title: "The Lord of the Rings",
+			genres: ["Fiction", "Fantasy"],
 			readStatus: "Unread",
 			isPrioritized: false,
 		},
@@ -56,6 +61,7 @@ function App() {
 			thumbnail:
 				"http://books.google.com/books/content?id=aWZzLPhY4o0C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
 			title: "The Fellowship Of The Ring",
+			genres: ["Fiction", "Fantasy"],
 			readStatus: "Read",
 			isPrioritized: false,
 		},
