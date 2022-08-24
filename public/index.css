@@ -72,6 +72,21 @@ h1 {
 	padding-bottom: 0.5rem;
 }
 
+.book-right-bottom-container p {
+	text-align: end;
+	flex: 1;
+}
+.book-right-bottom-container button {
+	flex: 0;
+}
+
+.book-right-bottom-container {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	padding: 0 0.5rem 0.25rem 0.75rem;
+}
+
 dialog {
 	position: fixed;
 	top: 50%;
@@ -91,6 +106,7 @@ dialog::backdrop {
 .read-unread-btn {
 	margin: auto 0;
 	width: 100%;
+	border: solid 1px var(--clr-black);
 	border-left: none;
 	border-right: none;
 }
