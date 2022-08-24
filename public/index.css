@@ -21,6 +21,19 @@ header {
 	align-items: center;
 }
 
+main {
+	display: flex;
+}
+
+aside {
+	position: sticky;
+	top: 1.5rem;
+	width: 150px;
+	height: 65vh;
+	margin: 1rem 0 0 1rem;
+	background-color: aquamarine;
+}
+
 h1 {
 	margin-left: 2rem;
 	padding: 1.5rem 0.75rem;
@@ -28,8 +41,9 @@ h1 {
 }
 
 .book-container {
+	flex: 1;
 	display: grid;
-	place-content: center;
+	place-content: start;
 	grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
 	padding: 1.5rem 0.75rem;
 }
@@ -117,4 +131,38 @@ dialog::backdrop {
 
 .read-unread-btn:hover,
 .read-unread-btn:active {
+}
+
+/* Nav Bar Styles */
+.read-status-fieldset {
+	padding: 0.25rem 0 0.5rem 0;
+}
+
+.read-status-legend {
+	position: relative;
+}
+
+.read-status-btn {
+	display: flex;
+	justify-content: space-between;
+	width: 96%;
+	margin: auto;
+	border: none;
+	border-bottom: solid 1px var(--clr-black);
+}
+
+.read-status-dropdown {
+	position: absolute;
+	width: 95%;
+	pointer-events: none;
+}
+.read-status-option {
+	list-style: none;
+	pointer-events: all;
+	width: 95%;
+	margin: auto;
+}
+.read-status-option:hover {
+	cursor: pointer;
+	background-color: cadetblue;
 }
