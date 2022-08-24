@@ -1,9 +1,9 @@
 import BookCard from "../components/BookCard";
 
-const BookContainer = ({ savedBooks }) => {
+const BookContainer = ({ booksBeingDisplayed }) => {
 	return (
 		<div className="book-container">
-			{savedBooks.map((book) => (
+			{booksBeingDisplayed.map((book) => (
 				<BookCard key={book.id} book={book} />
 			))}
 		</div>
