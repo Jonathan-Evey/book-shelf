@@ -4,8 +4,8 @@ import Navigation from "./Navigation";
 const Main = ({ savedBooks }) => {
 	return (
 		<main>
-			<BookContainer savedBooks={savedBooks} />
 			<Navigation />
+			<BookContainer savedBooks={savedBooks} />
 		</main>
 	);
 };
