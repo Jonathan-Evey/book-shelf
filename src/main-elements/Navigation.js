@@ -5,10 +5,34 @@ const Navigation = ( props ) => {
 	const [isRatingFilterDropdownOpen, setIsRatingFilterDropdownOpen] = useState(false)
 	const [currentRatingSelected, setCurrentRatingSelected] = useState("All")
 
+	//------------------------------sort books by title functions
+	const updateTitleSearchWord = (e) => {
+		if(e.target.value === "") {
+			props.setIsSearchTitleFilter(false)
+			props.setSearchTitleFilter(e.target.value)
+		} else {
+			props.setIsSearchTitleFilter(true)
+			props.setSearchTitleFilter(e.target.value)
+		}
+	}
+
+	//------------------------------sort books by author functions
+	const updateAuthorSearchWord = (e) => {
+		if(e.target.value === "") {
+			props.setIsSearchAuthorFilter(false)
+			props.setSearchAuthorFilter(e.target.value)
+		} else {
+			props.setIsSearchAuthorFilter(true)
+			props.setSearchAuthorFilter(e.target.value)
+		}
+	}
+
+	//---------------sort books by read, reading or unread functions
 	const openReadStatusDropdown = () => {
 		if (isReadStatusDropdownOpen) {
 			setIsReadStatusDropdownOpen(false)
 		} else {
+			setIsRatingFilterDropdownOpen(false)
 			setIsReadStatusDropdownOpen(true)
 		}
 	}
@@ -26,14 +50,15 @@ const Navigation = ( props ) => {
 		
 	}
 
+	//---------------------------------sort by book rating functions
 	const openRatingFilterDropdown = () => {
 		if (isRatingFilterDropdownOpen) {
 			setIsRatingFilterDropdownOpen(false)
 		} else {
+			setIsReadStatusDropdownOpen(false)
 			setIsRatingFilterDropdownOpen(true)
 		}
 	}
-
 	function updateRatingFilter(e) {
 		setCurrentRatingSelected(e.target.textContent)
 		if(e.target.textContent === "All") {
@@ -51,9 +76,9 @@ const Navigation = ( props ) => {
 	return (
 		<aside>
 			<label htmlFor="title-search">Search for Title:</label>
-			<input type="search" name="title-search" id="title-search" />
+			<input type="search" name="title-search" id="title-search" onChange={updateTitleSearchWord}/>
 			<label htmlFor="author-search">Search for Author:</label>
-			<input type="search" name="author-search" id="author-search" />
+			<input type="search" name="author-search" id="author-search" onChange={updateAuthorSearchWord}/>
 			<fieldset className="filter-container-fieldset">
 			<legend className="filter-container-legend">Filter By:</legend>
 				<fieldset className="filter-option-fieldset">
