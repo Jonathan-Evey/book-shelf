@@ -1,9 +1,10 @@
 import BookCard from "../components/BookCard";
 
 const BookContainer = (props) => {
+	let updateReadStatus = props.updateReadStatus;
 	return (
 		<div className="book-container">
-			{props.booksBeingDisplayed
+			{props.savedBooks
 				.filter(
 					(book) =>
 						!props.isReadStatusFilter ||
@@ -16,7 +17,11 @@ const BookContainer = (props) => {
 							book.rating <= parseInt(props.bookRatingFilter) + 1)
 				)
 				.map((book) => (
-					<BookCard key={book.id} book={book} />
+					<BookCard
+						key={book.id}
+						book={book}
+						updateReadStatus={updateReadStatus}
+					/>
 				))}
 		</div>
 	);
