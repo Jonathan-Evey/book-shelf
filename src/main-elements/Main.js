@@ -3,15 +3,32 @@ import React, { useState } from "react";
 import BookContainer from "./BookContainer";
 import Navigation from "./Navigation";
 
-const Main = ({ savedBooks, updateReadStatus }) => {
+const Main = (props) => {
+	//------------------search by title state-----------------------//
+	const [searchTitleFilter, setSearchTitleFilter] = useState("");
+	const [isSearchTitleFilter, setIsSearchTitleFilter] = useState(false);
+
+	//------------------search by author state-----------------------//
+	const [searchAuthorFilter, setSearchAuthorFilter] = useState("");
+	const [isSearchAuthorFilter, setIsSearchAuthorFilter] = useState(false);
+
+	//------------------search by read status state-----------------------//
 	const [readStatusFilter, setReadStatusFilter] = useState("All");
 	const [isReadStatusFilter, setIsReadStatusFilter] = useState(false);
+
+	//------------------search by book rating state-----------------------//
 	const [bookRatingFilter, setBookRatingFilter] = useState("All");
 	const [isRatingFilter, setIsRatingFilter] = useState(false);
 
 	return (
 		<main>
 			<Navigation
+				searchTitleFilter={searchTitleFilter}
+				setSearchTitleFilter={setSearchTitleFilter}
+				setIsSearchTitleFilter={setIsSearchTitleFilter}
+				searchAuthorFilter={searchAuthorFilter}
+				setSearchAuthorFilter={setSearchAuthorFilter}
+				setIsSearchAuthorFilter={setIsSearchAuthorFilter}
 				readStatusFilter={readStatusFilter}
 				setReadStatusFilter={setReadStatusFilter}
 				isReadStatusFilter={isReadStatusFilter}
@@ -22,12 +39,21 @@ const Main = ({ savedBooks, updateReadStatus }) => {
 				setIsRatingFilter={setIsRatingFilter}
 			/>
 			<BookContainer
-				savedBooks={savedBooks}
-				updateReadStatus={updateReadStatus}
+				//from main
+				savedBooks={props.savedBooks}
+				updateReadStatus={props.updateReadStatus}
+				//------title state
+				searchTitleFilter={searchTitleFilter}
+				isSearchTitleFilter={isSearchTitleFilter}
+				//------author state
+				searchAuthorFilter={searchAuthorFilter}
+				isSearchAuthorFilter={isSearchAuthorFilter}
+				//------read status state
 				readStatusFilter={readStatusFilter}
 				setReadStatusFilter={setReadStatusFilter}
 				isReadStatusFilter={isReadStatusFilter}
 				setIsReadStatusFilter={setIsReadStatusFilter}
+				//------book rating state
 				bookRatingFilter={bookRatingFilter}
 				setBookRatingFilter={setBookRatingFilter}
 				isRatingFilter={isRatingFilter}
