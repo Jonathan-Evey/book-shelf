@@ -14,9 +14,9 @@ const Navigation = ( props ) => {
 	}
 	function updateReadStatusFilter(e) {
 		if(e.target.textContent === "All") {
-			console.log("Text === all")
 			props.setIsReadStatusFilter(false)
 			props.setReadStatusFilter("All")
+			openReadStatusDropdown();
 		} else {
 			props.setIsReadStatusFilter(true)
 			console.log(e.target.textContent)
@@ -37,9 +37,9 @@ const Navigation = ( props ) => {
 	function updateRatingFilter(e) {
 		setCurrentRatingSelected(e.target.textContent)
 		if(e.target.textContent === "All") {
-			console.log("Text === all")
 			props.setIsRatingFilter(false)
 			props.setBookRatingFilter("All")
+			openRatingFilterDropdown();
 		} else {
 			props.setIsRatingFilter(true)
 			console.log(parseInt(e.target.id))
