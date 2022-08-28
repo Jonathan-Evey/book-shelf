@@ -3,13 +3,11 @@ import React, { useState } from "react";
 import BookContainer from "./BookContainer";
 import Navigation from "./Navigation";
 
-const Main = ({ savedBooks }) => {
+const Main = ({ savedBooks, updateReadStatus }) => {
 	const [readStatusFilter, setReadStatusFilter] = useState("All");
 	const [isReadStatusFilter, setIsReadStatusFilter] = useState(false);
 	const [bookRatingFilter, setBookRatingFilter] = useState("All");
 	const [isRatingFilter, setIsRatingFilter] = useState(false);
-
-	let booksBeingDisplayed = savedBooks;
 
 	return (
 		<main>
@@ -24,7 +22,8 @@ const Main = ({ savedBooks }) => {
 				setIsRatingFilter={setIsRatingFilter}
 			/>
 			<BookContainer
-				booksBeingDisplayed={booksBeingDisplayed}
+				savedBooks={savedBooks}
+				updateReadStatus={updateReadStatus}
 				readStatusFilter={readStatusFilter}
 				setReadStatusFilter={setReadStatusFilter}
 				isReadStatusFilter={isReadStatusFilter}
