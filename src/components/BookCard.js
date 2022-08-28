@@ -4,6 +4,10 @@ const BookCard = ({ book, updateReadStatus }) => {
 	const [isUpdateShown, setIsUpdateShown] = useState(false);
 	const [isUpdateDropdownShown, setIsUpdateDropdownShown] = useState(false);
 
+	const handleOpenClose = () => {
+		setIsUpdateDropdownShown(!isUpdateDropdownShown);
+	};
+
 	const updateReadStatusEvent = (id, value) => {
 		updateReadStatus(id, value);
 		setIsUpdateDropdownShown(false);
@@ -13,7 +17,7 @@ const BookCard = ({ book, updateReadStatus }) => {
 			<div className="book-img-container">
 				<img src={book.thumbnail} alt="" />
 				<button
-					onClick={() => setIsUpdateDropdownShown(true)}
+					onClick={() => handleOpenClose()}
 					onMouseEnter={() => setIsUpdateShown(true)}
 					onMouseLeave={() => setIsUpdateShown(false)}
 					onFocus={() => setIsUpdateShown(true)}
@@ -22,27 +26,11 @@ const BookCard = ({ book, updateReadStatus }) => {
 				>
 					{isUpdateShown ? "Update" : book.readStatus}
 				</button>
-				{isUpdateDropdownShown ? (
-					<ol>
-						<li>
-							<button
-								onClick={() =>
-									updateReadStatusEvent(book.id, "Read")
-								}
-							>
-								Read
-							</button>
-						</li>
-						<li>
-							<button
-								onClick={() =>
-									updateReadStatusEvent(book.id, "Reading")
-								}
-							>
-								Reading
-							</button>
-						</li>
-						<li>
+				{isUpdateDropdownShown ? 
+				<ol className="read-status-dropdown">
+					{book.readStatus === "Read" ? 
+					<>
+						<li className="read-option">
 							<button
 								onClick={() =>
 									updateReadStatusEvent(book.id, "Unread")
@@ -51,8 +39,59 @@ const BookCard = ({ book, updateReadStatus }) => {
 								Unread
 							</button>
 						</li>
-					</ol>
-				) : null}
+						<li className="read-option">
+							<button
+								onClick={() =>
+									updateReadStatusEvent(book.id, "Reading")
+								}
+							>
+								Reading
+							</button>
+						</li>
+					</> : null }
+					{book.readStatus === "Reading" ?
+					<>
+						<li className="read-option">
+							<button
+								onClick={() =>
+									updateReadStatusEvent(book.id, "Unread")
+								}
+							>
+								Unread
+							</button>
+						</li>
+						<li className="read-option">
+							<button
+								onClick={() =>
+									updateReadStatusEvent(book.id, "Read")
+								}
+							>
+								Read
+							</button>
+						</li>
+					</> : null }
+					{book.readStatus === "Unread" ?
+					<>
+						<li className="read-option">
+							<button
+								onClick={() =>
+									updateReadStatusEvent(book.id, "Reading")
+								}
+							>
+								Reading
+							</button>
+						</li>
+						<li className="read-option">
+							<button
+								onClick={() =>
+									updateReadStatusEvent(book.id, "Read")
+								}
+							>
+								Read
+							</button>
+						</li>
+					</> : null}
+				</ol> : null}
 			</div>
 			<div className="book-right">
 				<div className="book-right-top">
