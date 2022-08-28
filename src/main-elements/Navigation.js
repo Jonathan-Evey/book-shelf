@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 
-const Navigation = ({ filterByReadStatus, filterByRatingStatus }) => {
-	const [readStatusFilter, setReadStatusFilter] = useState("All")
+const Navigation = ( props ) => {
 	const [isReadStatusDropdownOpen, setIsReadStatusDropdownOpen] = useState(false)
-
-	const [ratingFilter, setRatingFilter] = useState('All')
 	const [isRatingFilterDropdownOpen, setIsRatingFilterDropdownOpen] = useState(false)
+	const [currentRatingSelected, setCurrentRatingSelected] = useState("All")
 
 	const openReadStatusDropdown = () => {
 		if (isReadStatusDropdownOpen) {
@@ -15,9 +13,17 @@ const Navigation = ({ filterByReadStatus, filterByRatingStatus }) => {
 		}
 	}
 	function updateReadStatusFilter(e) {
-		setReadStatusFilter(e.target.textContent)
-		filterByReadStatus(e.target.textContent)
-		openReadStatusDropdown();
+		if(e.target.textContent === "All") {
+			console.log("Text === all")
+			props.setIsReadStatusFilter(false)
+			props.setReadStatusFilter("All")
+		} else {
+			props.setIsReadStatusFilter(true)
+			console.log(e.target.textContent)
+			props.setReadStatusFilter(e.target.textContent)
+			openReadStatusDropdown();
+		}
+		
 	}
 
 	const openRatingFilterDropdown = () => {
@@ -29,10 +35,19 @@ const Navigation = ({ filterByReadStatus, filterByRatingStatus }) => {
 	}
 
 	function updateRatingFilter(e) {
-		setRatingFilter(e.target.textContent)
-		filterByRatingStatus(e.target.textContent);
-		openRatingFilterDropdown();
+		setCurrentRatingSelected(e.target.textContent)
+		if(e.target.textContent === "All") {
+			console.log("Text === all")
+			props.setIsRatingFilter(false)
+			props.setBookRatingFilter("All")
+		} else {
+			props.setIsRatingFilter(true)
+			console.log(parseInt(e.target.id))
+			props.setBookRatingFilter(e.target.id)
+			openRatingFilterDropdown();
+		}
 	}
+
 	return (
 		<aside>
 			<label htmlFor="title-search">Search for Title:</label>
@@ -46,7 +61,7 @@ const Navigation = ({ filterByReadStatus, filterByRatingStatus }) => {
 						<button 
 							className="filter-option-btn"
 							onClick={openReadStatusDropdown}
-							>{readStatusFilter}<p>^</p>
+							>{props.readStatusFilter}<p>^</p>
 						</button>
 						{isReadStatusDropdownOpen ? 
 						<ol className="filter-option-dropdown">
@@ -65,26 +80,31 @@ const Navigation = ({ filterByReadStatus, filterByRatingStatus }) => {
 						<button 
 							className="filter-option-btn"
 							onClick={openRatingFilterDropdown}
-							>{ratingFilter}<p>^</p>
+							>{currentRatingSelected}<p>^</p>
 						</button>
 						{isRatingFilterDropdownOpen ? 
 						<ol className="filter-option-dropdown">
 							<li className="filter-option"
-								onClick={updateRatingFilter}>All</li>
+								onClick={updateRatingFilter}
+								id="All">All</li>
 							<li className="filter-option"
-								onClick={updateRatingFilter}>No Rating</li>
+								onClick={updateRatingFilter}
+								id="0">0 - 1</li>
 							<li className="filter-option"
-								onClick={updateRatingFilter}>1</li>
+								onClick={updateRatingFilter}
+								id="1">1 - 2</li>
 							<li className="filter-option"
-								onClick={updateRatingFilter}>2</li>
+								onClick={updateRatingFilter}
+								id="2">2 - 3</li>
 							<li className="filter-option"
-								onClick={updateRatingFilter}>3</li>
+								onClick={updateRatingFilter}
+								id="3">3 - 4</li>
 							<li className="filter-option"
-								onClick={updateRatingFilter}>4</li>
+								onClick={updateRatingFilter}
+								id="4">4 - 5</li>
 							<li className="filter-option"
-								onClick={updateRatingFilter}>5</li>
-							<li className="filter-option"
-								onClick={updateRatingFilter}>Ratings 5</li>
+								onClick={updateRatingFilter}
+								id="5">Ratings 5</li>
 						</ol> : null}
 				</fieldset>
 			</fieldset>
