@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 
-const BookCard = ({ book }) => {
+const BookCard = ({ book, updateReadStatus }) => {
 	const [isUpdateShown, setIsUpdateShown] = useState(false);
+	const [isUpdateDropdownShown, setIsUpdateDropdownShown] = useState(false);
 
+	const updateReadStatusEvent = (id, value) => {
+		updateReadStatus(id, value);
+		setIsUpdateDropdownShown(false);
+	};
 	return (
 		<div className="book-card">
 			<div className="book-img-container">
 				<img src={book.thumbnail} alt="" />
 				<button
+					onClick={() => setIsUpdateDropdownShown(true)}
 					onMouseEnter={() => setIsUpdateShown(true)}
 					onMouseLeave={() => setIsUpdateShown(false)}
 					onFocus={() => setIsUpdateShown(true)}
@@ -16,6 +22,37 @@ const BookCard = ({ book }) => {
 				>
 					{isUpdateShown ? "Update" : book.readStatus}
 				</button>
+				{isUpdateDropdownShown ? (
+					<ol>
+						<li>
+							<button
+								onClick={() =>
+									updateReadStatusEvent(book.id, "Read")
+								}
+							>
+								Read
+							</button>
+						</li>
+						<li>
+							<button
+								onClick={() =>
+									updateReadStatusEvent(book.id, "Reading")
+								}
+							>
+								Reading
+							</button>
+						</li>
+						<li>
+							<button
+								onClick={() =>
+									updateReadStatusEvent(book.id, "Unread")
+								}
+							>
+								Unread
+							</button>
+						</li>
+					</ol>
+				) : null}
 			</div>
 			<div className="book-right">
 				<div className="book-right-top">
