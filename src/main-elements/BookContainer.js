@@ -1,11 +1,23 @@
 import BookCard from "../components/BookCard";
 
-const BookContainer = ({ booksBeingDisplayed }) => {
+const BookContainer = (props) => {
 	return (
 		<div className="book-container">
-			{booksBeingDisplayed.map((book) => (
-				<BookCard key={book.id} book={book} />
-			))}
+			{props.booksBeingDisplayed
+				.filter(
+					(book) =>
+						!props.isReadStatusFilter ||
+						book.readStatus === props.readStatusFilter
+				)
+				.filter(
+					(book) =>
+						!props.isRatingFilter ||
+						(book.rating >= parseInt(props.bookRatingFilter) &&
+							book.rating <= parseInt(props.bookRatingFilter) + 1)
+				)
+				.map((book) => (
+					<BookCard key={book.id} book={book} />
+				))}
 		</div>
 	);
 };
