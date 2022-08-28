@@ -12,7 +12,7 @@ function App() {
 				"http://books.google.com/books/content?id=yl4dILkcqm4C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
 			title: "The Lord of the Rings",
 			readStatus: "Unread",
-			rating: "1",
+			rating: 1,
 			genres: ["Fiction", "Fantasy"],
 			isPrioritized: false,
 		},
@@ -23,7 +23,7 @@ function App() {
 				"http://books.google.com/books/content?id=aWZzLPhY4o0C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
 			title: "The Fellowship Of The Ring",
 			readStatus: "Read",
-			rating: "2",
+			rating: 2,
 			genres: ["Fiction"],
 			isPrioritized: false,
 		},
@@ -34,7 +34,7 @@ function App() {
 				"http://books.google.com/books/content?id=yl4dILkcqm4C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
 			title: "The Lord of the Rings",
 			readStatus: "Unread",
-			rating: "3",
+			rating: 3,
 			genres: ["Fiction", "Fantasy"],
 			isPrioritized: false,
 		},
@@ -45,19 +45,19 @@ function App() {
 				"http://books.google.com/books/content?id=aWZzLPhY4o0C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
 			title: "The Fellowship Of The Ring",
 			readStatus: "Read",
-			rating: "4",
+			rating: 4,
 			genres: ["Fiction", "Fantasy"],
 			isPrioritized: false,
 		},
 		{
 			author: ["J.R.R. Tolkien"],
-			id: "5",
+			id: 5,
 			thumbnail:
 				"http://books.google.com/books/content?id=yl4dILkcqm4C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
 			title: "The Lord of the Rings",
 			genres: ["Fiction", "Fantasy"],
 			readStatus: "Unread",
-			rating: "5",
+			rating: 5,
 			isPrioritized: false,
 		},
 		{
@@ -75,13 +75,19 @@ function App() {
 
 	useEffect(() => {}, []);
 
-	function setReadStatus() {}
+	const updateReadStatus = (id, value) => {
+		return setSavedBooks(
+			savedBooks.map((book) =>
+				book.id === id ? { ...book, readStatus: value } : book
+			)
+		);
+	};
 
 	return (
 		<div className="App">
 			<FindBookModel />
 			<Header />
-			<Main savedBooks={savedBooks} />
+			<Main savedBooks={savedBooks} updateReadStatus={updateReadStatus} />
 		</div>
 	);
 }
