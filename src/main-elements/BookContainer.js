@@ -2,9 +2,22 @@ import BookCard from "../components/BookCard";
 
 const BookContainer = (props) => {
 	let updateReadStatus = props.updateReadStatus;
+	let titleRegex = new RegExp(props.searchTitleFilter, "gi");
+	let authorRegex = new RegExp(props.searchAuthorFilter, "gi");
+
 	return (
 		<div className="book-container">
 			{props.savedBooks
+				.filter(
+					(book) =>
+						!props.isSearchTitleFilter ||
+						book.title.match(titleRegex)
+				)
+				.filter(
+					(book) =>
+						!props.isSearchAuthorFilter ||
+						book.author[0].match(authorRegex)
+				)
 				.filter(
 					(book) =>
 						!props.isReadStatusFilter ||
