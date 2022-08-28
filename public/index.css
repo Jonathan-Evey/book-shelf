@@ -51,7 +51,7 @@ h1 {
 .book-card {
 	display: flex;
 	padding: 0.5rem 0.75rem 0rem 1rem;
-	margin: 0 0.75rem 1.5rem 0.75rem;
+	margin: 0 1rem 2rem 1rem;
 	background-color: var(--clr-black);
 	color: var(--clr-white);
 }
@@ -117,6 +117,7 @@ dialog::backdrop {
 }
 
 /* btn classes */
+.read-option button,
 .read-unread-btn {
 	margin: auto 0;
 	width: 100%;
@@ -146,10 +147,6 @@ dialog::backdrop {
 	border: none;
 }
 
-.filter-option-legend {
-	position: relative;
-}
-
 .filter-option-btn {
 	display: flex;
 	justify-content: space-between;
@@ -159,18 +156,26 @@ dialog::backdrop {
 	border-bottom: solid 1px var(--clr-black);
 }
 
-.filter-option-dropdown {
+.filter-option-dropdown,
+.read-status-dropdown {
 	position: absolute;
 	width: 100%;
 	pointer-events: none;
 }
-.filter-option {
+.read-status-dropdown {
+	top: calc(100% - 0.35rem);
+}
+
+.filter-option,
+.read-option {
 	list-style: none;
 	pointer-events: all;
 	width: 100%;
 	margin: auto;
-}
-.filter-option:hover {
-	cursor: pointer;
 	background-color: cadetblue;
+}
+.filter-option:hover,
+.read-option:hover {
+	cursor: pointer;
+	background-color: turquoise;
 }
