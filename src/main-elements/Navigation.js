@@ -3,6 +3,7 @@ import React, { useState } from "react";
 const Navigation = ( props ) => {
 	const [isReadStatusDropdownOpen, setIsReadStatusDropdownOpen] = useState(false)
 	const [isRatingFilterDropdownOpen, setIsRatingFilterDropdownOpen] = useState(false)
+	//-------------------------------used to display the rating filter text on the menu
 	const [currentRatingSelected, setCurrentRatingSelected] = useState("All")
 
 	//------------------------------sort books by title functions

@@ -75,6 +75,7 @@ function App() {
 
 	useEffect(() => {}, []);
 
+	//-------------passed down to /Main/BookContainer to update state from each BookCard
 	const updateReadStatus = (id, value) => {
 		return setSavedBooks(
 			savedBooks.map((book) =>

@@ -23,16 +23,20 @@ const Main = (props) => {
 	return (
 		<main>
 			<Navigation
+				//------title state
 				searchTitleFilter={searchTitleFilter}
 				setSearchTitleFilter={setSearchTitleFilter}
 				setIsSearchTitleFilter={setIsSearchTitleFilter}
+				//------author state
 				searchAuthorFilter={searchAuthorFilter}
 				setSearchAuthorFilter={setSearchAuthorFilter}
 				setIsSearchAuthorFilter={setIsSearchAuthorFilter}
+				//------read status state
 				readStatusFilter={readStatusFilter}
 				setReadStatusFilter={setReadStatusFilter}
 				isReadStatusFilter={isReadStatusFilter}
 				setIsReadStatusFilter={setIsReadStatusFilter}
+				//------book rating state
 				bookRatingFilter={bookRatingFilter}
 				setBookRatingFilter={setBookRatingFilter}
 				isRatingFilter={isRatingFilter}
