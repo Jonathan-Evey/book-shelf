@@ -72,8 +72,13 @@ function App() {
 			isPrioritized: false,
 		},
 	]);
+	const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(true);
 
 	useEffect(() => {}, []);
+
+	const openFilterMenuToggle = () => {
+		setIsFilterMenuOpen(!isFilterMenuOpen);
+	};
 
 	//-------------passed down to /Main/BookContainer to update state from each BookCard
 	const updateReadStatus = (id, value) => {
@@ -88,7 +93,14 @@ function App() {
 		<div className="App">
 			<FindBookModel />
 			<Header />
-			<Main savedBooks={savedBooks} updateReadStatus={updateReadStatus} />
+			<Main
+				//------passing state
+				savedBooks={savedBooks}
+				isFilterMenuOpen={isFilterMenuOpen}
+				//--------passing functions
+				openFilterMenuToggle={openFilterMenuToggle}
+				updateReadStatus={updateReadStatus}
+			/>
 		</div>
 	);
 }
