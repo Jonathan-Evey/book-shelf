@@ -1,4 +1,5 @@
 import BookCard from "../components/BookCard";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 const BookContainer = (props) => {
 	let updateReadStatus = props.updateReadStatus;
@@ -6,7 +7,7 @@ const BookContainer = (props) => {
 	let authorRegex = new RegExp(props.searchAuthorFilter, "gi");
 
 	return (
-		<div className="book-container">
+		<TransitionGroup className="book-container">
 			{props.savedBooks
 				.filter(
 					(book) =>
@@ -30,13 +31,19 @@ const BookContainer = (props) => {
 							book.rating <= parseInt(props.bookRatingFilter) + 1)
 				)
 				.map((book) => (
-					<BookCard
+					<CSSTransition
+						timeout={450}
+						classNames="book-card"
 						key={book.id}
-						book={book}
-						updateReadStatus={updateReadStatus}
-					/>
+					>
+						<BookCard
+							className="book-card"
+							book={book}
+							updateReadStatus={updateReadStatus}
+						/>
+					</CSSTransition>
 				))}
-		</div>
+		</TransitionGroup>
 	);
 };
 
