@@ -22,7 +22,15 @@ header {
 }
 
 main {
+	position: relative;
 	display: flex;
+}
+
+.open-filter-menu-container {
+	position: absolute;
+	z-index: 2;
+	top: 1rem;
+	left: 1rem;
 }
 
 aside {
@@ -178,4 +186,30 @@ dialog::backdrop {
 .read-option:hover {
 	cursor: pointer;
 	background-color: turquoise;
+}
+
+.book-card-enter {
+	opacity: 0.01;
+	transform-origin: top;
+	transform: scaleY(0.5) translateY(-50%);
+}
+
+.book-card-enter.book-card-enter-active {
+	opacity: 1;
+	transform: scaleY(1) translateY(0);
+	transform-origin: top;
+	transition: transform 450ms ease-in, opacity 250ms ease-in 200ms;
+}
+
+.book-card-exit {
+	opacity: 1;
+	transform-origin: bottom;
+	transform: scaleY(1) translateY(0);
+}
+
+.book-card-exit.book-card-exit-active {
+	opacity: 0.01;
+	transform: scaleY(0.5) translateY(50%);
+	transform-origin: bottom;
+	transition: transform 450ms ease-in, opacity 250ms ease-in 200ms;
 }
