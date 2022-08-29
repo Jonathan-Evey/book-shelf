@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import BookContainer from "./BookContainer";
 import Navigation from "./Navigation";
 
@@ -22,26 +21,36 @@ const Main = (props) => {
 
 	return (
 		<main>
-			<Navigation
-				//------title state
-				searchTitleFilter={searchTitleFilter}
-				setSearchTitleFilter={setSearchTitleFilter}
-				setIsSearchTitleFilter={setIsSearchTitleFilter}
-				//------author state
-				searchAuthorFilter={searchAuthorFilter}
-				setSearchAuthorFilter={setSearchAuthorFilter}
-				setIsSearchAuthorFilter={setIsSearchAuthorFilter}
-				//------read status state
-				readStatusFilter={readStatusFilter}
-				setReadStatusFilter={setReadStatusFilter}
-				isReadStatusFilter={isReadStatusFilter}
-				setIsReadStatusFilter={setIsReadStatusFilter}
-				//------book rating state
-				bookRatingFilter={bookRatingFilter}
-				setBookRatingFilter={setBookRatingFilter}
-				isRatingFilter={isRatingFilter}
-				setIsRatingFilter={setIsRatingFilter}
-			/>
+			<div className="open-filter-menu-container">
+				<button onClick={props.openFilterMenuToggle}>
+					Filter Menu
+				</button>
+			</div>
+			{props.isFilterMenuOpen ? (
+				<Navigation
+					//------menu open state
+					isFilterMenuOpen={props.isFilterMenuOpen}
+					//------title state
+					searchTitleFilter={searchTitleFilter}
+					setSearchTitleFilter={setSearchTitleFilter}
+					setIsSearchTitleFilter={setIsSearchTitleFilter}
+					//------author state
+					searchAuthorFilter={searchAuthorFilter}
+					setSearchAuthorFilter={setSearchAuthorFilter}
+					setIsSearchAuthorFilter={setIsSearchAuthorFilter}
+					//------read status state
+					readStatusFilter={readStatusFilter}
+					setReadStatusFilter={setReadStatusFilter}
+					isReadStatusFilter={isReadStatusFilter}
+					setIsReadStatusFilter={setIsReadStatusFilter}
+					//------book rating state
+					bookRatingFilter={bookRatingFilter}
+					setBookRatingFilter={setBookRatingFilter}
+					isRatingFilter={isRatingFilter}
+					setIsRatingFilter={setIsRatingFilter}
+				/>
+			) : null}
+
 			<BookContainer
 				//from main
 				savedBooks={props.savedBooks}
