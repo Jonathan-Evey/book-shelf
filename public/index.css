@@ -26,20 +26,74 @@ main {
 	display: flex;
 }
 
-.open-filter-menu-container {
-	position: absolute;
+.toggle-filter-menu-container {
+	position: sticky;
+	margin-top: 0.5rem;
+	width: calc(150px - 1rem);
+	height: fit-content;
 	z-index: 2;
 	top: 1rem;
 	left: 1rem;
 }
 
-aside {
+.toggle-filter-menu-container.closed {
+	margin-top: -0.5rem;
+	position: absolute;
+	height: 100%;
+}
+
+.toggle-filter-menu-btn {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 0.5rem;
+	width: calc(150px - 1rem);
+	height: 2.5rem;
+	pointer-events: all;
+	z-index: 3;
+}
+
+.open button span {
+	transform: rotate(180deg);
+}
+
+.toggle-filter-menu-container.closed .toggle-filter-menu-btn {
 	position: sticky;
-	top: 1.5rem;
+	top: 1rem;
+}
+
+.filter-menu {
+	padding: 0.5rem;
+	margin-left: -0.5rem;
+	margin-top: -1.5rem;
 	width: 150px;
-	height: 65vh;
-	margin: 0.75rem 0 0 0.75rem;
+	height: fit-content;
 	background-color: aquamarine;
+	transition: all 350ms ease-in-out;
+}
+
+.filter-menu.open {
+	opacity: 1;
+	transform-origin: top;
+	transform: scaleY(1);
+}
+
+.filter-menu.closed {
+	position: absolute;
+	opacity: 0;
+	transform-origin: top;
+	transform: scaleY(0);
+}
+
+.filter-menu p {
+	border-top: 1px solid var(--clr-black);
+	padding-top: 0.5rem;
+	margin: 1rem 0 0.5rem 0;
+}
+
+.filter-menu input {
+	width: 100%;
 }
 
 h1 {
@@ -53,13 +107,21 @@ h1 {
 	display: grid;
 	place-content: start;
 	grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-	padding: 1.5rem 0.75rem;
+	padding: 1.5rem 0.5rem;
+}
+
+.book-container.open {
+	padding-left: 1.5rem;
+}
+
+.book-container.closed {
+	transform: translateY(3rem);
 }
 
 .book-card {
 	display: flex;
 	padding: 0.5rem 0.75rem 0rem 1rem;
-	margin: 0 1rem 2rem 1rem;
+	margin: 0 0.5rem 2rem 0.5rem;
 	background-color: var(--clr-black);
 	color: var(--clr-white);
 }
@@ -138,16 +200,9 @@ dialog::backdrop {
 	cursor: pointer;
 }
 
-.read-unread-btn:hover,
-.read-unread-btn:active {
-}
-
 /* Nav Bar Styles */
 .filter-container-fieldset {
 	border: none;
-}
-.filter-container-legend {
-	padding-left: 0.5rem;
 }
 
 .filter-option-fieldset {
