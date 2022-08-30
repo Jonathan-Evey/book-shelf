@@ -12,9 +12,19 @@ const BookCard = ({ book, updateReadStatus }) => {
 		updateReadStatus(id, value);
 		setIsUpdateDropdownShown(false);
 	};
+
+	const getBookImgContainerClass = () => {
+		if (book.readStatus === "Read") {
+			return "book-img-container read";
+		} else if (book.readStatus === "Reading") {
+			return "book-img-container reading";
+		} else {
+			return "book-img-container unread";
+		}
+	};
 	return (
 		<div className="book-card">
-			<div className="book-img-container">
+			<div className={getBookImgContainerClass()}>
 				<img src={book.thumbnail} alt="" />
 				<button
 					onClick={() => handleOpenClose()}
@@ -22,9 +32,15 @@ const BookCard = ({ book, updateReadStatus }) => {
 					onMouseLeave={() => setIsUpdateShown(false)}
 					onFocus={() => setIsUpdateShown(true)}
 					onBlur={() => setIsUpdateShown(false)}
-					className="read-unread-btn"
+					className={
+						isUpdateDropdownShown
+							? "read-unread-btn open"
+							: "read-unread-btn"
+					}
 				>
-					{isUpdateShown ? "Update" : book.readStatus}
+					{isUpdateShown && !isUpdateDropdownShown
+						? "Update"
+						: book.readStatus}
 				</button>
 				{isUpdateDropdownShown ? (
 					<ol className="read-status-dropdown">
@@ -118,18 +134,19 @@ const BookCard = ({ book, updateReadStatus }) => {
 			<div className="book-right">
 				<div className="book-right-top">
 					<h4>{book.title}</h4>
+					<p>by</p>
 					<p>{book.author[0]}</p>
 				</div>
-				<p>Personal Rating: {book.rating}/5</p>
+				{!book.genres[1] ? (
+					<p>{book.genres[0]}</p>
+				) : (
+					<p>{book.genres[0] + " / " + book.genres[1]}</p>
+				)}
 				<div className="book-right-bottom-container">
 					{book.readStatus === "Read" ? null : (
 						<button className="prioritize-btn">Prioritize</button>
 					)}
-					{!book.genres[1] ? (
-						<p>{book.genres[0]}</p>
-					) : (
-						<p>{book.genres[0] + " / " + book.genres[1]}</p>
-					)}
+					<p>{book.rating} / 5</p>
 				</div>
 			</div>
 		</div>
