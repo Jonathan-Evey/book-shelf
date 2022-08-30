@@ -2,7 +2,6 @@ import BookCard from "../components/BookCard";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 const BookContainer = (props) => {
-	let updateReadStatus = props.updateReadStatus;
 	let titleRegex = new RegExp(props.searchTitleFilter, "gi");
 	let authorRegex = new RegExp(props.searchAuthorFilter, "gi");
 
@@ -45,7 +44,7 @@ const BookContainer = (props) => {
 						<BookCard
 							className="book-card"
 							book={book}
-							updateReadStatus={updateReadStatus}
+							updateBookState={props.updateBookState}
 						/>
 					</CSSTransition>
 				))}
