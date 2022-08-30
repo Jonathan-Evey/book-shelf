@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const BookCard = ({ book, updateReadStatus }) => {
+const BookCard = ({ book, updateBookState }) => {
 	const [isUpdateShown, setIsUpdateShown] = useState(false);
 	const [isUpdateDropdownShown, setIsUpdateDropdownShown] = useState(false);
 
@@ -8,8 +8,8 @@ const BookCard = ({ book, updateReadStatus }) => {
 		setIsUpdateDropdownShown(!isUpdateDropdownShown);
 	};
 
-	const updateReadStatusEvent = (id, value) => {
-		updateReadStatus(id, value);
+	const updateBookStateEvent = (id, value, key) => {
+		updateBookState(id, value, key);
 		setIsUpdateDropdownShown(false);
 	};
 
@@ -49,9 +49,10 @@ const BookCard = ({ book, updateReadStatus }) => {
 								<li className="read-option">
 									<button
 										onClick={() =>
-											updateReadStatusEvent(
+											updateBookStateEvent(
 												book.id,
-												"Unread"
+												"Unread",
+												"readStatus"
 											)
 										}
 									>
@@ -61,9 +62,10 @@ const BookCard = ({ book, updateReadStatus }) => {
 								<li className="read-option">
 									<button
 										onClick={() =>
-											updateReadStatusEvent(
+											updateBookStateEvent(
 												book.id,
-												"Reading"
+												"Reading",
+												"readStatus"
 											)
 										}
 									>
@@ -77,9 +79,10 @@ const BookCard = ({ book, updateReadStatus }) => {
 								<li className="read-option">
 									<button
 										onClick={() =>
-											updateReadStatusEvent(
+											updateBookStateEvent(
 												book.id,
-												"Unread"
+												"Unread",
+												"readStatus"
 											)
 										}
 									>
@@ -89,9 +92,10 @@ const BookCard = ({ book, updateReadStatus }) => {
 								<li className="read-option">
 									<button
 										onClick={() =>
-											updateReadStatusEvent(
+											updateBookStateEvent(
 												book.id,
-												"Read"
+												"Read",
+												"readStatus"
 											)
 										}
 									>
@@ -105,9 +109,10 @@ const BookCard = ({ book, updateReadStatus }) => {
 								<li className="read-option">
 									<button
 										onClick={() =>
-											updateReadStatusEvent(
+											updateBookStateEvent(
 												book.id,
-												"Reading"
+												"Reading",
+												"readStatus"
 											)
 										}
 									>
@@ -117,9 +122,10 @@ const BookCard = ({ book, updateReadStatus }) => {
 								<li className="read-option">
 									<button
 										onClick={() =>
-											updateReadStatusEvent(
+											updateBookStateEvent(
 												book.id,
-												"Read"
+												"Read",
+												"readStatus"
 											)
 										}
 									>
@@ -144,9 +150,20 @@ const BookCard = ({ book, updateReadStatus }) => {
 				)}
 				<div className="book-right-bottom-container">
 					{book.readStatus === "Read" ? null : (
-						<button className="prioritize-btn">Prioritize</button>
+						<button
+							onClick={() =>
+								updateBookStateEvent(
+									book.id,
+									book.isPrioritized,
+									"isPrioritized"
+								)
+							}
+							className="prioritize-btn"
+						>
+							{book.isPrioritized ? "Unprioritize" : "Prioritize"}
+						</button>
 					)}
-					<p>{book.rating} / 5</p>
+					<p>{book.rating === "" ? "-" : book.rating} / 5</p>
 				</div>
 			</div>
 		</div>
