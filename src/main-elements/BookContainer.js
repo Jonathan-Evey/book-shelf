@@ -7,7 +7,13 @@ const BookContainer = (props) => {
 	let authorRegex = new RegExp(props.searchAuthorFilter, "gi");
 
 	return (
-		<TransitionGroup className="book-container">
+		<TransitionGroup
+			className={
+				props.isFilterMenuOpen
+					? "book-container open"
+					: "book-container closed"
+			}
+		>
 			{props.savedBooks
 				.filter(
 					(book) =>
