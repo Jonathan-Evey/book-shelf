@@ -75,19 +75,51 @@ const Navigation = ( props ) => {
 	}
 
 	return (
-		<aside>
-			<label htmlFor="title-search">Search for Title:</label>
-			<input type="search" name="title-search" id="title-search" onChange={updateTitleSearchWord}/>
-			<label htmlFor="author-search">Search for Author:</label>
-			<input type="search" name="author-search" id="author-search" onChange={updateAuthorSearchWord}/>
+		<div className={props.isFilterMenuOpen ? "filter-menu open" : "filter-menu closed" }>
+			
 			<fieldset className="filter-container-fieldset">
-			<legend className="filter-container-legend">Filter By:</legend>
+				<p>Search for</p>
+				<label htmlFor="title-search">Book Title:</label>
+				<input type="search" name="title-search" id="title-search" onChange={updateTitleSearchWord}/>
+				<label htmlFor="author-search">Book Author:</label>
+				<input type="search" name="author-search" id="author-search" onChange={updateAuthorSearchWord}/>
+				<p>Sort by</p>
+				<fieldset className="filter-option-fieldset">
+					<legend className="filter-option-legend">Title</legend>
+						<button 
+							className="filter-option-btn"
+							onClick={openReadStatusDropdown}
+							>{props.readStatusFilter}<span>^</span>
+						</button>
+						{isReadStatusDropdownOpen ? 
+						<ol className="filter-option-dropdown">
+							<li className="filter-option"
+								onClick={updateReadStatusFilter}>A - Z</li>
+							<li className="filter-option"
+								onClick={updateReadStatusFilter}>Z - A</li>
+						</ol> : null}
+				</fieldset>
+				<fieldset className="filter-option-fieldset">
+					<legend className="filter-option-legend">Author</legend>
+						<button 
+							className="filter-option-btn"
+							onClick={openReadStatusDropdown}
+							>{props.readStatusFilter}<span>^</span>
+						</button>
+						{isReadStatusDropdownOpen ? 
+						<ol className="filter-option-dropdown">
+							<li className="filter-option"
+								onClick={updateReadStatusFilter}>A - Z</li>
+							<li className="filter-option"
+								onClick={updateReadStatusFilter}>Z - A</li>
+						</ol> : null}
+				</fieldset>
 				<fieldset className="filter-option-fieldset">
 					<legend className="filter-option-legend">Read Status</legend>
 						<button 
 							className="filter-option-btn"
 							onClick={openReadStatusDropdown}
-							>{props.readStatusFilter}<p>^</p>
+							>{props.readStatusFilter}<span>^</span>
 						</button>
 						{isReadStatusDropdownOpen ? 
 						<ol className="filter-option-dropdown">
@@ -102,11 +134,11 @@ const Navigation = ( props ) => {
 						</ol> : null}
 				</fieldset>
 				<fieldset className="filter-option-fieldset">
-					<legend className="filter-option-legend">Rating:</legend>
+					<legend className="filter-option-legend">Rating</legend>
 						<button 
 							className="filter-option-btn"
 							onClick={openRatingFilterDropdown}
-							>{currentRatingSelected}<p>^</p>
+							>{currentRatingSelected}<span>^</span>
 						</button>
 						{isRatingFilterDropdownOpen ? 
 						<ol className="filter-option-dropdown">
@@ -134,7 +166,8 @@ const Navigation = ( props ) => {
 						</ol> : null}
 				</fieldset>
 			</fieldset>
-		</aside>);
+		</div>
+		);
 };
 
 export default Navigation;
