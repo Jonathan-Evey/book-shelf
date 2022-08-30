@@ -24,8 +24,8 @@ const Main = (props) => {
 			<aside
 				className={
 					props.isFilterMenuOpen
-						? "toggle-filter-menu-container open"
-						: "toggle-filter-menu-container closed"
+						? "main-filter-menu-container open"
+						: "main-filter-menu-container closed"
 				}
 			>
 				<button
