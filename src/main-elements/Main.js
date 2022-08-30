@@ -21,12 +21,19 @@ const Main = (props) => {
 
 	return (
 		<main>
-			<div className="open-filter-menu-container">
-				<button onClick={props.openFilterMenuToggle}>
-					Filter Menu
+			<aside
+				className={
+					props.isFilterMenuOpen
+						? "toggle-filter-menu-container open"
+						: "toggle-filter-menu-container closed"
+				}
+			>
+				<button
+					onClick={props.openFilterMenuToggle}
+					className="toggle-filter-menu-btn"
+				>
+					Filter Menu<span>^</span>
 				</button>
-			</div>
-			{props.isFilterMenuOpen ? (
 				<Navigation
 					//------menu open state
 					isFilterMenuOpen={props.isFilterMenuOpen}
@@ -49,12 +56,13 @@ const Main = (props) => {
 					isRatingFilter={isRatingFilter}
 					setIsRatingFilter={setIsRatingFilter}
 				/>
-			) : null}
+			</aside>
 
 			<BookContainer
 				//from main
 				savedBooks={props.savedBooks}
 				updateReadStatus={props.updateReadStatus}
+				isFilterMenuOpen={props.isFilterMenuOpen}
 				//------title state
 				searchTitleFilter={searchTitleFilter}
 				isSearchTitleFilter={isSearchTitleFilter}
