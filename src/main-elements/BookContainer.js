@@ -38,7 +38,7 @@ const BookContainer = (props) => {
 				)
 				.map((book) => (
 					<CSSTransition
-						timeout={450}
+						timeout={400}
 						classNames="book-card"
 						key={book.id}
 					>
