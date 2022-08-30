@@ -14,7 +14,7 @@ function App() {
 			readStatus: "Unread",
 			rating: 1,
 			genres: ["Fiction", "Fantasy"],
-			isPrioritized: false,
+			isPrioritized: true,
 		},
 		{
 			author: ["J.R.R. Tolkien"],
@@ -81,12 +81,35 @@ function App() {
 	};
 
 	//-------------passed down to /Main/BookContainer to update state from each BookCard
-	const updateReadStatus = (id, value) => {
-		return setSavedBooks(
-			savedBooks.map((book) =>
-				book.id === id ? { ...book, readStatus: value } : book
-			)
-		);
+	const updateBookState = (id, value, key) => {
+		if (key === "readStatus") {
+			if (value === "Read") {
+				setSavedBooks(
+					savedBooks.map((book) =>
+						book.id === id
+							? {
+									...book,
+									readStatus: value,
+									isPrioritized: false,
+							  }
+							: book
+					)
+				);
+			} else {
+				return setSavedBooks(
+					savedBooks.map((book) =>
+						book.id === id ? { ...book, readStatus: value } : book
+					)
+				);
+			}
+		}
+		if (key === "isPrioritized") {
+			return setSavedBooks(
+				savedBooks.map((book) =>
+					book.id === id ? { ...book, isPrioritized: !value } : book
+				)
+			);
+		}
 	};
 
 	return (
@@ -99,7 +122,8 @@ function App() {
 				isFilterMenuOpen={isFilterMenuOpen}
 				//--------passing functions
 				openFilterMenuToggle={openFilterMenuToggle}
-				updateReadStatus={updateReadStatus}
+				updateBookState={updateBookState}
+				// updatePriority={updatePriority}
 			/>
 		</div>
 	);
