@@ -114,10 +114,11 @@ const Navigation = ( props ) => {
 								onClick={updateReadStatusFilter}>Z - A</li>
 						</ol> : null}
 				</fieldset>
+				<p>Filter by</p>
 				<fieldset className="filter-option-fieldset">
 					<legend className="filter-option-legend">Read Status</legend>
 						<button 
-							className="filter-option-btn"
+							className={isReadStatusDropdownOpen ? "filter-option-btn open" : "filter-option-btn"}
 							onClick={openReadStatusDropdown}
 							>{props.readStatusFilter}<span>^</span>
 						</button>
@@ -136,7 +137,7 @@ const Navigation = ( props ) => {
 				<fieldset className="filter-option-fieldset">
 					<legend className="filter-option-legend">Rating</legend>
 						<button 
-							className="filter-option-btn"
+							className={isRatingFilterDropdownOpen ? "filter-option-btn open" : "filter-option-btn"}
 							onClick={openRatingFilterDropdown}
 							>{currentRatingSelected}<span>^</span>
 						</button>
