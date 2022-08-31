@@ -1,6 +1,7 @@
 import Main from "./main-elements/Main";
 import Header from "./main-elements/Header";
 import FindBookModel from "./components/FindBookModel";
+import BookObjKeys from "./BookObjKeys";
 import React, { useState, useEffect } from "react";
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
 			readStatus: "Unread",
 			rating: 1,
 			genres: ["Fiction", "Fantasy"],
-			isPrioritized: true,
+			isReadNext: true,
 		},
 		{
 			author: ["J.R.R. Tolkien"],
@@ -25,7 +26,7 @@ function App() {
 			readStatus: "Read",
 			rating: 2,
 			genres: ["Fiction"],
-			isPrioritized: false,
+			isReadNext: false,
 		},
 		{
 			author: ["J.R.R. Tolkien"],
@@ -36,7 +37,7 @@ function App() {
 			readStatus: "Unread",
 			rating: 3,
 			genres: ["Fiction", "Fantasy"],
-			isPrioritized: false,
+			isReadNext: false,
 		},
 		{
 			author: ["J.R.R. Tolkien"],
@@ -47,7 +48,7 @@ function App() {
 			readStatus: "Read",
 			rating: 4,
 			genres: ["Fiction", "Fantasy"],
-			isPrioritized: false,
+			isReadNext: false,
 		},
 		{
 			author: ["J.R.R. Tolkien"],
@@ -58,7 +59,7 @@ function App() {
 			genres: ["Fiction", "Fantasy"],
 			readStatus: "Unread",
 			rating: 5,
-			isPrioritized: false,
+			isReadNext: false,
 		},
 		{
 			author: ["J.R.R. Tolkien"],
@@ -69,7 +70,7 @@ function App() {
 			genres: ["Fiction", "Fantasy"],
 			readStatus: "Read",
 			rating: "",
-			isPrioritized: false,
+			isReadNext: false,
 		},
 	]);
 	const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(true);
@@ -81,35 +82,29 @@ function App() {
 	};
 
 	//-------------passed down to /Main/BookContainer to update state from each BookCard
-	const updateBookState = (id, value, key) => {
-		if (key === "readStatus") {
-			if (value === "Read") {
-				setSavedBooks(
-					savedBooks.map((book) =>
-						book.id === id
-							? {
-									...book,
-									readStatus: value,
-									isPrioritized: false,
-							  }
-							: book
-					)
-				);
-			} else {
-				return setSavedBooks(
-					savedBooks.map((book) =>
-						book.id === id ? { ...book, readStatus: value } : book
-					)
-				);
-			}
-		}
-		if (key === "isPrioritized") {
-			return setSavedBooks(
-				savedBooks.map((book) =>
-					book.id === id ? { ...book, isPrioritized: !value } : book
-				)
-			);
-		}
+	const updateReadStatus = (id, value) => {
+		return setSavedBooks(
+			savedBooks.map((book) =>
+				book.id === id
+					? {
+							...book,
+							readStatus: value,
+							isReadNext:
+								value === BookObjKeys.readStatus.unread
+									? book.isReadNext
+									: false,
+					  }
+					: book
+			)
+		);
+	};
+
+	const updateReadNext = (id, value) => {
+		return setSavedBooks(
+			savedBooks.map((book) =>
+				book.id === id ? { ...book, isReadNext: !value } : book
+			)
+		);
 	};
 
 	return (
@@ -122,8 +117,8 @@ function App() {
 				isFilterMenuOpen={isFilterMenuOpen}
 				//--------passing functions
 				openFilterMenuToggle={openFilterMenuToggle}
-				updateBookState={updateBookState}
-				// updatePriority={updatePriority}
+				updateReadStatus={updateReadStatus}
+				updateReadNext={updateReadNext}
 			/>
 		</div>
 	);
