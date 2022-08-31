@@ -301,7 +301,7 @@ dialog::backdrop {
 	border-right: 1px solid black;
 }
 
-.prioritize-btn {
+.read-next-btn {
 	min-width: 12ch;
 	background: none;
 	border: none;
@@ -318,7 +318,7 @@ dialog::backdrop {
 	);
 }
 
-.prioritize-btn:hover {
+.read-next-btn:hover {
 	cursor: pointer;
 	background: var(--clr-main-700);
 	color: var(--clr-accent-light);
