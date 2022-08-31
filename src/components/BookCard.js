@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import BookObjKeys from "../BookObjKeys";
 
-const BookCard = ({ book, updateBookState }) => {
+const BookCard = ({ book, updateReadStatus, updateReadNext }) => {
 	const [isUpdateShown, setIsUpdateShown] = useState(false);
 	const [isUpdateDropdownShown, setIsUpdateDropdownShown] = useState(false);
 
@@ -8,9 +9,13 @@ const BookCard = ({ book, updateBookState }) => {
 		setIsUpdateDropdownShown(!isUpdateDropdownShown);
 	};
 
-	const updateBookStateEvent = (id, value, key) => {
-		updateBookState(id, value, key);
+	const updateReadStatusEvent = (id, value) => {
+		updateReadStatus(id, value);
 		setIsUpdateDropdownShown(false);
+	};
+
+	const updateReadNextEvent = (id, value) => {
+		updateReadNext(id, value);
 	};
 
 	const getBookImgContainerClass = () => {
@@ -44,95 +49,47 @@ const BookCard = ({ book, updateBookState }) => {
 				</button>
 				{isUpdateDropdownShown ? (
 					<ol className="read-status-dropdown">
-						{book.readStatus === "Read" ? (
-							<>
-								<li className="read-option">
-									<button
-										onClick={() =>
-											updateBookStateEvent(
-												book.id,
-												"Unread",
-												"readStatus"
-											)
-										}
-									>
-										Unread
-									</button>
-								</li>
-								<li className="read-option">
-									<button
-										onClick={() =>
-											updateBookStateEvent(
-												book.id,
-												"Reading",
-												"readStatus"
-											)
-										}
-									>
-										Reading
-									</button>
-								</li>
-							</>
+						{book.readStatus !== BookObjKeys.readStatus.unread ? (
+							<li className="read-option">
+								<button
+									onClick={() =>
+										updateReadStatusEvent(
+											book.id,
+											BookObjKeys.readStatus.unread
+										)
+									}
+								>
+									Unread
+								</button>
+							</li>
 						) : null}
-						{book.readStatus === "Reading" ? (
-							<>
-								<li className="read-option">
-									<button
-										onClick={() =>
-											updateBookStateEvent(
-												book.id,
-												"Unread",
-												"readStatus"
-											)
-										}
-									>
-										Unread
-									</button>
-								</li>
-								<li className="read-option">
-									<button
-										onClick={() =>
-											updateBookStateEvent(
-												book.id,
-												"Read",
-												"readStatus"
-											)
-										}
-									>
-										Read
-									</button>
-								</li>
-							</>
+						{book.readStatus !== BookObjKeys.readStatus.reading ? (
+							<li className="read-option">
+								<button
+									onClick={() =>
+										updateReadStatusEvent(
+											book.id,
+											BookObjKeys.readStatus.reading
+										)
+									}
+								>
+									Reading
+								</button>
+							</li>
 						) : null}
-						{book.readStatus === "Unread" ? (
-							<>
-								<li className="read-option">
-									<button
-										onClick={() =>
-											updateBookStateEvent(
-												book.id,
-												"Reading",
-												"readStatus"
-											)
-										}
-									>
-										Reading
-									</button>
-								</li>
-								<li className="read-option">
-									<button
-										onClick={() =>
-											updateBookStateEvent(
-												book.id,
-												"Read",
-												"readStatus"
-											)
-										}
-									>
-										Read
-									</button>
-								</li>
-							</>
+						{book.readStatus !== BookObjKeys.readStatus.read ? (
+							<li className="read-option">
+								<button
+									onClick={() =>
+										updateReadStatusEvent(
+											book.id,
+											BookObjKeys.readStatus.read
+										)
+									}
+								>
+									Read
+								</button>
+							</li>
 						) : null}
 					</ol>
 				) : null}
@@ -149,20 +106,18 @@ const BookCard = ({ book, updateBookState }) => {
 					<p>{book.genres[0] + " / " + book.genres[1]}</p>
 				)}
 				<div className="book-right-bottom-container">
-					{book.readStatus === "Read" ? null : (
+					{book.readStatus === BookObjKeys.readStatus.unread ? (
 						<button
 							onClick={() =>
-								updateBookStateEvent(
-									book.id,
-									book.isPrioritized,
-									"isPrioritized"
-								)
+								updateReadNextEvent(book.id, book.isReadNext)
 							}
-							className="prioritize-btn"
+							className="read-next-btn"
 						>
-							{book.isPrioritized ? "Unprioritize" : "Prioritize"}
+							{book.isReadNext
+								? "Remove from Read Next"
+								: "Add to Read Next"}
 						</button>
-					)}
+					) : null}
 					<p>{book.rating === "" ? "-" : book.rating} / 5</p>
 				</div>
 			</div>
