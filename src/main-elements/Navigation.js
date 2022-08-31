@@ -1,6 +1,20 @@
 import React, { useState } from "react";
+import SearchSavedBooks from "../components/SearchSavedBooks";
+import SortByTitle from "../components/sortOptions/SortByTitle";
+import SortBtAuthor from "../components/sortOptions/SortBtAuthor";
+import FilterByReadState from "../components/filters/FilterByReadState";
+import FilterByRating from "../components/filters/FilterByRating";
 
 const Navigation = (props) => {
+	//------------------------------------------------------sort menu state
+	const [isTitleSortOpen, setIsTitleSortOpen] = useState(false);
+	const [currentTitleSortDisplayText, setCurrentTitleSortDisplayText] =
+		useState("Titles");
+	const [isAuthorSortOpen, setIsAuthorSortOpen] = useState(false);
+	const [currentAuthorSortDisplayText, setCurrentAuthorSortDisplayText] =
+		useState("Authors");
+
+	//------------------------------------------------------filter menu state
 	const [isReadStatusDropdownOpen, setIsReadStatusDropdownOpen] =
 		useState(false);
 	const [isRatingFilterDropdownOpen, setIsRatingFilterDropdownOpen] =
@@ -8,7 +22,7 @@ const Navigation = (props) => {
 	//-------------------------------used to display the rating filter text on the menu
 	const [currentRatingSelected, setCurrentRatingSelected] = useState("All");
 
-	//------------------------------sort books by title functions
+	//------------------------------search books by title functions
 	const updateTitleSearchWord = (e) => {
 		if (e.target.value === "") {
 			props.setIsSearchTitleFilter(false);
@@ -19,7 +33,7 @@ const Navigation = (props) => {
 		}
 	};
 
-	//------------------------------sort books by author functions
+	//------------------------------search books by author functions
 	const updateAuthorSearchWord = (e) => {
 		if (e.target.value === "") {
 			props.setIsSearchAuthorFilter(false);
@@ -30,7 +44,29 @@ const Navigation = (props) => {
 		}
 	};
 
-	//---------------sort books by read, reading or unread functions
+	//-----------------------------sort books functions
+	//-----------------------------------------------by title
+	const openTitleSortDropdown = () => {
+		setIsTitleSortOpen(!isTitleSortOpen);
+	};
+
+	const updateTitleSortDisplayText = (newTextValue) => {
+		setIsTitleSortOpen(false);
+		setCurrentTitleSortDisplayText(newTextValue);
+	};
+	//-----------------------------sort books functions
+	//-----------------------------------------------by author
+	const openAuthorSortDropdown = () => {
+		setIsAuthorSortOpen(!isAuthorSortOpen);
+	};
+
+	const updateAuthorSortDisplayText = (newTextValue) => {
+		setIsAuthorSortOpen(false);
+		setCurrentAuthorSortDisplayText(newTextValue);
+	};
+
+	//-----------------------------filter books functions
+	//---------------------------------by read, reading or unread
 	const openReadStatusDropdown = () => {
 		if (isReadStatusDropdownOpen) {
 			setIsReadStatusDropdownOpen(false);
@@ -51,8 +87,8 @@ const Navigation = (props) => {
 			openReadStatusDropdown();
 		}
 	}
-
-	//---------------------------------sort by book rating functions
+	//-----------------------------filter books functions
+	//-----------------------------------------by book rating
 	const openRatingFilterDropdown = () => {
 		if (isRatingFilterDropdownOpen) {
 			setIsRatingFilterDropdownOpen(false);
@@ -82,182 +118,36 @@ const Navigation = (props) => {
 			}`}
 		>
 			<fieldset className="filter-container-fieldset">
-				<p>Search for</p>
-				<label htmlFor="title-search">Book Title:</label>
-				<input
-					type="search"
-					name="title-search"
-					id="title-search"
-					onChange={updateTitleSearchWord}
-				/>
-				<label htmlFor="author-search">Book Author:</label>
-				<input
-					type="search"
-					name="author-search"
-					id="author-search"
-					onChange={updateAuthorSearchWord}
+				<SearchSavedBooks
+					updateAuthorSearchWord={updateAuthorSearchWord}
+					updateTitleSearchWord={updateTitleSearchWord}
 				/>
 				<p>Sort by</p>
-				<fieldset className="filter-option-fieldset">
-					<legend className="filter-option-legend">Title</legend>
-					<button
-						className="filter-option-btn"
-						onClick={openReadStatusDropdown}
-					>
-						{props.readStatusFilter}
-						<span>^</span>
-					</button>
-					{isReadStatusDropdownOpen ? (
-						<ol className="filter-option-dropdown">
-							<li
-								className="filter-option"
-								onClick={updateReadStatusFilter}
-							>
-								A - Z
-							</li>
-							<li
-								className="filter-option"
-								onClick={updateReadStatusFilter}
-							>
-								Z - A
-							</li>
-						</ol>
-					) : null}
-				</fieldset>
-				<fieldset className="filter-option-fieldset">
-					<legend className="filter-option-legend">Author</legend>
-					<button
-						className="filter-option-btn"
-						onClick={openReadStatusDropdown}
-					>
-						{props.readStatusFilter}
-						<span>^</span>
-					</button>
-					{isReadStatusDropdownOpen ? (
-						<ol className="filter-option-dropdown">
-							<li
-								className="filter-option"
-								onClick={updateReadStatusFilter}
-							>
-								A - Z
-							</li>
-							<li
-								className="filter-option"
-								onClick={updateReadStatusFilter}
-							>
-								Z - A
-							</li>
-						</ol>
-					) : null}
-				</fieldset>
+				<SortByTitle
+					isTitleSortOpen={isTitleSortOpen}
+					currentTitleSortDisplayText={currentTitleSortDisplayText}
+					openTitleSortDropdown={openTitleSortDropdown}
+					updateTitleSortDisplayText={updateTitleSortDisplayText}
+				/>
+				<SortBtAuthor
+					isAuthorSortOpen={isAuthorSortOpen}
+					currentAuthorSortDisplayText={currentAuthorSortDisplayText}
+					openAuthorSortDropdown={openAuthorSortDropdown}
+					updateAuthorSortDisplayText={updateAuthorSortDisplayText}
+				/>
 				<p>Filter by</p>
-				<fieldset className="filter-option-fieldset">
-					<legend className="filter-option-legend">
-						Read Status
-					</legend>
-					<button
-						className={`filter-option-btn ${
-							isReadStatusDropdownOpen ? "open" : "closed"
-						}`}
-						onClick={openReadStatusDropdown}
-					>
-						{props.readStatusFilter}
-						<span>^</span>
-					</button>
-					{isReadStatusDropdownOpen ? (
-						<ol className="filter-option-dropdown">
-							<li
-								className="filter-option"
-								onClick={updateReadStatusFilter}
-							>
-								All
-							</li>
-							<li
-								className="filter-option"
-								onClick={updateReadStatusFilter}
-							>
-								Unread
-							</li>
-							<li
-								className="filter-option"
-								onClick={updateReadStatusFilter}
-							>
-								Reading
-							</li>
-							<li
-								className="filter-option"
-								onClick={updateReadStatusFilter}
-							>
-								Read
-							</li>
-						</ol>
-					) : null}
-				</fieldset>
-				<fieldset className="filter-option-fieldset">
-					<legend className="filter-option-legend">Rating</legend>
-					<button
-						className={`filter-option-btn ${
-							isRatingFilterDropdownOpen ? "open" : "closed"
-						}`}
-						onClick={openRatingFilterDropdown}
-					>
-						{currentRatingSelected}
-						<span>^</span>
-					</button>
-					{isRatingFilterDropdownOpen ? (
-						<ol className="filter-option-dropdown">
-							<li
-								className="filter-option"
-								onClick={updateRatingFilter}
-								id="All"
-							>
-								All
-							</li>
-							<li
-								className="filter-option"
-								onClick={updateRatingFilter}
-								id="0"
-							>
-								0 - 1
-							</li>
-							<li
-								className="filter-option"
-								onClick={updateRatingFilter}
-								id="1"
-							>
-								1 - 2
-							</li>
-							<li
-								className="filter-option"
-								onClick={updateRatingFilter}
-								id="2"
-							>
-								2 - 3
-							</li>
-							<li
-								className="filter-option"
-								onClick={updateRatingFilter}
-								id="3"
-							>
-								3 - 4
-							</li>
-							<li
-								className="filter-option"
-								onClick={updateRatingFilter}
-								id="4"
-							>
-								4 - 5
-							</li>
-							<li
-								className="filter-option"
-								onClick={updateRatingFilter}
-								id="5"
-							>
-								Ratings 5
-							</li>
-						</ol>
-					) : null}
-				</fieldset>
+				<FilterByReadState
+					openReadStatusDropdown={openReadStatusDropdown}
+					isReadStatusDropdownOpen={isReadStatusDropdownOpen}
+					updateReadStatusFilter={updateReadStatusFilter}
+					readStatusFilter={props.readStatusFilter}
+				/>
+				<FilterByRating
+					updateRatingFilter={updateRatingFilter}
+					isRatingFilterDropdownOpen={isRatingFilterDropdownOpen}
+					openRatingFilterDropdown={openRatingFilterDropdown}
+					currentRatingSelected={currentRatingSelected}
+				/>
 			</fieldset>
 		</div>
 	);
