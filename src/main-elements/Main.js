@@ -61,7 +61,8 @@ const Main = (props) => {
 			<BookContainer
 				//from main
 				savedBooks={props.savedBooks}
-				updateBookState={props.updateBookState}
+				updateReadStatus={props.updateReadStatus}
+				updateReadNext={props.updateReadNext}
 				isFilterMenuOpen={props.isFilterMenuOpen}
 				//------title state
 				searchTitleFilter={searchTitleFilter}
