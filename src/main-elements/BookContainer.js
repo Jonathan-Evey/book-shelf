@@ -44,7 +44,8 @@ const BookContainer = (props) => {
 						<BookCard
 							className="book-card"
 							book={book}
-							updateBookState={props.updateBookState}
+							updateReadStatus={props.updateReadStatus}
+							updateReadNext={props.updateReadNext}
 						/>
 					</CSSTransition>
 				))}
