@@ -7,11 +7,9 @@ const BookContainer = (props) => {
 
 	return (
 		<TransitionGroup
-			className={
-				props.isFilterMenuOpen
-					? "book-container open"
-					: "book-container closed"
-			}
+			className={`book-container ${
+				props.isFilterMenuOpen ? "open" : "closed"
+			}`}
 		>
 			{props.savedBooks
 				.filter(

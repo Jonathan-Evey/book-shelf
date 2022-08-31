@@ -18,18 +18,24 @@ const BookCard = ({ book, updateReadStatus, updateReadNext }) => {
 		updateReadNext(id, value);
 	};
 
-	const getBookImgContainerClass = () => {
-		if (book.readStatus === "Read") {
-			return "book-img-container read";
-		} else if (book.readStatus === "Reading") {
-			return "book-img-container reading";
-		} else {
-			return "book-img-container unread";
+	const getBookImgContainerClass = (value) => {
+		switch (value) {
+			case BookObjKeys.readStatus.unread:
+				return "unread";
+			case BookObjKeys.readStatus.reading:
+				return "reading";
+			default:
+				return "read";
 		}
 	};
+
 	return (
 		<div className="book-card">
-			<div className={getBookImgContainerClass()}>
+			<div
+				className={`book-img-container ${getBookImgContainerClass(
+					book.readStatus
+				)}`}
+			>
 				<img src={book.thumbnail} alt="" />
 				<button
 					onClick={() => handleOpenClose()}
@@ -37,11 +43,9 @@ const BookCard = ({ book, updateReadStatus, updateReadNext }) => {
 					onMouseLeave={() => setIsUpdateShown(false)}
 					onFocus={() => setIsUpdateShown(true)}
 					onBlur={() => setIsUpdateShown(false)}
-					className={
-						isUpdateDropdownShown
-							? "read-unread-btn open"
-							: "read-unread-btn"
-					}
+					className={`read-unread-btn${
+						isUpdateDropdownShown ? " open" : ""
+					}`}
 				>
 					{isUpdateShown && !isUpdateDropdownShown
 						? "Update"
@@ -98,13 +102,11 @@ const BookCard = ({ book, updateReadStatus, updateReadNext }) => {
 				<div className="book-right-top">
 					<h4>{book.title}</h4>
 					<p>by</p>
-					<p>{book.author[0]}</p>
+					{book.author.map((each) => (
+						<p key={book.author.indexOf(each)}>{each}</p>
+					))}
 				</div>
-				{!book.genres[1] ? (
-					<p>{book.genres[0]}</p>
-				) : (
-					<p>{book.genres[0] + " / " + book.genres[1]}</p>
-				)}
+				<p>{book.genres.join(" / ")}</p>
 				<div className="book-right-bottom-container">
 					{book.readStatus === BookObjKeys.readStatus.unread ? (
 						<button
