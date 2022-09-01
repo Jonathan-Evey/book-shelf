@@ -1,18 +1,16 @@
-const Header = () => {
-	function openFindBookModel() {
-		console.log("clicked");
-		let model = document.getElementById("find-book");
-		model.showModal();
-	}
+import React, { useState } from "react";
+
+const Header = (props) => {
+	// const updateKeyWordEvent = (e) => {
+	// 	props.updateKeyWord(e.target.value);
+	// };
 
 	return (
 		<header>
 			<div className="title-container">
 				<h1>My Bookshelf</h1>
 			</div>
-			<div>
-				<button onClick={openFindBookModel}>Add Book</button>
-			</div>
+			<button>User Menu</button>
 		</header>
 	);
 };
