@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import FindBookByTitle from "../components/FindBookByTitle";
+import FindBookByAuthor from "../components/FindBookByAuthor";
 import SearchSavedBooks from "../components/SearchSavedBooks";
 import SortByTitle from "../components/sortOptions/SortByTitle";
 import SortBtAuthor from "../components/sortOptions/SortBtAuthor";
@@ -6,7 +8,10 @@ import FilterByReadState from "../components/filters/FilterByReadState";
 import FilterByRating from "../components/filters/FilterByRating";
 
 const Navigation = (props) => {
+	const [isSearchMenuOpen, setIsSearchMenuOpen] = useState(false);
+
 	//------------------------------------------------------sort menu state
+	const [isSortMenuOpen, setIsSortMenuOpen] = useState(false);
 	const [isTitleSortOpen, setIsTitleSortOpen] = useState(false);
 	const [currentTitleSortDisplayText, setCurrentTitleSortDisplayText] =
 		useState("Titles");
@@ -15,12 +20,24 @@ const Navigation = (props) => {
 		useState("Authors");
 
 	//------------------------------------------------------filter menu state
+	const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
 	const [isReadStatusDropdownOpen, setIsReadStatusDropdownOpen] =
 		useState(false);
 	const [isRatingFilterDropdownOpen, setIsRatingFilterDropdownOpen] =
 		useState(false);
 	//-------------------------------used to display the rating filter text on the menu
 	const [currentRatingSelected, setCurrentRatingSelected] = useState("All");
+
+	//------------------------------find new books and display
+	function openFindBookModel(keyWord) {
+		if (keyWord === props.searchTitleKeyWord) {
+			props.updateUseSearchKeyWord(props.searchTitleKeyWord);
+			console.log("clicked");
+			console.log(props.searchTitleKeyWord);
+			let model = document.getElementById("find-book");
+			model.showModal();
+		}
+	}
 
 	//------------------------------search books by title functions
 	const updateTitleSearchWord = (e) => {
@@ -118,36 +135,84 @@ const Navigation = (props) => {
 			}`}
 		>
 			<fieldset className="filter-container-fieldset">
-				<SearchSavedBooks
-					updateAuthorSearchWord={updateAuthorSearchWord}
-					updateTitleSearchWord={updateTitleSearchWord}
+				<p>Add New Book</p>
+
+				<FindBookByTitle
+					searchTitleKeyWord={props.searchTitleKeyWord}
+					updateTitleKeyWord={props.updateTitleKeyWord}
+					openFindBookModel={openFindBookModel}
 				/>
-				<p>Sort by</p>
-				<SortByTitle
-					isTitleSortOpen={isTitleSortOpen}
-					currentTitleSortDisplayText={currentTitleSortDisplayText}
-					openTitleSortDropdown={openTitleSortDropdown}
-					updateTitleSortDisplayText={updateTitleSortDisplayText}
-				/>
-				<SortBtAuthor
-					isAuthorSortOpen={isAuthorSortOpen}
-					currentAuthorSortDisplayText={currentAuthorSortDisplayText}
-					openAuthorSortDropdown={openAuthorSortDropdown}
-					updateAuthorSortDisplayText={updateAuthorSortDisplayText}
-				/>
-				<p>Filter by</p>
-				<FilterByReadState
-					openReadStatusDropdown={openReadStatusDropdown}
-					isReadStatusDropdownOpen={isReadStatusDropdownOpen}
-					updateReadStatusFilter={updateReadStatusFilter}
-					readStatusFilter={props.readStatusFilter}
-				/>
-				<FilterByRating
-					updateRatingFilter={updateRatingFilter}
-					isRatingFilterDropdownOpen={isRatingFilterDropdownOpen}
-					openRatingFilterDropdown={openRatingFilterDropdown}
-					currentRatingSelected={currentRatingSelected}
-				/>
+				<FindBookByAuthor />
+
+				<button
+					className="toggle-submenu-btn"
+					onClick={() => setIsSearchMenuOpen(!isSearchMenuOpen)}
+				>
+					Search for
+					<span>^</span>
+				</button>
+				{isSearchMenuOpen ? (
+					<SearchSavedBooks
+						updateAuthorSearchWord={updateAuthorSearchWord}
+						updateTitleSearchWord={updateTitleSearchWord}
+					/>
+				) : null}
+				<button
+					className="toggle-submenu-btn"
+					onClick={() => setIsSortMenuOpen(!isSortMenuOpen)}
+				>
+					Sort By
+					<span>^</span>
+				</button>
+				{isSortMenuOpen ? (
+					<>
+						<SortByTitle
+							isTitleSortOpen={isTitleSortOpen}
+							currentTitleSortDisplayText={
+								currentTitleSortDisplayText
+							}
+							openTitleSortDropdown={openTitleSortDropdown}
+							updateTitleSortDisplayText={
+								updateTitleSortDisplayText
+							}
+						/>
+						<SortBtAuthor
+							isAuthorSortOpen={isAuthorSortOpen}
+							currentAuthorSortDisplayText={
+								currentAuthorSortDisplayText
+							}
+							openAuthorSortDropdown={openAuthorSortDropdown}
+							updateAuthorSortDisplayText={
+								updateAuthorSortDisplayText
+							}
+						/>
+					</>
+				) : null}
+				<button
+					className="toggle-submenu-btn"
+					onClick={() => setIsFilterMenuOpen(!isFilterMenuOpen)}
+				>
+					Filter by
+					<span>^</span>
+				</button>
+				{isFilterMenuOpen ? (
+					<>
+						<FilterByReadState
+							openReadStatusDropdown={openReadStatusDropdown}
+							isReadStatusDropdownOpen={isReadStatusDropdownOpen}
+							updateReadStatusFilter={updateReadStatusFilter}
+							readStatusFilter={props.readStatusFilter}
+						/>
+						<FilterByRating
+							updateRatingFilter={updateRatingFilter}
+							isRatingFilterDropdownOpen={
+								isRatingFilterDropdownOpen
+							}
+							openRatingFilterDropdown={openRatingFilterDropdown}
+							currentRatingSelected={currentRatingSelected}
+						/>
+					</>
+				) : null}
 			</fieldset>
 		</div>
 	);
