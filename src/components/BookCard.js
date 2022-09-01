@@ -36,7 +36,11 @@ const BookCard = ({ book, updateReadStatus, updateReadNext }) => {
 					book.readStatus
 				)}`}
 			>
-				<img src={book.thumbnail} alt="" />
+				{book.thumbnail.thumbnail ? (
+					<img src={book.thumbnail.thumbnail} alt="" />
+				) : (
+					<img src={book.thumbnail} alt="" />
+				)}
 				<button
 					onClick={() => handleOpenClose()}
 					onMouseEnter={() => setIsUpdateShown(true)}
