@@ -35,6 +35,10 @@ button {
 	font-size: 1rem;
 }
 
+button:hover {
+	cursor: pointer;
+}
+
 button span {
 	font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 	font-size: 1.2rem;
@@ -48,6 +52,7 @@ header {
 	background-color: var(--clr-main-700);
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
 	margin-bottom: 0.5rem;
 	box-shadow: 10px 10px 20px -5px rgba(0, 0, 0, 0.25),
 		5px 5px 20px -5px rgba(0, 0, 0, 0.5),
@@ -58,6 +63,34 @@ h1 {
 	margin-left: 2rem;
 	padding: 0.5rem 0.75rem;
 	max-width: 9ch;
+}
+
+.new-book-search-card {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.new-book-search-card input {
+	border: none;
+	border-bottom: 2px solid var(--clr-accent-dark);
+	background-color: var(--clr-main-300);
+	padding: 0.125rem 0.25rem;
+	margin-bottom: 0.125rem;
+}
+
+.new-book-search-card:nth-child(2) {
+	margin-bottom: 0.5rem;
+}
+
+.new-book-search-card input::placeholder {
+	color: var(--clr-black);
+}
+
+.new-book-search-card button {
+	width: fit-content;
+	margin: 0 auto;
 }
 
 /* -------- Main Styles ---------- */
@@ -137,6 +170,25 @@ main {
 	margin: 1rem 0 0.5rem 0;
 }
 
+.toggle-submenu-btn {
+	border: none;
+	background-color: var(--clr-main-700);
+	width: 100%;
+	border-bottom: 1px solid var(--clr-black);
+	margin: 1.5rem 0 0.5rem 0;
+}
+
+.toggle-submenu-btn {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 0.5rem 0 0.35rem;
+}
+
+.toggle-submenu-btn span {
+	transform: rotate(180deg) translateY(4px);
+}
+
 .filter-menu input {
 	width: 100%;
 }
@@ -187,7 +239,7 @@ main {
 
 .book-img-container img {
 	max-height: 150px;
-	aspect-ratio: auto;
+	max-width: 100px;
 	margin-bottom: 0.5rem;
 }
 
@@ -243,9 +295,10 @@ dialog {
 	left: 50%;
 	transform: translate(-50%, -50%);
 	padding: 0.35rem;
-	background-color: white;
+	background: var(--clr-main-900);
 	border: none;
 	border-radius: 10px;
+	width: 80vw;
 }
 
 dialog::backdrop {
@@ -329,7 +382,7 @@ dialog::backdrop {
 	border: none;
 }
 
-.filter-container-fieldset input {
+.search-input {
 	border: 1px solid var(--clr-main-900);
 	background-color: var(--clr-main-300);
 }
@@ -433,4 +486,57 @@ dialog::backdrop {
 	transform: scaleY(0.85) translateY(25%);
 	transform-origin: bottom;
 	transition: transform 400ms ease-in, opacity 400ms ease-in;
+}
+
+.found-book-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	background-color: var(--clr-main-900);
+}
+
+.found-book-card {
+	border-radius: 15px;
+	padding: 1rem 1rem 3rem 1rem;
+	margin: 4rem 0 0 0;
+	position: relative;
+	display: flex;
+	flex: 1;
+	width: 75%;
+	align-items: center;
+	padding-left: calc(100px + 2.5rem);
+	background: linear-gradient(
+		rgba(var(--clr-rgb-main-700), 1) 0%,
+		rgba(var(--clr-rgb-main-700), 1) 55%,
+		rgba(var(--clr-rgb-main-900), 1) 85%,
+		rgba(var(--clr-rgb-main-900), 1) 100%
+	);
+}
+
+.found-book-card-left-container {
+	position: absolute;
+	left: 0;
+	max-width: calc(100px + 0.6rem);
+	padding: 0.35rem;
+	margin-left: 1rem;
+	transform: translateY(-1rem);
+	background-color: var(--clr-accent-dark);
+}
+
+.found-book-card-left-container img {
+	max-height: 150px;
+	max-width: 100px;
+}
+
+.found-book-card-center-container,
+.found-book-card-right-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.found-book-card-right-container {
+	justify-content: space-between;
 }
