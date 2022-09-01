@@ -5,6 +5,18 @@ import BookObjKeys from "./BookObjKeys";
 import React, { useState, useEffect } from "react";
 
 function App() {
+	const [searchTitleKeyWord, setSearchTitleKeyWord] = useState("");
+	const [useSearchKeyWord, setUseSearchKeyWord] = useState("");
+
+	const updateTitleKeyWord = (value) => {
+		setSearchTitleKeyWord(value);
+		console.log(searchTitleKeyWord);
+	};
+
+	const updateUseSearchKeyWord = (value) => {
+		setUseSearchKeyWord(value);
+	};
+
 	const [savedBooks, setSavedBooks] = useState([
 		{
 			author: ["J.R.R. Tolkien"],
@@ -81,6 +93,10 @@ function App() {
 		setIsFilterMenuOpen(!isFilterMenuOpen);
 	};
 
+	const addBookToSavedBooks = (bookToAdd) => {
+		return setSavedBooks([bookToAdd, ...savedBooks]);
+	};
+
 	//-------------passed down to /Main/BookContainer to update state from each BookCard
 	const updateReadStatus = (id, value) => {
 		return setSavedBooks(
@@ -109,13 +125,19 @@ function App() {
 
 	return (
 		<div className="App">
-			<FindBookModel />
+			<FindBookModel
+				useSearchKeyWord={useSearchKeyWord}
+				addBookToSavedBooks={addBookToSavedBooks}
+			/>
 			<Header />
 			<Main
 				//------passing state
+				searchTitleKeyWord={searchTitleKeyWord}
 				savedBooks={savedBooks}
 				isFilterMenuOpen={isFilterMenuOpen}
 				//--------passing functions
+				updateUseSearchKeyWord={updateUseSearchKeyWord}
+				updateTitleKeyWord={updateTitleKeyWord}
 				openFilterMenuToggle={openFilterMenuToggle}
 				updateReadStatus={updateReadStatus}
 				updateReadNext={updateReadNext}
