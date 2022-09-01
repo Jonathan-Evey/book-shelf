@@ -37,6 +37,10 @@ const Main = (props) => {
 				<Navigation
 					//------menu open state
 					isFilterMenuOpen={props.isFilterMenuOpen}
+					//-------find book search state
+					searchTitleKeyWord={props.searchTitleKeyWord}
+					updateTitleKeyWord={props.updateTitleKeyWord}
+					updateUseSearchKeyWord={props.updateUseSearchKeyWord}
 					//------title state
 					searchTitleFilter={searchTitleFilter}
 					setSearchTitleFilter={setSearchTitleFilter}
