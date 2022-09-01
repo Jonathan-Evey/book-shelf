@@ -1,9 +1,9 @@
 const SearchSavedBooks = (props) => {
 	return (
 		<>
-			<p>Search for</p>
 			<label htmlFor="title-search">Book Title:</label>
 			<input
+				className="search-input"
 				type="search"
 				name="title-search"
 				id="title-search"
@@ -11,6 +11,7 @@ const SearchSavedBooks = (props) => {
 			/>
 			<label htmlFor="author-search">Book Author:</label>
 			<input
+				className="search-input"
 				type="search"
 				name="author-search"
 				id="author-search"
