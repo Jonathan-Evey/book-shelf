@@ -6,11 +6,22 @@ import React, { useState, useEffect } from "react";
 
 function App() {
 	const [searchTitleKeyWord, setSearchTitleKeyWord] = useState("");
+	const [searchAuthorKeyWord, setSearchAuthorKeyWord] = useState("");
+	const [useSearchType, setUseSearchType] = useState("");
 	const [useSearchKeyWord, setUseSearchKeyWord] = useState("");
 
 	const updateTitleKeyWord = (value) => {
 		setSearchTitleKeyWord(value);
 		console.log(searchTitleKeyWord);
+	};
+
+	const updateAuthorKeyWord = (value) => {
+		setSearchAuthorKeyWord(value);
+		console.log(searchAuthorKeyWord);
+	};
+
+	const updateSearchType = (value) => {
+		setUseSearchType(value);
 	};
 
 	const updateUseSearchKeyWord = (value) => {
@@ -126,6 +137,7 @@ function App() {
 	return (
 		<div className="App">
 			<FindBookModel
+				useSearchType={useSearchType}
 				useSearchKeyWord={useSearchKeyWord}
 				addBookToSavedBooks={addBookToSavedBooks}
 			/>
@@ -133,11 +145,14 @@ function App() {
 			<Main
 				//------passing state
 				searchTitleKeyWord={searchTitleKeyWord}
+				searchAuthorKeyWord={searchAuthorKeyWord}
 				savedBooks={savedBooks}
 				isFilterMenuOpen={isFilterMenuOpen}
 				//--------passing functions
+				updateSearchType={updateSearchType}
 				updateUseSearchKeyWord={updateUseSearchKeyWord}
 				updateTitleKeyWord={updateTitleKeyWord}
+				updateAuthorKeyWord={updateAuthorKeyWord}
 				openFilterMenuToggle={openFilterMenuToggle}
 				updateReadStatus={updateReadStatus}
 				updateReadNext={updateReadNext}

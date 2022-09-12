@@ -32,11 +32,18 @@ const Navigation = (props) => {
 	function openFindBookModel(keyWord) {
 		if (keyWord === props.searchTitleKeyWord) {
 			props.updateUseSearchKeyWord(props.searchTitleKeyWord);
-			console.log("clicked");
+			props.updateSearchType("intitle");
+			console.log("clicked Title");
 			console.log(props.searchTitleKeyWord);
-			let model = document.getElementById("find-book");
-			model.showModal();
 		}
+		if (keyWord === props.searchAuthorKeyWord) {
+			props.updateUseSearchKeyWord(props.searchAuthorKeyWord);
+			props.updateSearchType("inauthor");
+			console.log("clicked Author");
+			console.log(props.searchTitleKeyWord);
+		}
+		let model = document.getElementById("find-book");
+		return model.showModal();
 	}
 
 	//------------------------------search books by title functions
@@ -142,7 +149,11 @@ const Navigation = (props) => {
 					updateTitleKeyWord={props.updateTitleKeyWord}
 					openFindBookModel={openFindBookModel}
 				/>
-				<FindBookByAuthor />
+				<FindBookByAuthor
+					searchAuthorKeyWord={props.searchAuthorKeyWord}
+					updateAuthorKeyWord={props.updateAuthorKeyWord}
+					openFindBookModel={openFindBookModel}
+				/>
 
 				<button
 					className="toggle-submenu-btn"

@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect, useRef } from "react";
+import API_DATA_OBJ from "../API";
 import FoundBookCard from "./FoundBookCard";
 
 const FindBookModel = (props) => {
@@ -7,8 +8,9 @@ const FindBookModel = (props) => {
 	const [foundBooks, setFoundBooks] = useState([]);
 	const isInitLoad = useRef(true);
 
+	let searchType = props.useSearchType;
 	let searchKeyWord = props.useSearchKeyWord;
-	let apiURL = `https://www.googleapis.com/books/v1/volumes?q=${searchKeyWord}+intitle:${searchKeyWord}&orderBy=relevance&key=${/* Add API Key here */}`;
+	let apiURL = `https://www.googleapis.com/books/v1/volumes?q=${searchKeyWord}+${searchType}:${searchKeyWord}&startIndex=0&key=${API_DATA_OBJ.API_KEY}`;
 
 	function checkBooks() {
 		console.log(foundBooks);

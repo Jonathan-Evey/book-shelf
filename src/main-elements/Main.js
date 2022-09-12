@@ -39,7 +39,10 @@ const Main = (props) => {
 					isFilterMenuOpen={props.isFilterMenuOpen}
 					//-------find book search state
 					searchTitleKeyWord={props.searchTitleKeyWord}
+					searchAuthorKeyWord={props.searchAuthorKeyWord}
 					updateTitleKeyWord={props.updateTitleKeyWord}
+					updateAuthorKeyWord={props.updateAuthorKeyWord}
+					updateSearchType={props.updateSearchType}
 					updateUseSearchKeyWord={props.updateUseSearchKeyWord}
 					//------title state
 					searchTitleFilter={searchTitleFilter}
