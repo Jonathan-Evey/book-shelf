@@ -12,14 +12,15 @@ const FindBookByAuthor = (props) => {
 				name="new-book-search"
 				id="new-book-search"
 				onChange={updateAuthorKeyWordEvent}
-				placeholder="Search by Author"
+				placeholder="Find by Author"
+				value={props.searchAuthorKeyWord}
 			/>
 			<button
 				onClick={() =>
 					props.openFindBookModel(props.searchAuthorKeyWord)
 				}
 			>
-				Find Books
+				Find Book
 			</button>
 		</div>
 	);

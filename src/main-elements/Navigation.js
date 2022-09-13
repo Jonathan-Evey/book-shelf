@@ -42,6 +42,8 @@ const Navigation = (props) => {
 			console.log("clicked Author");
 			console.log(props.searchTitleKeyWord);
 		}
+		props.updateTitleKeyWord("");
+		props.updateAuthorKeyWord("");
 		let model = document.getElementById("find-book");
 		return model.showModal();
 	}

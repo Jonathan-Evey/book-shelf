@@ -19,6 +19,9 @@ const Main = (props) => {
 	const [bookRatingFilter, setBookRatingFilter] = useState("All");
 	const [isRatingFilter, setIsRatingFilter] = useState(false);
 
+	//------------------filter menu hover state-----------------------//
+	const [isHoverShown, setIsHoverShown] = useState(false);
+
 	return (
 		<main>
 			<aside
@@ -29,10 +32,21 @@ const Main = (props) => {
 				}
 			>
 				<button
+					onMouseEnter={() => setIsHoverShown(true)}
+					onMouseLeave={() => setIsHoverShown(false)}
+					onFocus={() => setIsHoverShown(true)}
+					onBlur={() => setIsHoverShown(false)}
 					onClick={props.openFilterMenuToggle}
 					className="toggle-filter-menu-btn"
 				>
-					Filter Menu<span>^</span>
+					{isHoverShown && !props.isFilterMenuOpen
+						? "Open Menu"
+						: null}
+					{isHoverShown && props.isFilterMenuOpen
+						? "Close Menu"
+						: null}
+					{!isHoverShown ? "Filter Menu" : null}
+					<span>^</span>
 				</button>
 				<Navigation
 					//------menu open state
