@@ -6,6 +6,7 @@ import SortByTitle from "../components/sortOptions/SortByTitle";
 import SortBtAuthor from "../components/sortOptions/SortBtAuthor";
 import FilterByReadState from "../components/filters/FilterByReadState";
 import FilterByRating from "../components/filters/FilterByRating";
+import titleSortOptionKeys from "../SortKeys";
 
 const Navigation = (props) => {
 	const [isSearchMenuOpen, setIsSearchMenuOpen] = useState(false);
@@ -79,7 +80,14 @@ const Navigation = (props) => {
 	const updateTitleSortDisplayText = (newTextValue) => {
 		setIsTitleSortOpen(false);
 		setCurrentTitleSortDisplayText(newTextValue);
+		if (newTextValue === titleSortOptionKeys.alphabetically) {
+			props.sortTitleAlphabetically(props.savedBooks);
+		}
+		if (newTextValue === titleSortOptionKeys.reverseAlphabetically) {
+			props.sortTitleReverseAlphabetically(props.savedBooks);
+		}
 	};
+
 	//-----------------------------sort books functions
 	//-----------------------------------------------by author
 	const openAuthorSortDropdown = () => {
@@ -150,6 +158,7 @@ const Navigation = (props) => {
 					searchTitleKeyWord={props.searchTitleKeyWord}
 					updateTitleKeyWord={props.updateTitleKeyWord}
 					openFindBookModel={openFindBookModel}
+					titleSortOptionKeys={titleSortOptionKeys}
 				/>
 				<FindBookByAuthor
 					searchAuthorKeyWord={props.searchAuthorKeyWord}

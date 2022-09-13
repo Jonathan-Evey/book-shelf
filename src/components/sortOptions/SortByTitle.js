@@ -1,10 +1,6 @@
-const SortByTitle = (props) => {
-	const titleSortOptionKeys = {
-		removeSort: "Titles",
-		alphabetically: "Titles A - Z",
-		reverseAlphabetically: "Titles Z - A ",
-	};
+import titleSortOptionKeys from "../../SortKeys";
 
+const SortByTitle = (props) => {
 	return (
 		<fieldset className="filter-option-fieldset title">
 			{/* <legend className="filter-option-legend">Title</legend> */}

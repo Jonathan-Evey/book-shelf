@@ -2,13 +2,14 @@ import Main from "./main-elements/Main";
 import Header from "./main-elements/Header";
 import FindBookModel from "./components/FindBookModel";
 import BookObjKeys from "./BookObjKeys";
+import sortFunctions from "./Functions";
 import React, { useState, useEffect } from "react";
 
 function App() {
 	const [searchTitleKeyWord, setSearchTitleKeyWord] = useState("");
 	const [searchAuthorKeyWord, setSearchAuthorKeyWord] = useState("");
 	const [useSearchType, setUseSearchType] = useState("");
-	const [useSearchKeyWord, setUseSearchKeyWord] = useState("");
+	const [useSearchKeyWord, setUseSearchKeyWord] = useState(null);
 
 	const updateTitleKeyWord = (value) => {
 		setSearchTitleKeyWord(value);
@@ -26,6 +27,15 @@ function App() {
 
 	const updateUseSearchKeyWord = (value) => {
 		setUseSearchKeyWord(value);
+	};
+
+	const sortTitleAlphabetically = (data) => {
+		let newBook = [...data].sort((a, b) => a.title.localeCompare(b.title));
+		setSavedBooks(newBook);
+	};
+	const sortTitleReverseAlphabetically = (data) => {
+		let newBook = [...data].sort((a, b) => b.title.localeCompare(a.title));
+		setSavedBooks(newBook);
 	};
 
 	const [savedBooks, setSavedBooks] = useState([
@@ -156,6 +166,8 @@ function App() {
 				openFilterMenuToggle={openFilterMenuToggle}
 				updateReadStatus={updateReadStatus}
 				updateReadNext={updateReadNext}
+				sortTitleAlphabetically={sortTitleAlphabetically}
+				sortTitleReverseAlphabetically={sortTitleReverseAlphabetically}
 			/>
 		</div>
 	);

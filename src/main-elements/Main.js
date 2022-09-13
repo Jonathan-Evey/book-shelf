@@ -58,6 +58,12 @@ const Main = (props) => {
 					updateAuthorKeyWord={props.updateAuthorKeyWord}
 					updateSearchType={props.updateSearchType}
 					updateUseSearchKeyWord={props.updateUseSearchKeyWord}
+					//----
+					savedBooks={props.savedBooks}
+					sortTitleAlphabetically={props.sortTitleAlphabetically}
+					sortTitleReverseAlphabetically={
+						props.sortTitleReverseAlphabetically
+					}
 					//------title state
 					searchTitleFilter={searchTitleFilter}
 					setSearchTitleFilter={setSearchTitleFilter}
