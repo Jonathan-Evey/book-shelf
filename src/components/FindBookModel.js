@@ -1,12 +1,12 @@
 import axios from "axios";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import API_DATA_OBJ from "../API";
 import FoundBookCard from "./FoundBookCard";
 
 const FindBookModel = (props) => {
 	const [isLoading, setIsLoading] = useState(true);
 	const [foundBooks, setFoundBooks] = useState([]);
-	const isInitLoad = useRef(true);
+	//const isInitLoad = useRef(true);
 
 	let searchType = props.useSearchType;
 	let searchKeyWord = props.useSearchKeyWord;
@@ -47,24 +47,26 @@ const FindBookModel = (props) => {
 	};
 
 	useEffect(() => {
-		if (isInitLoad.current) {
-			console.log("First Load");
-			isInitLoad.current = false;
-			return;
+		// if (isInitLoad.current) {
+		// 	console.log("First Load");
+		// 	isInitLoad.current = false;
+		// 	return;
+		// }
+		if (props.useSearchKeyWord) {
+			console.log("After First Load");
+			setIsLoading(true);
+			let cancel;
+			axios
+				.get(apiURL, {
+					cancelToken: new axios.CancelToken((c) => (cancel = c)),
+				})
+				.then((response) => {
+					console.log(response);
+					setIsLoading(false);
+					handelResponse(response);
+				});
+			return () => cancel();
 		}
-		console.log("After First Load");
-		setIsLoading(true);
-		let cancel;
-		axios
-			.get(apiURL, {
-				cancelToken: new axios.CancelToken((c) => (cancel = c)),
-			})
-			.then((response) => {
-				console.log(response);
-				setIsLoading(false);
-				handelResponse(response);
-			});
-		return () => cancel();
 	}, [props.useSearchKeyWord]);
 
 	if (isLoading)
