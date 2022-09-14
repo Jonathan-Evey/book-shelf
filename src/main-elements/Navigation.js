@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import FindBookByTitle from "../components/FindBookByTitle";
 import FindBookByAuthor from "../components/FindBookByAuthor";
 import SearchSavedBooks from "../components/SearchSavedBooks";
+import SortBtRating from "../components/sortOptions/SortByRating";
 import SortByTitle from "../components/sortOptions/SortByTitle";
 import SortBtAuthor from "../components/sortOptions/SortBtAuthor";
 import FilterByReadState from "../components/filters/FilterByReadState";
 import FilterByRating from "../components/filters/FilterByRating";
-import titleSortOptionKeys from "../SortKeys";
+import { titleSortOptionKeys, authorSortOptionKeys } from "../SortKeys";
 
 const Navigation = (props) => {
 	const [isSearchMenuOpen, setIsSearchMenuOpen] = useState(false);
@@ -15,10 +16,13 @@ const Navigation = (props) => {
 	const [isSortMenuOpen, setIsSortMenuOpen] = useState(false);
 	const [isTitleSortOpen, setIsTitleSortOpen] = useState(false);
 	const [currentTitleSortDisplayText, setCurrentTitleSortDisplayText] =
-		useState("Titles");
+		useState("Title");
 	const [isAuthorSortOpen, setIsAuthorSortOpen] = useState(false);
 	const [currentAuthorSortDisplayText, setCurrentAuthorSortDisplayText] =
-		useState("Authors");
+		useState("Author");
+	const [isRatingSortOpen, setIsRatingSortOpen] = useState(false);
+	const [currentRatingSortDisplayText, setCurrentRatingSortDisplayText] =
+		useState("Rating");
 
 	//------------------------------------------------------filter menu state
 	const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
@@ -81,10 +85,16 @@ const Navigation = (props) => {
 		setIsTitleSortOpen(false);
 		setCurrentTitleSortDisplayText(newTextValue);
 		if (newTextValue === titleSortOptionKeys.alphabetically) {
-			props.sortTitleAlphabetically(props.savedBooks);
+			props.sortAlphabetically(
+				props.savedBooks,
+				titleSortOptionKeys.sortType
+			);
 		}
 		if (newTextValue === titleSortOptionKeys.reverseAlphabetically) {
-			props.sortTitleReverseAlphabetically(props.savedBooks);
+			props.sortReverseAlphabetically(
+				props.savedBooks,
+				titleSortOptionKeys.sortType
+			);
 		}
 	};
 
@@ -97,6 +107,32 @@ const Navigation = (props) => {
 	const updateAuthorSortDisplayText = (newTextValue) => {
 		setIsAuthorSortOpen(false);
 		setCurrentAuthorSortDisplayText(newTextValue);
+		if (newTextValue === authorSortOptionKeys.alphabetically) {
+			console.log(`author sort ${newTextValue}`);
+			props.sortAlphabetically(
+				props.savedBooks,
+				authorSortOptionKeys.sortType
+			);
+		}
+		if (newTextValue === authorSortOptionKeys.reverseAlphabetically) {
+			console.log(`author sort ${newTextValue}`);
+			props.sortReverseAlphabetically(
+				props.savedBooks,
+				authorSortOptionKeys.sortType
+			);
+		}
+	};
+
+	//-----------------------------sort books functions
+	//-----------------------------------------------by rating
+	const openRatingSortDropdown = () => {
+		setIsRatingSortOpen(!isRatingSortOpen);
+	};
+
+	const updateRatingSortDisplayText = (newTextValue) => {
+		setIsRatingSortOpen(false);
+		setCurrentRatingSortDisplayText(newTextValue);
+		props.sortByRating(props.savedBooks, newTextValue);
 	};
 
 	//-----------------------------filter books functions
@@ -206,6 +242,16 @@ const Navigation = (props) => {
 							openAuthorSortDropdown={openAuthorSortDropdown}
 							updateAuthorSortDisplayText={
 								updateAuthorSortDisplayText
+							}
+						/>
+						<SortBtRating
+							isRatingSortOpen={isRatingSortOpen}
+							currentRatingSortDisplayText={
+								currentRatingSortDisplayText
+							}
+							openRatingSortDropdown={openRatingSortDropdown}
+							updateRatingSortDisplayText={
+								updateRatingSortDisplayText
 							}
 						/>
 					</>

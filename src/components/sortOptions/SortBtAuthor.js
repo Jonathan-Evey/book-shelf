@@ -1,11 +1,8 @@
+import { authorSortOptionKeys } from "../../SortKeys";
+
 const SortBtAuthor = (props) => {
-	const authorSortOptionKeys = {
-		removeSort: "Authors",
-		alphabetically: "Author A - Z",
-		reverseAlphabetically: "Author Z - A ",
-	};
 	return (
-		<fieldset className="filter-option-fieldset author">
+		<fieldset className="filter-option-fieldset">
 			<button
 				className="filter-option-btn"
 				onClick={props.openAuthorSortDropdown}

@@ -1,9 +1,8 @@
-import titleSortOptionKeys from "../../SortKeys";
+import { titleSortOptionKeys } from "../../SortKeys";
 
 const SortByTitle = (props) => {
 	return (
-		<fieldset className="filter-option-fieldset title">
-			{/* <legend className="filter-option-legend">Title</legend> */}
+		<fieldset className="filter-option-fieldset">
 			<button
 				className="filter-option-btn"
 				onClick={props.openTitleSortDropdown}

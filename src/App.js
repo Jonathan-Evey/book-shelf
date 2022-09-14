@@ -29,12 +29,17 @@ function App() {
 		setUseSearchKeyWord(value);
 	};
 
-	const sortTitleAlphabetically = (data) => {
-		let newBook = [...data].sort((a, b) => a.title.localeCompare(b.title));
+	const sortAlphabetically = (data, key) => {
+		let newBook = sortFunctions.sortAlphabetically(data, key);
 		setSavedBooks(newBook);
 	};
-	const sortTitleReverseAlphabetically = (data) => {
-		let newBook = [...data].sort((a, b) => b.title.localeCompare(a.title));
+	const sortReverseAlphabetically = (data, key) => {
+		let newBook = sortFunctions.sortReverseAlphabetically(data, key);
+		setSavedBooks(newBook);
+	};
+
+	const sortByRating = (data, key) => {
+		let newBook = sortFunctions.sortByRating(data, key);
 		setSavedBooks(newBook);
 	};
 
@@ -166,8 +171,9 @@ function App() {
 				openFilterMenuToggle={openFilterMenuToggle}
 				updateReadStatus={updateReadStatus}
 				updateReadNext={updateReadNext}
-				sortTitleAlphabetically={sortTitleAlphabetically}
-				sortTitleReverseAlphabetically={sortTitleReverseAlphabetically}
+				sortAlphabetically={sortAlphabetically}
+				sortReverseAlphabetically={sortReverseAlphabetically}
+				sortByRating={sortByRating}
 			/>
 		</div>
 	);

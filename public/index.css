@@ -396,9 +396,9 @@ dialog::backdrop {
 	border: none;
 }
 
-.filter-option-fieldset.author .filter-option-fieldset.title {
+/* .filter-option-fieldset.author .filter-option-fieldset.title {
 	position: relative;
-}
+} */
 
 .filter-option-btn {
 	display: flex;
