@@ -14,9 +14,9 @@ const BookCard = ({ book, updateReadStatus, updateReadNext }) => {
 		setIsUpdateDropdownShown(false);
 	};
 
-	const updateReadNextEvent = (id, value) => {
-		updateReadNext(id, value);
-	};
+	// const updateReadNextEvent = (id, value) => {
+	// 	updateReadNext(id, value);
+	// };
 
 	const getBookImgContainerClass = (value) => {
 		switch (value) {
@@ -112,7 +112,7 @@ const BookCard = ({ book, updateReadStatus, updateReadNext }) => {
 				</div>
 				<p>{book.genres.join(" / ")}</p>
 				<div className="book-right-bottom-container">
-					{book.readStatus === BookObjKeys.readStatus.unread ? (
+					{/* {book.readStatus === BookObjKeys.readStatus.unread ? (
 						<button
 							onClick={() =>
 								updateReadNextEvent(book.id, book.isReadNext)
@@ -123,8 +123,15 @@ const BookCard = ({ book, updateReadStatus, updateReadNext }) => {
 								? "Remove from Read Next"
 								: "Add to Read Next"}
 						</button>
+					) : null} */}
+					{book.readStatus === BookObjKeys.readStatus.read ? (
+						<>
+							<p>My Rating: </p>
+							<button>
+								{book.rating === "" ? "-" : book.rating} / 5
+							</button>
+						</>
 					) : null}
-					<p>{book.rating === "" ? "-" : book.rating} / 5</p>
 				</div>
 			</div>
 		</div>
