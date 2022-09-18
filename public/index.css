@@ -142,13 +142,13 @@ main {
 .main-filter-menu-container.closed .toggle-filter-menu-btn {
 	position: sticky;
 	background-color: var(--clr-main-700);
-	border: 2px solid var(--clr-accent-dark);
+	/* border: 2px solid var(--clr-accent-dark); */
 	border-radius: 10px;
 	top: 1rem;
 	box-shadow: 5px 5px 10px -5px rgba(0, 0, 0, 0.2),
 		3px 3px 5px -5px rgba(0, 0, 0, 0.4), 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
 }
-.main-filter-menu-container.closed .toggle-filter-menu-btn:hover {
+.main-filter-menu-container .toggle-filter-menu-btn:hover {
 	background-color: var(--clr-accent-dark);
 	color: var(--clr-accent-light);
 }
@@ -254,8 +254,8 @@ main {
 }
 
 .book-img-container img {
-	max-height: 150px;
-	max-width: 100px;
+	height: 150px;
+	width: 100px;
 	margin-bottom: 0.5rem;
 }
 
@@ -291,11 +291,16 @@ main {
 }
 
 .book-right-bottom-container p {
+	margin-right: 0.5rem;
 	text-align: end;
+	align-self: flex-end;
 	flex: 1;
 }
 .book-right-bottom-container button {
-	flex: 0;
+	padding: 0.125rem 0.5rem 0 0.5rem;
+	background: transparent;
+	border: none;
+	border-bottom: 1px solid black;
 }
 
 .book-right-bottom-container {
@@ -390,6 +395,21 @@ dialog::backdrop {
 .read-next-btn:hover {
 	cursor: pointer;
 	background: var(--clr-main-700);
+	color: var(--clr-accent-light);
+}
+
+.close-model-btn {
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+	padding: 0.4rem;
+	font-size: 18px;
+	background: transparent;
+	border: none;
+}
+
+.close-model-btn:hover {
+	cursor: pointer;
 	color: var(--clr-accent-light);
 }
 
@@ -534,16 +554,13 @@ dialog::backdrop {
 .found-book-card-left-container {
 	position: absolute;
 	left: 0;
-	max-width: calc(100px + 0.6rem);
-	padding: 0.35rem;
 	margin-left: 1rem;
 	transform: translateY(-1rem);
-	background-color: var(--clr-accent-dark);
 }
 
 .found-book-card-left-container img {
-	max-height: 150px;
-	max-width: 100px;
+	height: 155px;
+	width: 100px;
 }
 
 .found-book-card-center-container,
