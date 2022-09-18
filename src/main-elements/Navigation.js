@@ -96,6 +96,12 @@ const Navigation = (props) => {
 				titleSortOptionKeys.sortType
 			);
 		}
+		if (newTextValue === titleSortOptionKeys.removeSort) {
+			props.sortBackToDefault(
+				props.savedBooks,
+				titleSortOptionKeys.removeSort
+			);
+		}
 	};
 
 	//-----------------------------sort books functions
@@ -119,6 +125,12 @@ const Navigation = (props) => {
 			props.sortReverseAlphabetically(
 				props.savedBooks,
 				authorSortOptionKeys.sortType
+			);
+		}
+		if (newTextValue === authorSortOptionKeys.removeSort) {
+			props.sortBackToDefault(
+				props.savedBooks,
+				authorSortOptionKeys.removeSort
 			);
 		}
 	};

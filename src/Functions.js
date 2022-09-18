@@ -38,9 +38,17 @@ const sortFunctions = (() => {
 		if (key === ratingSortOptionKeys.lowToHigh) {
 			return [...data].sort((a, b) => (a.rating > b.rating ? 1 : -1));
 		}
+		if (key === ratingSortOptionKeys.removeSort) {
+			return defaultSort(data);
+		}
+	};
+
+	const defaultSort = (data) => {
+		return [...data].sort((a, b) => (a.dateAdded > b.dateAdded ? -1 : 1));
 	};
 
 	return {
+		defaultSort,
 		sortAlphabetically,
 		sortReverseAlphabetically,
 		sortByRating,

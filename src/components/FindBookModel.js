@@ -36,7 +36,7 @@ const FindBookModel = (props) => {
 			readStatus: "Unread",
 			rating: "",
 			isReadNext: false,
-			dateAdded: Date.now().toString(),
+			dateAdded: Date.now(),
 		};
 	};
 

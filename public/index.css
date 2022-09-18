@@ -123,18 +123,34 @@ main {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 0 0.5rem;
-	width: calc(150px - 1rem);
+	padding: 0 1em;
+	width: 150px;
 	height: 2.5rem;
 	pointer-events: all;
+	transform: translateX(-0.5rem);
+	border: none;
+	border-radius: 10px;
+
+	background-color: var(--clr-main-700);
 	z-index: 3;
+}
+
+.main-filter-menu-container.open .toggle-filter-menu-btn span {
+	transform: rotate(0) translateY(4px);
 }
 
 .main-filter-menu-container.closed .toggle-filter-menu-btn {
 	position: sticky;
+	background-color: var(--clr-main-700);
+	border: 2px solid var(--clr-accent-dark);
+	border-radius: 10px;
 	top: 1rem;
 	box-shadow: 5px 5px 10px -5px rgba(0, 0, 0, 0.2),
 		3px 3px 5px -5px rgba(0, 0, 0, 0.4), 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+}
+.main-filter-menu-container.closed .toggle-filter-menu-btn:hover {
+	background-color: var(--clr-accent-dark);
+	color: var(--clr-accent-light);
 }
 
 .filter-menu {

@@ -29,6 +29,11 @@ function App() {
 		setUseSearchKeyWord(value);
 	};
 
+	const sortBackToDefault = (data) => {
+		let newBook = sortFunctions.defaultSort(data);
+		setSavedBooks(newBook);
+	};
+
 	const sortAlphabetically = (data, key) => {
 		let newBook = sortFunctions.sortAlphabetically(data, key);
 		setSavedBooks(newBook);
@@ -54,6 +59,7 @@ function App() {
 			rating: 1,
 			genres: ["Fiction", "Fantasy"],
 			isReadNext: true,
+			dateAdded: 1663510521482,
 		},
 		{
 			author: ["J.R.R. Tolkien"],
@@ -65,6 +71,7 @@ function App() {
 			rating: 2,
 			genres: ["Fiction"],
 			isReadNext: false,
+			dateAdded: 1663510510254,
 		},
 		{
 			author: ["J.R.R. Tolkien"],
@@ -76,6 +83,7 @@ function App() {
 			rating: 3,
 			genres: ["Fiction", "Fantasy"],
 			isReadNext: false,
+			dateAdded: 1663510496511,
 		},
 		{
 			author: ["J.R.R. Tolkien"],
@@ -87,6 +95,7 @@ function App() {
 			rating: 4,
 			genres: ["Fiction", "Fantasy"],
 			isReadNext: false,
+			dateAdded: 1663510481022,
 		},
 		{
 			author: ["J.R.R. Tolkien"],
@@ -98,6 +107,7 @@ function App() {
 			readStatus: "Unread",
 			rating: 5,
 			isReadNext: false,
+			dateAdded: 1663510456738,
 		},
 		{
 			author: ["J.R.R. Tolkien"],
@@ -109,6 +119,7 @@ function App() {
 			readStatus: "Read",
 			rating: "",
 			isReadNext: false,
+			dateAdded: 1663510396776,
 		},
 	]);
 	const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(true);
@@ -171,6 +182,7 @@ function App() {
 				openFilterMenuToggle={openFilterMenuToggle}
 				updateReadStatus={updateReadStatus}
 				updateReadNext={updateReadNext}
+				sortBackToDefault={sortBackToDefault}
 				sortAlphabetically={sortAlphabetically}
 				sortReverseAlphabetically={sortReverseAlphabetically}
 				sortByRating={sortByRating}
