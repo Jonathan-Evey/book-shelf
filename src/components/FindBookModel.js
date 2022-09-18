@@ -46,6 +46,11 @@ const FindBookModel = (props) => {
 		setFoundBooks(eachBook);
 	};
 
+	const closeModel = (e) => {
+		let model = document.getElementById("find-book");
+		return model.close();
+	};
+
 	useEffect(() => {
 		// if (isInitLoad.current) {
 		// 	console.log("First Load");
@@ -72,12 +77,21 @@ const FindBookModel = (props) => {
 	if (isLoading)
 		return (
 			<dialog id="find-book">
+				<button
+					className="close-model-btn"
+					onClick={() => closeModel()}
+				>
+					X
+				</button>
 				<button onClick={() => checkBooks()}>console</button>Loading...
 			</dialog>
 		);
 
 	return (
 		<dialog id="find-book">
+			<button className="close-model-btn" onClick={() => closeModel()}>
+				X
+			</button>
 			<FoundBookCard
 				className="found-book-card"
 				foundBooks={foundBooks}
