@@ -13,7 +13,9 @@ const sortFunctions = (() => {
 		if (key === authorSortOptionKeys.sortType) {
 			console.log("author");
 			return [...data].sort((a, b) =>
-				a.author[0].localeCompare(b.author[0])
+				a.author[0]
+					.split(" ")[1]
+					.localeCompare(b.author[0].split(" ")[1])
 			);
 		}
 	};
@@ -26,7 +28,9 @@ const sortFunctions = (() => {
 		if (key === authorSortOptionKeys.sortType) {
 			console.log("author");
 			return [...data].sort((a, b) =>
-				b.author[0].localeCompare(a.author[0])
+				b.author[0]
+					.split(" ")[1]
+					.localeCompare(a.author[0].split(" ")[1])
 			);
 		}
 	};
