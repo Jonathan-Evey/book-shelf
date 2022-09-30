@@ -28,18 +28,18 @@ Functions for the user to filter or search their shelf.
         * author (this is not built out currently)
 
 Current know issues: 
-    * drop down menus will not close when user clicks elsewhere on the page. 
-    * some of the drop down lists are not built out corretly for accessibility standerds. (Currently, they are just list elements, and do not have a link or button element inside of each list element). 
-    * not able to update or add ratings.
+        * drop down menus will not close when user clicks elsewhere on the page. 
+        * some of the drop down lists are not built out corretly for accessibility standerds. (Currently, they are just list elements, and do not have a link or button element inside of each list element). 
+        * not able to update or add ratings.
     
 
 Current list of updates to work on:
-    * major CCS code refactoring.
-    * finish the styling on the book cards when you search for a new book.
-    * code the rating functions to add and update ratings on books.
-    * drop down menu updates, add in links/buttons for accessibility, and update that closes menues when clicking elsewhere.
+        * major CCS code refactoring.
+        * finish the styling on the book cards when you search for a new book.
+        * code the rating functions to add and update ratings on books.
+        * drop down menu updates, add in links/buttons for accessibility, and update that closes menues when clicking elsewhere.
 
 Upgrades to application:
-    * user note/review section for each book, that they can add/edit/read.
-    * user login to save the users bookshelf.
-    * user option to pick a color scheme.
+        * user note/review section for each book, that they can add/edit/read.
+        * user login to save the users bookshelf.
+        * user option to pick a color scheme.
