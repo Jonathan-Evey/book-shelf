@@ -88,11 +88,6 @@ h1 {
 	color: var(--clr-black);
 }
 
-.new-book-search-card button {
-	width: fit-content;
-	margin: 0 auto;
-}
-
 /* -------- Main Styles ---------- */
 main {
 	position: relative;
@@ -322,7 +317,7 @@ dialog {
 	background: var(--clr-main-900);
 	border: none;
 	border-radius: 10px;
-	width: 40vw;
+	width: 55vw;
 }
 
 dialog::backdrop {
@@ -330,6 +325,22 @@ dialog::backdrop {
 }
 
 /* btn classes */
+.find-book-btn {
+	width: 100%;
+	margin-top: 0.125rem;
+	margin-inline: auto;
+	border: none;
+	border-radius: 5px;
+	border-bottom: 2px solid var(--clr-black);
+	border-top: 2px solid var(--clr-black);
+	background-color: var(--clr-main-300);
+}
+
+.find-book-btn:hover {
+	background-color: var(--clr-accent-dark);
+	color: var(--clr-accent-light);
+}
+
 .read-option button,
 .read-unread-btn {
 	margin: auto 0;
@@ -422,12 +433,14 @@ dialog::backdrop {
 	border: solid 2px var(--clr-black);
 	border-left: none;
 	border-right: none;
-	background-color: var(--clr-accent-dark);
+	border-radius: 5px;
+	background-color: var(--clr-main-900);
 	color: var(--clr-main-300);
 }
 
 .add-book-btn:hover {
 	border-color: var(--clr-accent-light);
+	background-color: var(--clr-accent-dark);
 	color: var(--clr-accent-light);
 }
 
