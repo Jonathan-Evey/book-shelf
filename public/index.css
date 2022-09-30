@@ -231,6 +231,7 @@ main {
 }
 
 .book-card {
+	position: relative;
 	display: flex;
 	padding: 0.5rem 0.75rem 0rem 1rem;
 	margin: 0 0.5rem 3rem 0.5rem;
@@ -242,7 +243,9 @@ main {
 }
 
 .book-img-container {
+	position: absolute;
 	display: flex;
+	flex-grow: 0;
 	flex-direction: column;
 	align-items: center;
 	max-width: calc(100px + 0.7rem);
@@ -264,7 +267,7 @@ main {
 	flex-direction: column;
 	justify-content: space-between;
 	width: 100%;
-	padding: 0 0 0.5rem 0.5rem;
+	padding: 0 0 0.5rem calc(100px + 1.2rem);
 	text-align: center;
 }
 
@@ -319,7 +322,7 @@ dialog {
 	background: var(--clr-main-900);
 	border: none;
 	border-radius: 10px;
-	width: 80vw;
+	width: 40vw;
 }
 
 dialog::backdrop {
@@ -410,6 +413,21 @@ dialog::backdrop {
 
 .close-model-btn:hover {
 	cursor: pointer;
+	color: var(--clr-accent-light);
+}
+
+.add-book-btn {
+	cursor: pointer;
+	padding: 0.25rem 0.5rem;
+	border: solid 2px var(--clr-black);
+	border-left: none;
+	border-right: none;
+	background-color: var(--clr-accent-dark);
+	color: var(--clr-main-300);
+}
+
+.add-book-btn:hover {
+	border-color: var(--clr-accent-light);
 	color: var(--clr-accent-light);
 }
 
@@ -534,7 +552,7 @@ dialog::backdrop {
 }
 
 .found-book-card {
-	border-radius: 15px;
+	border-radius: 8px;
 	padding: 1rem 1rem 3rem 1rem;
 	margin: 4rem 0 0 0;
 	position: relative;
@@ -570,6 +588,21 @@ dialog::backdrop {
 	align-items: center;
 }
 
+.found-book-card-center-container {
+	flex-grow: 1;
+	text-align: center;
+}
+
+.found-book-card-center-container p {
+	padding-block-end: 0.5rem;
+}
+
+.found-book-title {
+	font-size: 1.25rem;
+	padding-block-end: 0.5rem;
+}
+
 .found-book-card-right-container {
-	justify-content: space-between;
+	align-items: flex-start;
+	flex-shrink: 0;
 }

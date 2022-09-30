@@ -3,21 +3,28 @@ const FoundBookCard = ({ foundBooks, addBookToSavedBooks }) => {
 		addBookToSavedBooks(bookToAdd);
 		let model = document.getElementById("find-book");
 		model.close();
-	}
+	};
 	return (
 		<div className="found-book-container">
 			{foundBooks.map((book) => (
 				<div className="found-book-card" key={book.id}>
 					<div className="found-book-card-left-container">
 						{!book.thumbnail ? null : (
-							<img src={book.thumbnail.thumbnail} alt="" width="128" height="193"/>
+							<img
+								src={book.thumbnail.thumbnail}
+								alt=""
+								width="128"
+								height="193"
+							/>
 						)}
 					</div>
 					<div className="found-book-card-center-container">
-						<p className="found-book-title">{book.title}</p>
+						<h4 className="found-book-title">{book.title}</h4>
 						<p>by</p>
 						<p className="found-book-author">{book.author}</p>
-						{!book.genres ? null : <p>Genre: {book.genres.join(" / ")}</p>}
+						{!book.genres ? null : (
+							<p>Genre: {book.genres.join(" / ")}</p>
+						)}
 					</div>
 					<div className="found-book-card-right-container">
 						{/* <div className="book-status-options">
@@ -37,7 +44,12 @@ const FoundBookCard = ({ foundBooks, addBookToSavedBooks }) => {
 								</div>
 							</fieldset>
 						</div> */}
-						<button onClick={() => addBookToSavedBooksEvent(book)}>Add to Shelf</button>
+						<button
+							className="add-book-btn"
+							onClick={() => addBookToSavedBooksEvent(book)}
+						>
+							Add to Shelf
+						</button>
 					</div>
 				</div>
 			))}
