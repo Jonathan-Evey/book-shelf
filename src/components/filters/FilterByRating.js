@@ -1,67 +1,109 @@
+import { ratingKeys } from "../../filterKeyObjs";
+
 const FilterByRating = (props) => {
 	return (
 		<fieldset className="filter-option-fieldset">
 			<legend className="filter-option-legend">Rating</legend>
-			<button
-				className={`filter-option-btn ${
-					props.isRatingFilterDropdownOpen ? "open" : "closed"
-				}`}
-				onClick={props.openRatingFilterDropdown}
-			>
-				{props.currentRatingSelected}
-				<span>^</span>
-			</button>
-			{props.isRatingFilterDropdownOpen ? (
+			{!props.isRatingFilterDropdownOpen ? (
 				<ol className="filter-option-dropdown">
-					<li
-						className="filter-option"
-						onClick={props.updateRatingFilter}
-						id="All"
+					<button
+						className={`filter-option-btn ${
+							props.isRatingFilterDropdownOpen ? "open" : "closed"
+						}`}
+						onClick={props.openRatingFilterDropdown}
 					>
-						All
-					</li>
-					<li
-						className="filter-option"
-						onClick={props.updateRatingFilter}
-						id="0"
+						{props.currentRatingSelected}
+						<span>^</span>
+					</button>
+				</ol>
+			) : null}
+
+			{props.isRatingFilterDropdownOpen ? (
+				<ol
+					className="filter-option-dropdown"
+					onMouseLeave={() => {
+						props.closeRatingFilterDropdown();
+					}}
+				>
+					<button
+						className={`filter-option-btn ${
+							props.isRatingFilterDropdownOpen ? "open" : "closed"
+						}`}
+						onClick={props.openRatingFilterDropdown}
 					>
-						0 - 1
-					</li>
-					<li
-						className="filter-option"
-						onClick={props.updateRatingFilter}
-						id="1"
-					>
-						1 - 2
-					</li>
-					<li
-						className="filter-option"
-						onClick={props.updateRatingFilter}
-						id="2"
-					>
-						2 - 3
-					</li>
-					<li
-						className="filter-option"
-						onClick={props.updateRatingFilter}
-						id="3"
-					>
-						3 - 4
-					</li>
-					<li
-						className="filter-option"
-						onClick={props.updateRatingFilter}
-						id="4"
-					>
-						4 - 5
-					</li>
-					<li
-						className="filter-option"
-						onClick={props.updateRatingFilter}
-						id="5"
-					>
-						Ratings 5
-					</li>
+						{props.currentRatingSelected}
+						<span>^</span>
+					</button>
+					{props.currentRatingSelected !== ratingKeys.all ? (
+						<li className="filter-option">
+							<button onClick={props.updateRatingFilter} id="All">
+								All
+							</button>
+						</li>
+					) : null}
+					{props.currentRatingSelected !== ratingKeys.zeroToOne ? (
+						<li className="filter-option">
+							<button onClick={props.updateRatingFilter} id="0">
+								0 - 1
+							</button>
+						</li>
+					) : null}
+					{props.currentRatingSelected !== ratingKeys.oneToTwo ? (
+						<li className="filter-option">
+							<button onClick={props.updateRatingFilter} id="1">
+								1 - 2
+							</button>
+						</li>
+					) : null}
+					{props.currentRatingSelected !== ratingKeys.twoToThree ? (
+						<li className="filter-option">
+							<button onClick={props.updateRatingFilter} id="2">
+								2 - 3
+							</button>
+						</li>
+					) : null}
+					{props.currentRatingSelected !== ratingKeys.threeToFour ? (
+						<li className="filter-option">
+							<button onClick={props.updateRatingFilter} id="3">
+								3 - 4
+							</button>
+						</li>
+					) : null}
+					{props.currentRatingSelected !== ratingKeys.fourToFive &&
+					props.currentRatingSelected === ratingKeys.five ? (
+						<li className="filter-option">
+							<button
+								id="4"
+								onClick={props.updateRatingFilter}
+								onBlur={() => {
+									props.closeRatingFilterDropdown();
+								}}
+							>
+								4 - 5
+							</button>
+						</li>
+					) : null}
+					{props.currentRatingSelected !== ratingKeys.fourToFive &&
+					props.currentRatingSelected !== ratingKeys.five ? (
+						<li className="filter-option">
+							<button onClick={props.updateRatingFilter} id="4">
+								4 - 5
+							</button>
+						</li>
+					) : null}
+					{props.currentRatingSelected !== ratingKeys.five ? (
+						<li className="filter-option">
+							<button
+								id="5"
+								onClick={props.updateRatingFilter}
+								onBlur={() => {
+									props.closeRatingFilterDropdown();
+								}}
+							>
+								Rated 5
+							</button>
+						</li>
+					) : null}
 				</ol>
 			) : null}
 		</fieldset>
