@@ -260,10 +260,13 @@ main {
 .book-right {
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
 	width: 100%;
 	padding: 0 0 0.5rem calc(100px + 1.2rem);
 	text-align: center;
+}
+
+.book-right-top {
+	margin-bottom: 0.5rem;
 }
 
 .book-right-top h4 {
@@ -272,7 +275,7 @@ main {
 }
 
 .book-right-top p:nth-child(2) {
-	margin-bottom: 0.25rem;
+	margin-bottom: 0.5rem;
 }
 
 .book-right-top p:nth-child(3) {
@@ -283,8 +286,7 @@ main {
 	content: "";
 	display: inline-block;
 	width: 30%;
-	bottom: 0;
-	left: calc(50% - 25%);
+
 	border-top: 2px solid var(--clr-accent-dark);
 }
 
@@ -302,6 +304,7 @@ main {
 }
 
 .book-right-bottom-container {
+	margin-top: 0.5rem;
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
@@ -342,7 +345,8 @@ dialog::backdrop {
 }
 
 .read-option button,
-.read-unread-btn {
+.read-unread-btn,
+.filter-option button {
 	margin: auto 0;
 	padding: 0.1rem 0;
 	width: 100%;
@@ -368,7 +372,8 @@ dialog::backdrop {
 	color: var(--clr-accent-light);
 }
 
-.read-unread-btn:hover {
+.read-unread-btn:hover,
+.read-unread-btn:focus {
 	cursor: pointer;
 	background: var(--clr-accent-dark);
 	color: var(--clr-accent-light);
@@ -381,7 +386,9 @@ dialog::backdrop {
 }
 
 .read-unread-btn.open:hover,
-.read-option button:hover {
+.read-unread-btn.open:focus,
+.read-option button:hover,
+.read-option button:focus {
 	cursor: pointer;
 	color: var(--clr-accent-dark);
 	background: var(--clr-accent-light);
@@ -492,17 +499,21 @@ dialog::backdrop {
 
 .filter-option-dropdown,
 .read-status-dropdown {
-	position: absolute;
-	z-index: 1;
 	pointer-events: none;
 }
 
+.filter-option-dropdown button,
+.read-status-dropdown button {
+	pointer-events: all;
+}
+
 .filter-option-dropdown {
-	width: calc(100% - 1rem);
+	width: 100%;
 	background-color: var(--clr-main-300);
 }
 
 .read-status-dropdown {
+	position: relative;
 	width: calc(100% - 0.6rem);
 	top: calc(100% - 0.35rem);
 	background-color: var(--clr-accent-dark);
@@ -516,14 +527,26 @@ dialog::backdrop {
 	margin: auto;
 }
 
-.filter-option {
+.read-option {
+	position: absolute;
+}
+
+.read-option:nth-child(3) {
+	translate: 0% 99%;
+	width: 101%;
+}
+
+.filter-option button {
 	background-color: var(--clr-accent-dark);
 	color: var(--clr-accent-light);
-	padding: 0.25rem 0 0.15rem 0;
+	padding: 0.25rem 0 0.15rem 0rem;
 	border-bottom: 1px solid black;
 }
 
-.filter-option:hover {
+.filter-option button:hover,
+.filter-option button:focus,
+.filter-option-btn.open:hover,
+.filter-option-btn.open:focus {
 	cursor: pointer;
 	background-color: var(--clr-accent-light);
 	color: var(--clr-accent-dark);
