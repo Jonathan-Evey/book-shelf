@@ -157,6 +157,11 @@ const Navigation = (props) => {
 			setIsReadStatusDropdownOpen(true);
 		}
 	};
+
+	const closeReadStatusDropdown = () => {
+		setIsReadStatusDropdownOpen(false);
+	};
+
 	function updateReadStatusFilter(e) {
 		if (e.target.textContent === "All") {
 			props.setIsReadStatusFilter(false);
@@ -178,6 +183,10 @@ const Navigation = (props) => {
 			setIsReadStatusDropdownOpen(false);
 			setIsRatingFilterDropdownOpen(true);
 		}
+	};
+
+	const closeRatingFilterDropdown = () => {
+		setIsRatingFilterDropdownOpen();
 	};
 	function updateRatingFilter(e) {
 		setCurrentRatingSelected(e.target.textContent);
@@ -218,7 +227,7 @@ const Navigation = (props) => {
 					className="toggle-submenu-btn"
 					onClick={() => setIsSearchMenuOpen(!isSearchMenuOpen)}
 				>
-					Search for
+					Search Shelf
 					<span>^</span>
 				</button>
 				{isSearchMenuOpen ? (
@@ -279,6 +288,7 @@ const Navigation = (props) => {
 					<>
 						<FilterByReadState
 							openReadStatusDropdown={openReadStatusDropdown}
+							closeReadStatusDropdown={closeReadStatusDropdown}
 							isReadStatusDropdownOpen={isReadStatusDropdownOpen}
 							updateReadStatusFilter={updateReadStatusFilter}
 							readStatusFilter={props.readStatusFilter}
@@ -289,6 +299,9 @@ const Navigation = (props) => {
 								isRatingFilterDropdownOpen
 							}
 							openRatingFilterDropdown={openRatingFilterDropdown}
+							closeRatingFilterDropdown={
+								closeRatingFilterDropdown
+							}
 							currentRatingSelected={currentRatingSelected}
 						/>
 					</>
