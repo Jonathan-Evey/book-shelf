@@ -9,6 +9,10 @@ const BookCard = ({ book, updateReadStatus, updateReadNext }) => {
 		setIsUpdateDropdownShown(!isUpdateDropdownShown);
 	};
 
+	const handleClose = () => {
+		setIsUpdateDropdownShown(false);
+	};
+
 	const updateReadStatusEvent = (id, value) => {
 		updateReadStatus(id, value);
 		setIsUpdateDropdownShown(false);
@@ -41,7 +45,30 @@ const BookCard = ({ book, updateReadStatus, updateReadNext }) => {
 				) : (
 					<img src={book.thumbnail} alt="" />
 				)}
-				<button
+				{!isUpdateDropdownShown ? (
+					<ol
+						onMouseLeave={() => {
+							handleClose();
+						}}
+						className="read-status-dropdown"
+					>
+						<button
+							onClick={() => handleOpenClose()}
+							onMouseEnter={() => setIsUpdateShown(true)}
+							onMouseLeave={() => setIsUpdateShown(false)}
+							onFocus={() => setIsUpdateShown(true)}
+							onBlur={() => setIsUpdateShown(false)}
+							className={`read-unread-btn${
+								isUpdateDropdownShown ? " open" : ""
+							}`}
+						>
+							{isUpdateShown && !isUpdateDropdownShown
+								? "Update"
+								: book.readStatus}
+						</button>
+					</ol>
+				) : null}
+				{/* <button
 					onClick={() => handleOpenClose()}
 					onMouseEnter={() => setIsUpdateShown(true)}
 					onMouseLeave={() => setIsUpdateShown(false)}
@@ -54,9 +81,28 @@ const BookCard = ({ book, updateReadStatus, updateReadNext }) => {
 					{isUpdateShown && !isUpdateDropdownShown
 						? "Update"
 						: book.readStatus}
-				</button>
+				</button> */}
 				{isUpdateDropdownShown ? (
-					<ol className="read-status-dropdown">
+					<ol
+						onMouseLeave={() => {
+							handleClose();
+						}}
+						className="read-status-dropdown"
+					>
+						<button
+							onClick={() => handleOpenClose()}
+							onMouseEnter={() => setIsUpdateShown(true)}
+							onMouseLeave={() => setIsUpdateShown(false)}
+							onFocus={() => setIsUpdateShown(true)}
+							onBlur={() => setIsUpdateShown(false)}
+							className={`read-unread-btn${
+								isUpdateDropdownShown ? " open" : ""
+							}`}
+						>
+							{isUpdateShown && !isUpdateDropdownShown
+								? "Update"
+								: book.readStatus}
+						</button>
 						{book.readStatus !== BookObjKeys.readStatus.unread ? (
 							<li className="read-option">
 								<button
@@ -71,7 +117,8 @@ const BookCard = ({ book, updateReadStatus, updateReadNext }) => {
 								</button>
 							</li>
 						) : null}
-						{book.readStatus !== BookObjKeys.readStatus.reading ? (
+						{book.readStatus !== BookObjKeys.readStatus.reading &&
+						book.readStatus !== BookObjKeys.readStatus.read ? (
 							<li className="read-option">
 								<button
 									onClick={() =>
@@ -80,6 +127,24 @@ const BookCard = ({ book, updateReadStatus, updateReadNext }) => {
 											BookObjKeys.readStatus.reading
 										)
 									}
+								>
+									Reading
+								</button>
+							</li>
+						) : null}
+						{book.readStatus !== BookObjKeys.readStatus.reading &&
+						book.readStatus === BookObjKeys.readStatus.read ? (
+							<li className="read-option">
+								<button
+									onClick={() =>
+										updateReadStatusEvent(
+											book.id,
+											BookObjKeys.readStatus.reading
+										)
+									}
+									onBlur={() => {
+										handleOpenClose();
+									}}
 								>
 									Reading
 								</button>
@@ -94,6 +159,9 @@ const BookCard = ({ book, updateReadStatus, updateReadNext }) => {
 											BookObjKeys.readStatus.read
 										)
 									}
+									onBlur={() => {
+										handleOpenClose();
+									}}
 								>
 									Read
 								</button>
@@ -112,18 +180,6 @@ const BookCard = ({ book, updateReadStatus, updateReadNext }) => {
 				</div>
 				<p>{book.genres.join(" / ")}</p>
 				<div className="book-right-bottom-container">
-					{/* {book.readStatus === BookObjKeys.readStatus.unread ? (
-						<button
-							onClick={() =>
-								updateReadNextEvent(book.id, book.isReadNext)
-							}
-							className="read-next-btn"
-						>
-							{book.isReadNext
-								? "Remove from Read Next"
-								: "Add to Read Next"}
-						</button>
-					) : null} */}
 					{book.readStatus === BookObjKeys.readStatus.read ? (
 						<>
 							<p>My Rating: </p>
