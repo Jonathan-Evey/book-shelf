@@ -25,6 +25,7 @@
 body {
 	height: 100vh;
 	width: 100vw;
+	font-size: 1.1em;
 	background-color: var(--clr-main-900);
 	font-family: "New Century Schoolbook", sans-serif, serif;
 }
@@ -212,7 +213,7 @@ main {
 	flex: 1;
 	display: grid;
 	place-content: start;
-	grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
 	padding: 1.5rem 0.5rem;
 	transition: all 250ms ease-in-out;
 }
@@ -260,6 +261,7 @@ main {
 .book-right {
 	display: flex;
 	flex-direction: column;
+	justify-content: space-between;
 	width: 100%;
 	padding: 0 0 0.5rem calc(100px + 1.2rem);
 	text-align: center;
@@ -270,7 +272,7 @@ main {
 }
 
 .book-right-top h4 {
-	font-size: 1.25rem;
+	font-size: 1.35rem;
 	padding: 0.75rem 0.25rem 0.5rem 0.25rem;
 }
 
@@ -279,7 +281,7 @@ main {
 }
 
 .book-right-top p:nth-child(3) {
-	font-size: 1.125rem;
+	font-size: 1.25rem;
 }
 
 .book-right-top::after {
@@ -304,7 +306,7 @@ main {
 }
 
 .book-right-bottom-container {
-	margin-top: 0.5rem;
+	margin: 1rem 0 0.5rem 0;
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
@@ -489,6 +491,10 @@ dialog::backdrop {
 .filter-option-btn.open {
 	background-color: var(--clr-accent-dark);
 	color: var(--clr-accent-light);
+}
+.filter-option-btn.active {
+	background-color: var(--clr-main-900);
+	color: var(--clr-white);
 }
 
 .filter-option-btn:hover {

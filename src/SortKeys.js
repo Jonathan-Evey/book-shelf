@@ -15,8 +15,8 @@ const authorSortOptionKeys = {
 const ratingSortOptionKeys = {
 	sortType: "Rating",
 	removeSort: "Rating",
-	highToLow: "High to Low",
-	lowToHigh: "Low to High",
+	highToLow: "Descending",
+	lowToHigh: "Ascending",
 };
 
 export { titleSortOptionKeys, authorSortOptionKeys, ratingSortOptionKeys };
