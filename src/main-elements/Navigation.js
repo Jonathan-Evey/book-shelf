@@ -41,7 +41,7 @@ const Navigation = (props) => {
 	function openFindBookModel(keyWord) {
 		props.updateCurrentSearchPageNumber(0);
 		if (keyWord === props.searchTitleKeyWord) {
-			let searchTerms = props.searchTitleKeyWord.replace(" ", "+");
+			let searchTerms = props.searchTitleKeyWord.replaceAll(" ", "+");
 			props.updateUseSearchKeyWord(searchTerms);
 			props.updateSearchType("intitle");
 			console.log("clicked Title");

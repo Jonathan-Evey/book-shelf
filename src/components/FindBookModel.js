@@ -9,10 +9,6 @@ const FindBookModel = (props) => {
 	let searchType = props.useSearchType;
 	let searchKeyWord = props.useSearchKeyWord;
 
-	function checkBooks() {
-		console.log(foundBooks);
-	}
-
 	const Book = (book) => {
 		return {
 			title: book.volumeInfo.title
@@ -89,7 +85,9 @@ const FindBookModel = (props) => {
 				>
 					X
 				</button>
-				<button onClick={() => checkBooks()}>console</button>Loading...
+				<div className="loading-title">
+					<h3>Please wait a moment as we search for your book.</h3>
+				</div>
 			</dialog>
 		);
 
@@ -104,28 +102,32 @@ const FindBookModel = (props) => {
 				addBookToSavedBooks={props.addBookToSavedBooks}
 			/>
 			<div className="page-nav-container">
-				{props.currentSearchPageNumber !== 0 ? (
-					<button
-						onClick={() => {
-							updateBookResults(-10);
-						}}
-					>
-						Previous
-					</button>
-				) : null}
+				<div>
+					{props.currentSearchPageNumber !== 0 ? (
+						<button
+							onClick={() => {
+								updateBookResults(-10);
+							}}
+						>
+							Previous
+						</button>
+					) : null}{" "}
+				</div>
 				<p>
 					page:{" "}
 					{props.currentSearchPageNumber !== 0
 						? props.currentSearchPageNumber / 10 + 1
 						: 1}
 				</p>
-				<button
-					onClick={() => {
-						updateBookResults(+10);
-					}}
-				>
-					Next
-				</button>
+				<div>
+					<button
+						onClick={() => {
+							updateBookResults(+10);
+						}}
+					>
+						Next
+					</button>
+				</div>
 			</div>
 		</dialog>
 	);

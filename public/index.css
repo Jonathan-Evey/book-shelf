@@ -331,6 +331,13 @@ dialog {
 	border: none;
 	border-radius: 10px;
 	width: 55vw;
+	max-height: 80vh;
+	min-height: 50vh;
+}
+
+dialog[open=""] {
+	display: flex;
+	flex-direction: column;
 }
 
 dialog::backdrop {
@@ -601,7 +608,6 @@ dialog::backdrop {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	width: 100%;
 	background-color: var(--clr-main-900);
 }
 
@@ -659,4 +665,62 @@ dialog::backdrop {
 .found-book-card-right-container {
 	align-items: flex-start;
 	flex-shrink: 0;
+}
+
+.page-nav-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-inline: auto;
+	width: 75%;
+	padding-bottom: 1rem;
+}
+
+.page-nav-container div {
+	display: flex;
+	justify-content: flex-end;
+	flex-grow: 1;
+	width: 25%;
+}
+
+.page-nav-container div:nth-child(3) {
+	justify-content: flex-start;
+}
+
+.page-nav-container p {
+	flex-grow: 1;
+	text-align: center;
+	font-size: 1.25rem;
+}
+
+.page-nav-container button {
+	cursor: pointer;
+
+	padding: 0.25rem 0.5rem;
+	border: solid 2px var(--clr-black);
+	border-left: none;
+	border-right: none;
+	border-radius: 5px;
+	background-color: var(--clr-main-300);
+	color: var(--clr-black);
+}
+
+.page-nav-container button:hover,
+.page-nav-container button:focus {
+	border-color: var(--clr-accent-light);
+	background-color: var(--clr-accent-dark);
+	color: var(--clr-accent-light);
+}
+
+.loading-title {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	flex-grow: 1;
+}
+
+.loading-title h3 {
+	text-align: center;
+
+	color: var(--clr-white);
 }
