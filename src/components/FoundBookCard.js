@@ -1,5 +1,6 @@
 const FoundBookCard = ({ foundBooks, addBookToSavedBooks }) => {
 	const addBookToSavedBooksEvent = (bookToAdd) => {
+		console.log(bookToAdd);
 		addBookToSavedBooks(bookToAdd);
 		let model = document.getElementById("find-book");
 		model.close();
@@ -21,7 +22,9 @@ const FoundBookCard = ({ foundBooks, addBookToSavedBooks }) => {
 					<div className="found-book-card-center-container">
 						<h4 className="found-book-title">{book.title}</h4>
 						<p>by</p>
-						<p className="found-book-author">{book.author}</p>
+						<p className="found-book-author">
+							{book.author.join(" / ")}
+						</p>
 						{!book.genres ? null : (
 							<p>Genre: {book.genres.join(" / ")}</p>
 						)}

@@ -10,6 +10,8 @@ function App() {
 	const [searchAuthorKeyWord, setSearchAuthorKeyWord] = useState("");
 	const [useSearchType, setUseSearchType] = useState("");
 	const [useSearchKeyWord, setUseSearchKeyWord] = useState(null);
+	const [currentSearchPageNumber, setCurrentSearchPageNumber] =
+		useState(null);
 
 	const updateTitleKeyWord = (value) => {
 		setSearchTitleKeyWord(value);
@@ -27,6 +29,11 @@ function App() {
 
 	const updateUseSearchKeyWord = (value) => {
 		setUseSearchKeyWord(value);
+	};
+
+	const updateCurrentSearchPageNumber = (value) => {
+		console.log("page updated");
+		setCurrentSearchPageNumber(value);
 	};
 
 	const sortBackToDefault = (data) => {
@@ -80,7 +87,7 @@ function App() {
 				"http://books.google.com/books/content?id=UAhAEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
 			title: "Dune",
 			readStatus: "Unread",
-			rating: 3,
+			rating: 0,
 			genres: ["Fiction"],
 			isReadNext: false,
 			dateAdded: 1663510496511,
@@ -105,7 +112,7 @@ function App() {
 			title: "Redwall",
 			genres: ["Juvenile Fiction"],
 			readStatus: "Unread",
-			rating: 5,
+			rating: -1,
 			isReadNext: false,
 			dateAdded: 1663510456738,
 		},
@@ -117,7 +124,7 @@ function App() {
 			title: "The Old Man and the Sea",
 			genres: ["Fiction"],
 			readStatus: "Read",
-			rating: "",
+			rating: -1,
 			isReadNext: false,
 			dateAdded: 1663510396776,
 		},
@@ -165,6 +172,8 @@ function App() {
 			<FindBookModel
 				useSearchType={useSearchType}
 				useSearchKeyWord={useSearchKeyWord}
+				currentSearchPageNumber={currentSearchPageNumber}
+				updateCurrentSearchPageNumber={updateCurrentSearchPageNumber}
 				addBookToSavedBooks={addBookToSavedBooks}
 			/>
 			<Header />
@@ -177,6 +186,7 @@ function App() {
 				//--------passing functions
 				updateSearchType={updateSearchType}
 				updateUseSearchKeyWord={updateUseSearchKeyWord}
+				updateCurrentSearchPageNumber={updateCurrentSearchPageNumber}
 				updateTitleKeyWord={updateTitleKeyWord}
 				updateAuthorKeyWord={updateAuthorKeyWord}
 				openFilterMenuToggle={openFilterMenuToggle}

@@ -1,16 +1,13 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import API_DATA_OBJ from "../API";
 import FoundBookCard from "./FoundBookCard";
 
 const FindBookModel = (props) => {
 	const [isLoading, setIsLoading] = useState(true);
 	const [foundBooks, setFoundBooks] = useState([]);
-	//const isInitLoad = useRef(true);
 
 	let searchType = props.useSearchType;
 	let searchKeyWord = props.useSearchKeyWord;
-	let apiURL = `https://www.googleapis.com/books/v1/volumes?q=${searchKeyWord}+${searchType}:${searchKeyWord}&startIndex=0&key=${API_DATA_OBJ.API_KEY}`;
 
 	function checkBooks() {
 		console.log(foundBooks);
@@ -31,8 +28,10 @@ const FindBookModel = (props) => {
 				? book.volumeInfo.categories
 				: ["Data Not Found"],
 			id: book.volumeInfo.industryIdentifiers[0].identifier
-				? book.volumeInfo.industryIdentifiers[0].identifier
-				: Date.now().toString(),
+				? `${
+						book.volumeInfo.industryIdentifiers[0].identifier
+				  } ${Date.now()}`
+				: Date.now(),
 			readStatus: "Unread",
 			rating: "",
 			isReadNext: false,
@@ -41,9 +40,9 @@ const FindBookModel = (props) => {
 	};
 
 	const handelResponse = (response) => {
-		let eachBook = [];
-		response.data.items.map((book) => eachBook.push(Book(book)));
-		setFoundBooks(eachBook);
+		let foundBooks = [];
+		response.data.items.map((book) => foundBooks.push(Book(book)));
+		setFoundBooks(foundBooks);
 	};
 
 	const closeModel = (e) => {
@@ -51,14 +50,21 @@ const FindBookModel = (props) => {
 		return model.close();
 	};
 
+	const updateBookResults = (number) => {
+		let newNumber = number + props.currentSearchPageNumber;
+		return props.updateCurrentSearchPageNumber(newNumber);
+	};
+
 	useEffect(() => {
-		// if (isInitLoad.current) {
-		// 	console.log("First Load");
-		// 	isInitLoad.current = false;
-		// 	return;
-		// }
+		let apiURL = `https://www.googleapis.com/books/v1/volumes?q=${searchKeyWord}&startIndex=${props.currentSearchPageNumber}`;
+
+		if (searchType === "inauthor") {
+			apiURL = `https://www.googleapis.com/books/v1/volumes?q=inauthor:${searchKeyWord}&startIndex=${props.currentSearchPageNumber}`;
+		}
+
 		if (props.useSearchKeyWord) {
 			console.log("After First Load");
+			console.log(apiURL);
 			setIsLoading(true);
 			let cancel;
 			axios
@@ -72,7 +78,7 @@ const FindBookModel = (props) => {
 				});
 			return () => cancel();
 		}
-	}, [props.useSearchKeyWord]);
+	}, [props.useSearchKeyWord, props.currentSearchPageNumber]);
 
 	if (isLoading)
 		return (
@@ -97,6 +103,30 @@ const FindBookModel = (props) => {
 				foundBooks={foundBooks}
 				addBookToSavedBooks={props.addBookToSavedBooks}
 			/>
+			<div className="page-nav-container">
+				{props.currentSearchPageNumber !== 0 ? (
+					<button
+						onClick={() => {
+							updateBookResults(-10);
+						}}
+					>
+						Previous
+					</button>
+				) : null}
+				<p>
+					page:{" "}
+					{props.currentSearchPageNumber !== 0
+						? props.currentSearchPageNumber / 10 + 1
+						: 1}
+				</p>
+				<button
+					onClick={() => {
+						updateBookResults(+10);
+					}}
+				>
+					Next
+				</button>
+			</div>
 		</dialog>
 	);
 };

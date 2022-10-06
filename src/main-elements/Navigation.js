@@ -39,14 +39,20 @@ const Navigation = (props) => {
 
 	//------------------------------find new books and display
 	function openFindBookModel(keyWord) {
+		props.updateCurrentSearchPageNumber(0);
 		if (keyWord === props.searchTitleKeyWord) {
-			props.updateUseSearchKeyWord(props.searchTitleKeyWord);
+			let searchTerms = props.searchTitleKeyWord.replace(" ", "+");
+			props.updateUseSearchKeyWord(searchTerms);
 			props.updateSearchType("intitle");
 			console.log("clicked Title");
 			console.log(props.searchTitleKeyWord);
 		}
 		if (keyWord === props.searchAuthorKeyWord) {
-			props.updateUseSearchKeyWord(props.searchAuthorKeyWord);
+			let searchTerms = props.searchAuthorKeyWord.replace(" ", "+");
+			console.log(searchTerms);
+			console.log(props.searchAuthorKeyWord);
+
+			props.updateUseSearchKeyWord(searchTerms);
 			props.updateSearchType("inauthor");
 			console.log("clicked Author");
 			console.log(props.searchTitleKeyWord);
@@ -237,7 +243,6 @@ const Navigation = (props) => {
 					searchTitleKeyWord={props.searchTitleKeyWord}
 					updateTitleKeyWord={props.updateTitleKeyWord}
 					openFindBookModel={openFindBookModel}
-					titleSortOptionKeys={titleSortOptionKeys}
 				/>
 				<FindBookByAuthor
 					searchAuthorKeyWord={props.searchAuthorKeyWord}

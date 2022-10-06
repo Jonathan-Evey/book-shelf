@@ -58,6 +58,9 @@ const Main = (props) => {
 					updateAuthorKeyWord={props.updateAuthorKeyWord}
 					updateSearchType={props.updateSearchType}
 					updateUseSearchKeyWord={props.updateUseSearchKeyWord}
+					updateCurrentSearchPageNumber={
+						props.updateCurrentSearchPageNumber
+					}
 					//----
 					savedBooks={props.savedBooks}
 					sortBackToDefault={props.sortBackToDefault}

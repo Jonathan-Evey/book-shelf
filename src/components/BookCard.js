@@ -184,7 +184,7 @@ const BookCard = ({ book, updateReadStatus, updateReadNext }) => {
 						<>
 							<p>My Rating: </p>
 							<button>
-								{book.rating === "" ? "-" : book.rating} / 5
+								{book.rating === -1 ? "-" : book.rating} / 5
 							</button>
 						</>
 					) : null}
