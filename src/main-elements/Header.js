@@ -1,6 +1,4 @@
-import React, { useState } from "react";
-
-const Header = (props) => {
+const Header = () => {
 	// const updateKeyWordEvent = (e) => {
 	// 	props.updateKeyWord(e.target.value);
 	// };
@@ -10,7 +8,7 @@ const Header = (props) => {
 			<div className="title-container">
 				<h1>My Bookshelf</h1>
 			</div>
-			<button>User Menu</button>
+			{/* <button>User Menu</button> */}
 		</header>
 	);
 };

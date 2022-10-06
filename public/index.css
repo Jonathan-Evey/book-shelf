@@ -62,7 +62,7 @@ header {
 
 h1 {
 	margin-left: 2rem;
-	padding: 0.5rem 0.75rem;
+	padding: 2rem 0.75rem;
 	max-width: 9ch;
 }
 
@@ -144,7 +144,8 @@ main {
 	box-shadow: 5px 5px 10px -5px rgba(0, 0, 0, 0.2),
 		3px 3px 5px -5px rgba(0, 0, 0, 0.4), 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
 }
-.main-filter-menu-container .toggle-filter-menu-btn:hover {
+.main-filter-menu-container .toggle-filter-menu-btn:hover,
+.main-filter-menu-container .toggle-filter-menu-btn:focus {
 	background-color: var(--clr-accent-dark);
 	color: var(--clr-accent-light);
 }
@@ -188,6 +189,13 @@ main {
 	width: 100%;
 	border-bottom: 1px solid var(--clr-black);
 	margin: 1.5rem 0 0.5rem 0;
+}
+
+.toggle-submenu-btn:hover,
+.toggle-submenu-btn:focus {
+	border-radius: 5px;
+	background-color: var(--clr-accent-dark);
+	color: var(--clr-accent-light);
 }
 
 .toggle-submenu-btn {
@@ -341,7 +349,8 @@ dialog::backdrop {
 	background-color: var(--clr-main-300);
 }
 
-.find-book-btn:hover {
+.find-book-btn:hover,
+.find-book-btn:focus {
 	background-color: var(--clr-accent-dark);
 	color: var(--clr-accent-light);
 }
@@ -415,11 +424,11 @@ dialog::backdrop {
 	);
 }
 
-.read-next-btn:hover {
+/* .read-next-btn:hover {
 	cursor: pointer;
 	background: var(--clr-main-700);
 	color: var(--clr-accent-light);
-}
+} */
 
 .close-model-btn {
 	position: absolute;
@@ -431,7 +440,8 @@ dialog::backdrop {
 	border: none;
 }
 
-.close-model-btn:hover {
+.close-model-btn:hover,
+.close-model-btn:focus {
 	cursor: pointer;
 	color: var(--clr-accent-light);
 }
@@ -447,7 +457,8 @@ dialog::backdrop {
 	color: var(--clr-main-300);
 }
 
-.add-book-btn:hover {
+.add-book-btn:hover,
+.add-book-btn:focus {
 	border-color: var(--clr-accent-light);
 	background-color: var(--clr-accent-dark);
 	color: var(--clr-accent-light);
@@ -497,7 +508,8 @@ dialog::backdrop {
 	color: var(--clr-white);
 }
 
-.filter-option-btn:hover {
+.filter-option-btn:hover,
+.filter-option-btn:focus {
 	cursor: pointer;
 	background-color: var(--clr-accent-dark);
 	color: var(--clr-accent-light);

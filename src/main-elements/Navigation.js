@@ -247,7 +247,10 @@ const Navigation = (props) => {
 
 				<button
 					className="toggle-submenu-btn"
-					onClick={() => setIsSearchMenuOpen(!isSearchMenuOpen)}
+					onClick={(e) => {
+						setIsSearchMenuOpen(!isSearchMenuOpen);
+						e.target.blur();
+					}}
 				>
 					Search Shelf
 					<span>^</span>
@@ -260,7 +263,10 @@ const Navigation = (props) => {
 				) : null}
 				<button
 					className="toggle-submenu-btn"
-					onClick={() => setIsSortMenuOpen(!isSortMenuOpen)}
+					onClick={(e) => {
+						setIsSortMenuOpen(!isSortMenuOpen);
+						e.target.blur();
+					}}
 				>
 					Sort By
 					<span>^</span>
@@ -304,7 +310,10 @@ const Navigation = (props) => {
 				) : null}
 				<button
 					className="toggle-submenu-btn"
-					onClick={() => setIsFilterMenuOpen(!isFilterMenuOpen)}
+					onClick={(e) => {
+						setIsFilterMenuOpen(!isFilterMenuOpen);
+						e.target.blur();
+					}}
 				>
 					Filter by
 					<span>^</span>
