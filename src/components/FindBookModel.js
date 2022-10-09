@@ -26,9 +26,11 @@ const FindBookModel = (props) => {
 			id: book.volumeInfo.industryIdentifiers[0].identifier
 				? `${
 						book.volumeInfo.industryIdentifiers[0].identifier
-				  } ${Date.now()}`
-				: Date.now(),
+				  } ${Math.floor(Math.random() * 1000)}`
+				: `${Date.now()} ${Math.floor(Math.random() * 1000)}`,
 			readStatus: "Unread",
+			notes: [],
+			review: "",
 			rating: "",
 			isReadNext: false,
 			dateAdded: Date.now(),
