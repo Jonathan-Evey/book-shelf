@@ -136,7 +136,15 @@ const Main = (props) => {
 				</>
 			) : null}
 			{isBookNotesDisplayed ? (
-				<NoteContainer bookToUpdateNotes={bookToUpdateNotes} />
+				<NoteContainer
+					addNoteToBookToUpdateNotes={
+						props.addNoteToBookToUpdateNotes
+					}
+					bookToUpdateNotes={bookToUpdateNotes}
+					setIsFullShelfDisplyed={setIsFullShelfDisplyed}
+					setIsBookNotesDisplayed={setIsBookNotesDisplayed}
+					addNewNote={props.addNewNote}
+				/>
 			) : null}
 		</main>
 	);

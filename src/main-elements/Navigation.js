@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import FindBookByTitle from "../components/FindBookByTitle";
-import FindBookByAuthor from "../components/FindBookByAuthor";
+import FindBookByTitle from "../components/findBooks/FindBookByTitle";
+import FindBookByAuthor from "../components/findBooks/FindBookByAuthor";
 import SearchSavedBooks from "../components/SearchSavedBooks";
 import SortBtRating from "../components/sortOptions/SortByRating";
 import SortByTitle from "../components/sortOptions/SortByTitle";

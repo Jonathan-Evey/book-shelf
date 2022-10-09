@@ -1,6 +1,6 @@
 import Main from "./main-elements/Main";
 import Header from "./main-elements/Header";
-import FindBookModel from "./components/FindBookModel";
+import FindBookModel from "./components/findBooks/FindBookModel";
 import BookObjKeys from "./BookObjKeys";
 import sortFunctions from "./Functions";
 import React, { useState, useEffect } from "react";
@@ -145,6 +145,15 @@ function App() {
 
 	const [bookToUpdateNotes, setBookToUpdateNotes] = useState(null);
 
+	const addNoteToBookToUpdateNotes = (newNote) => {
+		setBookToUpdateNotes((bookToUpdateNotes) => {
+			return {
+				...bookToUpdateNotes,
+				notes: [newNote, ...bookToUpdateNotes.notes],
+			};
+		});
+	};
+
 	useEffect(() => {}, []);
 
 	const openFilterMenuToggle = () => {
@@ -168,6 +177,16 @@ function App() {
 									? book.isReadNext
 									: false,
 					  }
+					: book
+			)
+		);
+	};
+
+	const addNewNote = (id, note) => {
+		return setSavedBooks(
+			savedBooks.map((book) =>
+				book.id === id
+					? { ...book, notes: [note, ...book.notes] }
 					: book
 			)
 		);
@@ -209,6 +228,8 @@ function App() {
 				openFilterMenuToggle={openFilterMenuToggle}
 				updateReadStatus={updateReadStatus}
 				updateReadNext={updateReadNext}
+				addNoteToBookToUpdateNotes={addNoteToBookToUpdateNotes}
+				addNewNote={addNewNote}
 				sortBackToDefault={sortBackToDefault}
 				sortAlphabetically={sortAlphabetically}
 				sortReverseAlphabetically={sortReverseAlphabetically}

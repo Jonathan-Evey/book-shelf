@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import FoundBookCard from "./FoundBookCard";
+import FoundBookCard from "../FoundBookCard";
 
 const FindBookModel = (props) => {
 	const [isLoading, setIsLoading] = useState(true);
