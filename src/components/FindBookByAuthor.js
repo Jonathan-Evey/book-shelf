@@ -22,9 +22,10 @@ const FindBookByAuthor = (props) => {
 			/>
 			<button
 				className="find-book-btn"
-				onClick={() =>
-					props.openFindBookModel(props.searchAuthorKeyWord)
-				}
+				onClick={(e) => {
+					props.openFindBookModel(props.searchAuthorKeyWord);
+					e.target.blur();
+				}}
 			>
 				Search for Book
 			</button>

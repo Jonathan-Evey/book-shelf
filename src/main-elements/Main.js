@@ -36,7 +36,10 @@ const Main = (props) => {
 					onMouseLeave={() => setIsHoverShown(false)}
 					onFocus={() => setIsHoverShown(true)}
 					onBlur={() => setIsHoverShown(false)}
-					onClick={props.openFilterMenuToggle}
+					onClick={(e) => {
+						props.openFilterMenuToggle();
+						e.target.blur();
+					}}
 					className="toggle-filter-menu-btn"
 				>
 					{isHoverShown && !props.isFilterMenuOpen

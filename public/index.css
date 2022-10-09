@@ -701,7 +701,7 @@ dialog::backdrop {
 	border-left: none;
 	border-right: none;
 	border-radius: 5px;
-	background-color: var(--clr-main-300);
+	background-color: var(--clr-main-700);
 	color: var(--clr-black);
 }
 
