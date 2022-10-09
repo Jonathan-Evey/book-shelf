@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import BookObjKeys from "../BookObjKeys";
 
-const BookCard = ({ book, updateReadStatus, updateReadNext }) => {
+const BookCard = ({
+	book,
+	updateReadStatus,
+	updateReadNext,
+	setIsFullShelfDisplyed,
+	setIsBookNotesDisplayed,
+	setBookToUpdateNotes,
+}) => {
 	const [isUpdateShown, setIsUpdateShown] = useState(false);
 	const [isUpdateDropdownShown, setIsUpdateDropdownShown] = useState(false);
 
@@ -21,6 +28,12 @@ const BookCard = ({ book, updateReadStatus, updateReadNext }) => {
 	// const updateReadNextEvent = (id, value) => {
 	// 	updateReadNext(id, value);
 	// };
+
+	const openBookNotes = (book) => {
+		setBookToUpdateNotes(book);
+		setIsFullShelfDisplyed(false);
+		setIsBookNotesDisplayed(true);
+	};
 
 	const getBookImgContainerClass = (value) => {
 		switch (value) {
@@ -180,11 +193,19 @@ const BookCard = ({ book, updateReadStatus, updateReadNext }) => {
 				</div>
 				<p>{book.genres.join(" / ")}</p>
 				<div className="book-right-bottom-container">
+					<button
+						onClick={() => {
+							openBookNotes(book);
+						}}
+					>
+						Notes
+					</button>
+
 					{book.readStatus === BookObjKeys.readStatus.read ? (
 						<>
-							<p>My Rating: </p>
+							<button className="review-btn">Review</button>
 							<button>
-								{book.rating === -1 ? "-" : book.rating} / 5
+								{book.rating === "" ? "-" : book.rating} / 5
 							</button>
 						</>
 					) : null}
