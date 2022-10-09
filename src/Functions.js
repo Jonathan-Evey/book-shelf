@@ -37,10 +37,28 @@ const sortFunctions = (() => {
 
 	const sortByRating = (data, key) => {
 		if (key === ratingSortOptionKeys.highToLow) {
-			return [...data].sort((a, b) => (a.rating > b.rating ? -1 : 1));
+			return [...data].sort((a, b) => {
+				if (typeof a.rating === "string") {
+					console.log(a.rating);
+					return 1;
+				} else if (typeof b.rating === "string") {
+					return -1;
+				} else {
+					return a.rating > b.rating ? -1 : 1;
+				}
+			});
 		}
 		if (key === ratingSortOptionKeys.lowToHigh) {
-			return [...data].sort((a, b) => (a.rating > b.rating ? 1 : -1));
+			return [...data].sort((a, b) => {
+				if (typeof a.rating === "string") {
+					console.log(a.rating);
+					return 1;
+				} else if (typeof b.rating === "string") {
+					return -1;
+				} else {
+					return a.rating > b.rating ? 1 : -1;
+				}
+			});
 		}
 		if (key === ratingSortOptionKeys.removeSort) {
 			return defaultSort(data);
