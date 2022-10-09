@@ -1,8 +1,4 @@
 const Header = () => {
-	// const updateKeyWordEvent = (e) => {
-	// 	props.updateKeyWord(e.target.value);
-	// };
-
 	return (
 		<header>
 			<div className="title-container">

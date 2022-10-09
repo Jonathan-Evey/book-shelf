@@ -63,6 +63,8 @@ function App() {
 				"http://books.google.com/books/content?id=yl4dILkcqm4C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
 			title: "The Lord of the Rings",
 			readStatus: "Unread",
+			notes: [],
+			review: "",
 			rating: 1,
 			genres: ["Fiction", "Fantasy"],
 			isReadNext: true,
@@ -75,6 +77,8 @@ function App() {
 				"http://books.google.com/books/content?id=aWZzLPhY4o0C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
 			title: "The Fellowship Of The Ring",
 			readStatus: "Read",
+			notes: [],
+			review: "",
 			rating: 2,
 			genres: ["Fiction"],
 			isReadNext: false,
@@ -87,6 +91,8 @@ function App() {
 				"http://books.google.com/books/content?id=UAhAEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
 			title: "Dune",
 			readStatus: "Unread",
+			notes: [],
+			review: "",
 			rating: 0,
 			genres: ["Fiction"],
 			isReadNext: false,
@@ -99,6 +105,8 @@ function App() {
 				"http://books.google.com/books/content?id=TeZvDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
 			title: "The Adventures of Huckleberry Finn",
 			readStatus: "Read",
+			notes: [],
+			review: "",
 			rating: 4,
 			genres: ["Fiction"],
 			isReadNext: false,
@@ -112,7 +120,9 @@ function App() {
 			title: "Redwall",
 			genres: ["Juvenile Fiction"],
 			readStatus: "Unread",
-			rating: -1,
+			notes: [],
+			review: "",
+			rating: "",
 			isReadNext: false,
 			dateAdded: 1663510456738,
 		},
@@ -124,12 +134,16 @@ function App() {
 			title: "The Old Man and the Sea",
 			genres: ["Fiction"],
 			readStatus: "Read",
-			rating: -1,
+			notes: [],
+			review: "",
+			rating: "",
 			isReadNext: false,
 			dateAdded: 1663510396776,
 		},
 	]);
 	const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(true);
+
+	const [bookToUpdateNotes, setBookToUpdateNotes] = useState(null);
 
 	useEffect(() => {}, []);
 
@@ -183,7 +197,10 @@ function App() {
 				searchAuthorKeyWord={searchAuthorKeyWord}
 				savedBooks={savedBooks}
 				isFilterMenuOpen={isFilterMenuOpen}
+				bookToUpdateNotes={bookToUpdateNotes}
+				setBookToUpdateNotes={setBookToUpdateNotes}
 				//--------passing functions
+
 				updateSearchType={updateSearchType}
 				updateUseSearchKeyWord={updateUseSearchKeyWord}
 				updateCurrentSearchPageNumber={updateCurrentSearchPageNumber}

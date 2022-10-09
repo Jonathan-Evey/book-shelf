@@ -44,6 +44,13 @@ const BookContainer = (props) => {
 							book={book}
 							updateReadStatus={props.updateReadStatus}
 							updateReadNext={props.updateReadNext}
+							setIsFullShelfDisplyed={
+								props.setIsFullShelfDisplyed
+							}
+							setIsBookNotesDisplayed={
+								props.setIsBookNotesDisplayed
+							}
+							setBookToUpdateNotes={props.setBookToUpdateNotes}
 						/>
 					</CSSTransition>
 				))}

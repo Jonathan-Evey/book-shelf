@@ -252,6 +252,9 @@ const Navigation = (props) => {
 
 				<button
 					className="toggle-submenu-btn"
+					onMouseLeave={(e) => {
+						e.target.blur();
+					}}
 					onClick={(e) => {
 						setIsSearchMenuOpen(!isSearchMenuOpen);
 						e.target.blur();
@@ -268,6 +271,9 @@ const Navigation = (props) => {
 				) : null}
 				<button
 					className="toggle-submenu-btn"
+					onMouseLeave={(e) => {
+						e.target.blur();
+					}}
 					onClick={(e) => {
 						setIsSortMenuOpen(!isSortMenuOpen);
 						e.target.blur();
@@ -315,6 +321,9 @@ const Navigation = (props) => {
 				) : null}
 				<button
 					className="toggle-submenu-btn"
+					onMouseLeave={(e) => {
+						e.target.blur();
+					}}
 					onClick={(e) => {
 						setIsFilterMenuOpen(!isFilterMenuOpen);
 						e.target.blur();
