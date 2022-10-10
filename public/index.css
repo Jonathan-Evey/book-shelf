@@ -307,9 +307,8 @@ main {
 
 .book-right-bottom-container p {
 	margin-right: 0.5rem;
-	text-align: end;
+	font-weight: 700;
 	align-self: flex-end;
-	flex: 1;
 }
 .book-right-bottom-container button {
 	display: inline-block;
@@ -327,12 +326,25 @@ main {
 	font-size: 1.1rem;
 }
 
+.book-right-bottom-container button.select-rating-btn,
 .book-right-bottom-container button.rating-btn {
 	color: var(--clr-black);
 }
 
+.book-right-bottom-container button.select-rating-btn {
+	border-top: none;
+	background-color: var(--clr-main-700);
+	border-radius: 0px;
+	margin-inline: 0.125rem;
+}
+
 .book-right-bottom-container button:hover.rating-btn {
 	color: var(--clr-accent-dark);
+}
+
+.book-right-bottom-container button:hover.select-rating-btn {
+	border-radius: 5px;
+	color: var(--clr-accent-light);
 }
 
 .book-right-bottom-container button.rating-btn.add {

@@ -43,9 +43,10 @@ const BookContainer = (props) => {
 							className="book-card"
 							book={book}
 							updateReadStatus={props.updateReadStatus}
+							updateRating={props.updateRating}
 							updateReadNext={props.updateReadNext}
-							setIsFullShelfDisplyed={
-								props.setIsFullShelfDisplyed
+							setIsFullShelfDisplayed={
+								props.setIsFullShelfDisplayed
 							}
 							setIsBookNotesDisplayed={
 								props.setIsBookNotesDisplayed

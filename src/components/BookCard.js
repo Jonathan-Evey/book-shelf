@@ -4,13 +4,15 @@ import BookObjKeys from "../BookObjKeys";
 const BookCard = ({
 	book,
 	updateReadStatus,
-	updateReadNext,
-	setIsFullShelfDisplyed,
+	updateRating,
+	setIsFullShelfDisplayed,
 	setIsBookNotesDisplayed,
 	setBookToUpdateNotes,
 }) => {
 	const [isUpdateShown, setIsUpdateShown] = useState(false);
 	const [isUpdateDropdownShown, setIsUpdateDropdownShown] = useState(false);
+	const [isRatingUpdateDisplayed, setIsRatingUpdateDisplayed] =
+		useState(false);
 
 	const handleOpenClose = () => {
 		setIsUpdateDropdownShown(!isUpdateDropdownShown);
@@ -31,8 +33,17 @@ const BookCard = ({
 
 	const openBookNotes = (book) => {
 		setBookToUpdateNotes(book);
-		setIsFullShelfDisplyed(false);
+		setIsFullShelfDisplayed(false);
 		setIsBookNotesDisplayed(true);
+	};
+
+	const openRatingUpdate = () => {
+		setIsRatingUpdateDisplayed(true);
+	};
+
+	const handleRatingUpdate = (id, newRating) => {
+		updateRating(id, newRating);
+		setIsRatingUpdateDisplayed(false);
 	};
 
 	const getBookImgContainerClass = (value) => {
@@ -193,18 +204,21 @@ const BookCard = ({
 				</div>
 				<p>{book.genres.join(" / ")}</p>
 				<div className="book-right-bottom-container">
-					<button
-						className={`add-notes-btn ${
-							book.notes[0] ? "read" : "add"
-						}`}
-						onClick={() => {
-							openBookNotes(book);
-						}}
-					>
-						Notes
-					</button>
+					{!isRatingUpdateDisplayed ? (
+						<button
+							className={`add-notes-btn ${
+								book.notes[0] ? "read" : "add"
+							}`}
+							onClick={() => {
+								openBookNotes(book);
+							}}
+						>
+							Notes
+						</button>
+					) : null}
 
-					{book.readStatus === BookObjKeys.readStatus.read ? (
+					{book.readStatus === BookObjKeys.readStatus.read &&
+					!isRatingUpdateDisplayed ? (
 						<>
 							<button
 								className={`review-btn ${
@@ -217,10 +231,54 @@ const BookCard = ({
 								className={`rating-btn ${
 									book.rating === "" ? "add" : ""
 								}`}
+								onClick={() => {
+									openRatingUpdate();
+								}}
 							>
 								{book.rating === ""
 									? "Rating"
 									: `${book.rating} / 5`}
+							</button>
+						</>
+					) : null}
+					{isRatingUpdateDisplayed ? (
+						<>
+							<p>Select:</p>
+							<button
+								className="select-rating-btn"
+								onClick={() => handleRatingUpdate(book.id, 0)}
+							>
+								0
+							</button>
+							<button
+								className="select-rating-btn"
+								onClick={() => handleRatingUpdate(book.id, 1)}
+							>
+								1
+							</button>
+							<button
+								className="select-rating-btn"
+								onClick={() => handleRatingUpdate(book.id, 2)}
+							>
+								2
+							</button>
+							<button
+								className="select-rating-btn"
+								onClick={() => handleRatingUpdate(book.id, 3)}
+							>
+								3
+							</button>
+							<button
+								className="select-rating-btn"
+								onClick={() => handleRatingUpdate(book.id, 4)}
+							>
+								4
+							</button>
+							<button
+								className="select-rating-btn"
+								onClick={() => handleRatingUpdate(book.id, 5)}
+							>
+								5
 							</button>
 						</>
 					) : null}

@@ -15,7 +15,7 @@ const NoteContainer = (props) => {
 
 	const backToShelfEvent = () => {
 		props.setIsBookNotesDisplayed(false);
-		props.setIsFullShelfDisplyed(true);
+		props.setIsFullShelfDisplayed(true);
 	};
 
 	const saveNewNoteEvent = () => {

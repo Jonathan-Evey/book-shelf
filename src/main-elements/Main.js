@@ -6,7 +6,7 @@ import NoteContainer from "./NoteContainer";
 const Main = (props) => {
 	let bookToUpdateNotes = props.bookToUpdateNotes;
 	//------------------main display state---------------------------//
-	const [isFullShelfDisplyed, setIsFullShelfDisplyed] = useState(true);
+	const [isFullShelfDisplayed, setIsFullShelfDisplayed] = useState(true);
 	const [isBookNotesDisplayed, setIsBookNotesDisplayed] = useState(false);
 
 	//------------------search by title state-----------------------//
@@ -30,7 +30,7 @@ const Main = (props) => {
 
 	return (
 		<main>
-			{isFullShelfDisplyed ? (
+			{isFullShelfDisplayed ? (
 				<>
 					<aside
 						className={
@@ -110,10 +110,11 @@ const Main = (props) => {
 						//from main
 						savedBooks={props.savedBooks}
 						updateReadStatus={props.updateReadStatus}
+						updateRating={props.updateRating}
 						updateReadNext={props.updateReadNext}
 						isFilterMenuOpen={props.isFilterMenuOpen}
 						// ---- display state
-						setIsFullShelfDisplyed={setIsFullShelfDisplyed}
+						setIsFullShelfDisplayed={setIsFullShelfDisplayed}
 						setIsBookNotesDisplayed={setIsBookNotesDisplayed}
 						setBookToUpdateNotes={props.setBookToUpdateNotes}
 						//------title state
@@ -141,7 +142,7 @@ const Main = (props) => {
 						props.addNoteToBookToUpdateNotes
 					}
 					bookToUpdateNotes={bookToUpdateNotes}
-					setIsFullShelfDisplyed={setIsFullShelfDisplyed}
+					setIsFullShelfDisplayed={setIsFullShelfDisplayed}
 					setIsBookNotesDisplayed={setIsBookNotesDisplayed}
 					addNewNote={props.addNewNote}
 					updateNoteOnBook={props.updateNoteOnBook}

@@ -182,6 +182,19 @@ function App() {
 		);
 	};
 
+	const updateRating = (id, value) => {
+		return setSavedBooks(
+			savedBooks.map((book) =>
+				book.id === id
+					? {
+							...book,
+							rating: value,
+					  }
+					: book
+			)
+		);
+	};
+
 	const addNewNote = (id, note) => {
 		return setSavedBooks(
 			savedBooks.map((book) =>
@@ -260,6 +273,7 @@ function App() {
 				updateAuthorKeyWord={updateAuthorKeyWord}
 				openFilterMenuToggle={openFilterMenuToggle}
 				updateReadStatus={updateReadStatus}
+				updateRating={updateRating}
 				updateReadNext={updateReadNext}
 				addNoteToBookToUpdateNotes={addNoteToBookToUpdateNotes}
 				addNewNote={addNewNote}
