@@ -3,14 +3,14 @@ import BookNote from "../components/BookNote";
 
 const NoteContainer = (props) => {
 	const [noteText, setNoteText] = useState("");
-	const [isEdit, setIsEdit] = useState(false);
+	const [isAddingNewNote, setIsAddingNewNote] = useState(false);
 
 	const updateNoteText = (e) => {
 		setNoteText(e.target.value);
 	};
 
 	const addNoteBtnEvent = () => {
-		setIsEdit(true);
+		setIsAddingNewNote(true);
 	};
 
 	const backToShelfEvent = () => {
@@ -23,11 +23,11 @@ const NoteContainer = (props) => {
 		props.addNewNote(props.bookToUpdateNotes.id, noteToAdd);
 		props.addNoteToBookToUpdateNotes(noteToAdd);
 		setNoteText("");
-		setIsEdit(false);
+		setIsAddingNewNote(false);
 	};
 
 	const cancelBtnEvent = () => {
-		setIsEdit(false);
+		setIsAddingNewNote(false);
 	};
 
 	const Note = (note) => {
@@ -65,7 +65,7 @@ const NoteContainer = (props) => {
 					</button>
 				</div>
 			</div>
-			{isEdit ? (
+			{isAddingNewNote ? (
 				<div className="new-note-card">
 					<textarea
 						onChange={(e) => updateNoteText(e)}
@@ -91,7 +91,12 @@ const NoteContainer = (props) => {
 				</div>
 			) : null}
 			{props.bookToUpdateNotes.notes.map((note) => (
-				<BookNote key={note.id} noteText={note.noteText} />
+				<BookNote
+					key={note.id}
+					noteText={note.noteText}
+					noteId={note.id}
+					updateNoteOnBook={props.updateNoteOnBook}
+				/>
 			))}
 		</div>
 	);

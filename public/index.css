@@ -738,7 +738,7 @@ dialog::backdrop {
 }
 
 .notes-container {
-	width: 60%;
+	width: 55%;
 	margin-inline: auto;
 	padding: 2rem;
 	margin-top: 3rem;
@@ -764,4 +764,28 @@ dialog::backdrop {
 
 .notes-header-center h4 {
 	font-size: 1.75rem;
+}
+.note-card {
+	position: relative;
+	display: flex;
+	margin-top: 1.5rem;
+	padding: 1rem 0.5rem 1rem 1rem;
+	border-radius: 5px;
+	border-bottom-left-radius: 25px;
+	color: var(--clr-main-300);
+	background-color: var(--clr-accent-dark);
+	box-shadow: 10px 10px 20px -5px rgba(0, 0, 0, 0.25),
+		5px 5px 20px -5px rgba(0, 0, 0, 0.5),
+		2px 2px 5px 0px rgba(0, 0, 0, 0.25);
+}
+.note-card p {
+	flex-grow: 1;
+	max-width: 80%;
+	overflow-wrap: normal;
+	font-size: 1.125rem;
+}
+.note-card div {
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
 }

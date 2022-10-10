@@ -192,6 +192,37 @@ function App() {
 		);
 	};
 
+	const updateNoteOnBook = (noteId, updatedNote) => {
+		updateBookNotes(noteId, updatedNote);
+		updateBookToUpdateNotes(noteId, updatedNote);
+	};
+
+	const updateBookNotes = (noteId, updatedNote) => {
+		return setSavedBooks(
+			savedBooks.map((book) =>
+				book.id === bookToUpdateNotes.id
+					? book.notes.map((note) =>
+							note.id === noteId
+								? { ...note, noteText: updatedNote }
+								: note
+					  )
+					: book
+			)
+		);
+	};
+
+	const updateBookToUpdateNotes = (noteId, updatedNote) => {
+		let newNotes = bookToUpdateNotes.notes.map((note) =>
+			note.id === noteId ? { ...note, noteText: updatedNote } : note
+		);
+		return setBookToUpdateNotes((bookToUpdateNotes) => {
+			return {
+				...bookToUpdateNotes,
+				notes: newNotes,
+			};
+		});
+	};
+
 	const updateReadNext = (id, value) => {
 		return setSavedBooks(
 			savedBooks.map((book) =>
@@ -230,6 +261,7 @@ function App() {
 				updateReadNext={updateReadNext}
 				addNoteToBookToUpdateNotes={addNoteToBookToUpdateNotes}
 				addNewNote={addNewNote}
+				updateNoteOnBook={updateNoteOnBook}
 				sortBackToDefault={sortBackToDefault}
 				sortAlphabetically={sortAlphabetically}
 				sortReverseAlphabetically={sortReverseAlphabetically}
