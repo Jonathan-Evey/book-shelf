@@ -143,13 +143,22 @@ function App() {
 	]);
 	const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(true);
 
-	const [bookToUpdateNotes, setBookToUpdateNotes] = useState(null);
+	const [bookToUpdate, setBookToUpdate] = useState(null);
 
 	const addNoteToBookToUpdateNotes = (newNote) => {
-		setBookToUpdateNotes((bookToUpdateNotes) => {
+		setBookToUpdate((bookToUpdate) => {
 			return {
-				...bookToUpdateNotes,
-				notes: [newNote, ...bookToUpdateNotes.notes],
+				...bookToUpdate,
+				notes: [newNote, ...bookToUpdate.notes],
+			};
+		});
+	};
+
+	const addReviewToBookToUpdate = (reviewToAdd) => {
+		setBookToUpdate((bookToUpdate) => {
+			return {
+				...bookToUpdate,
+				review: reviewToAdd,
 			};
 		});
 	};
@@ -172,10 +181,10 @@ function App() {
 					? {
 							...book,
 							readStatus: value,
-							isReadNext:
+							rating:
 								value === BookObjKeys.readStatus.unread
-									? book.isReadNext
-									: false,
+									? ""
+									: book.rating,
 					  }
 					: book
 			)
@@ -205,21 +214,27 @@ function App() {
 		);
 	};
 
+	const addReview = (id, reviewToAdd) => {
+		return setSavedBooks(
+			savedBooks.map((book) =>
+				book.id === id ? { ...book, review: reviewToAdd } : book
+			)
+		);
+	};
+
 	const updateNoteOnBook = (noteId, updatedNote) => {
 		updateBookNotes(noteId, updatedNote);
 		updateBookToUpdateNotes(noteId, updatedNote);
 	};
 
 	const updateBookNotes = (noteId, updatedNote) => {
-		let index = savedBooks.findIndex(
-			(book) => book.id === bookToUpdateNotes.id
-		);
+		let index = savedBooks.findIndex((book) => book.id === bookToUpdate.id);
 		let newNotes = savedBooks[index].notes.map((note) =>
 			note.id === noteId ? { ...note, noteText: updatedNote } : note
 		);
 		return setSavedBooks(
 			savedBooks.map((book) =>
-				book.id === bookToUpdateNotes.id
+				book.id === bookToUpdate.id
 					? { ...book, notes: newNotes }
 					: book
 			)
@@ -227,12 +242,12 @@ function App() {
 	};
 
 	const updateBookToUpdateNotes = (noteId, updatedNote) => {
-		let newNotes = bookToUpdateNotes.notes.map((note) =>
+		let newNotes = bookToUpdate.notes.map((note) =>
 			note.id === noteId ? { ...note, noteText: updatedNote } : note
 		);
-		return setBookToUpdateNotes((bookToUpdateNotes) => {
+		return setBookToUpdate((bookToUpdate) => {
 			return {
-				...bookToUpdateNotes,
+				...bookToUpdate,
 				notes: newNotes,
 			};
 		});
@@ -244,16 +259,14 @@ function App() {
 	};
 
 	const removeBookNote = (noteId) => {
-		let index = savedBooks.findIndex(
-			(book) => book.id === bookToUpdateNotes.id
-		);
+		let index = savedBooks.findIndex((book) => book.id === bookToUpdate.id);
 		let newNotes = savedBooks[index].notes.filter((note) =>
 			note.id !== noteId ? note : null
 		);
 		console.log(newNotes);
 		return setSavedBooks(
 			savedBooks.map((book) =>
-				book.id === bookToUpdateNotes.id
+				book.id === bookToUpdate.id
 					? { ...book, notes: newNotes }
 					: book
 			)
@@ -261,12 +274,12 @@ function App() {
 	};
 
 	const removeBookToUpdateNote = (noteId) => {
-		let newNotes = bookToUpdateNotes.notes.filter((note) =>
+		let newNotes = bookToUpdate.notes.filter((note) =>
 			note.id !== noteId ? note : null
 		);
-		return setBookToUpdateNotes((bookToUpdateNotes) => {
+		return setBookToUpdate((bookToUpdate) => {
 			return {
-				...bookToUpdateNotes,
+				...bookToUpdate,
 				notes: newNotes,
 			};
 		});
@@ -296,8 +309,8 @@ function App() {
 				searchAuthorKeyWord={searchAuthorKeyWord}
 				savedBooks={savedBooks}
 				isFilterMenuOpen={isFilterMenuOpen}
-				bookToUpdateNotes={bookToUpdateNotes}
-				setBookToUpdateNotes={setBookToUpdateNotes}
+				bookToUpdate={bookToUpdate}
+				setBookToUpdate={setBookToUpdate}
 				//--------passing functions
 
 				updateSearchType={updateSearchType}
@@ -313,6 +326,8 @@ function App() {
 				addNewNote={addNewNote}
 				deleteNote={deleteNote}
 				updateNoteOnBook={updateNoteOnBook}
+				addReviewToBookToUpdate={addReviewToBookToUpdate}
+				addReview={addReview}
 				sortBackToDefault={sortBackToDefault}
 				sortAlphabetically={sortAlphabetically}
 				sortReverseAlphabetically={sortReverseAlphabetically}

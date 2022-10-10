@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import BookContainer from "./BookContainer";
 import Navigation from "./Navigation";
 import NoteContainer from "./NoteContainer";
+import ReviewContainer from "./ReviewContainer";
 
 const Main = (props) => {
-	let bookToUpdateNotes = props.bookToUpdateNotes;
+	let bookToUpdate = props.bookToUpdate;
 	//------------------main display state---------------------------//
 	const [isFullShelfDisplayed, setIsFullShelfDisplayed] = useState(true);
 	const [isBookNotesDisplayed, setIsBookNotesDisplayed] = useState(false);
+	const [isBookReviewDisplayed, setIsBookReviewDisplayed] = useState(false);
 
 	//------------------search by title state-----------------------//
 	const [searchTitleFilter, setSearchTitleFilter] = useState("");
@@ -116,7 +118,8 @@ const Main = (props) => {
 						// ---- display state
 						setIsFullShelfDisplayed={setIsFullShelfDisplayed}
 						setIsBookNotesDisplayed={setIsBookNotesDisplayed}
-						setBookToUpdateNotes={props.setBookToUpdateNotes}
+						setIsBookReviewDisplayed={setIsBookReviewDisplayed}
+						setBookToUpdate={props.setBookToUpdate}
 						//------title state
 						searchTitleFilter={searchTitleFilter}
 						isSearchTitleFilter={isSearchTitleFilter}
@@ -141,12 +144,21 @@ const Main = (props) => {
 					addNoteToBookToUpdateNotes={
 						props.addNoteToBookToUpdateNotes
 					}
-					bookToUpdateNotes={bookToUpdateNotes}
+					bookToUpdate={bookToUpdate}
 					setIsFullShelfDisplayed={setIsFullShelfDisplayed}
 					setIsBookNotesDisplayed={setIsBookNotesDisplayed}
 					addNewNote={props.addNewNote}
 					deleteNote={props.deleteNote}
 					updateNoteOnBook={props.updateNoteOnBook}
+				/>
+			) : null}
+			{isBookReviewDisplayed ? (
+				<ReviewContainer
+					addReviewToBookToUpdate={props.addReviewToBookToUpdate}
+					addReview={props.addReview}
+					bookToUpdate={bookToUpdate}
+					setIsFullShelfDisplayed={setIsFullShelfDisplayed}
+					setIsBookReviewDisplayed={setIsBookReviewDisplayed}
 				/>
 			) : null}
 		</main>

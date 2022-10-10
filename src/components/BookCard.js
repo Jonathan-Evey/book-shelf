@@ -7,7 +7,8 @@ const BookCard = ({
 	updateRating,
 	setIsFullShelfDisplayed,
 	setIsBookNotesDisplayed,
-	setBookToUpdateNotes,
+	setIsBookReviewDisplayed,
+	setBookToUpdate,
 }) => {
 	const [isUpdateShown, setIsUpdateShown] = useState(false);
 	const [isUpdateDropdownShown, setIsUpdateDropdownShown] = useState(false);
@@ -32,9 +33,15 @@ const BookCard = ({
 	// };
 
 	const openBookNotes = (book) => {
-		setBookToUpdateNotes(book);
+		setBookToUpdate(book);
 		setIsFullShelfDisplayed(false);
 		setIsBookNotesDisplayed(true);
+	};
+
+	const openBookReview = () => {
+		setBookToUpdate(book);
+		setIsFullShelfDisplayed(false);
+		setIsBookReviewDisplayed(true);
 	};
 
 	const openRatingUpdate = () => {
@@ -228,6 +235,9 @@ const BookCard = ({
 								className={`review-btn ${
 									book.review === "" ? "add" : "read"
 								}`}
+								onClick={() => {
+									openBookReview(book);
+								}}
 							>
 								Review
 							</button>

@@ -28,7 +28,7 @@ const NoteContainer = (props) => {
 			return;
 		} else {
 			let noteToAdd = Note(noteText);
-			props.addNewNote(props.bookToUpdateNotes.id, noteToAdd);
+			props.addNewNote(props.bookToUpdate.id, noteToAdd);
 			props.addNoteToBookToUpdateNotes(noteToAdd);
 			setNoteText("");
 			setIsAddingNewNote(false);
@@ -53,9 +53,9 @@ const NoteContainer = (props) => {
 					<h3>My Notes</h3>
 				</div>
 				<div className="notes-header-center">
-					<h4>{props.bookToUpdateNotes.title}</h4>
+					<h4>{props.bookToUpdate.title}</h4>
 					<p>by</p>
-					<p>{props.bookToUpdateNotes.author}</p>
+					<p>{props.bookToUpdate.author}</p>
 				</div>
 				<div className="notes-header-right">
 					<button
@@ -72,7 +72,7 @@ const NoteContainer = (props) => {
 					>
 						Add a Note
 					</button>
-					{props.bookToUpdateNotes.notes[0] ? (
+					{props.bookToUpdate.notes[0] ? (
 						<button
 							onClick={() => {
 								editANoteBtnEvent();
@@ -107,7 +107,7 @@ const NoteContainer = (props) => {
 					</div>
 				</div>
 			) : null}
-			{props.bookToUpdateNotes.notes.map((note) => (
+			{props.bookToUpdate.notes.map((note) => (
 				<BookNote
 					key={note.id}
 					noteText={note.noteText}

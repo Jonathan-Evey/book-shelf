@@ -51,7 +51,10 @@ const BookContainer = (props) => {
 							setIsBookNotesDisplayed={
 								props.setIsBookNotesDisplayed
 							}
-							setBookToUpdateNotes={props.setBookToUpdateNotes}
+							setIsBookReviewDisplayed={
+								props.setIsBookReviewDisplayed
+							}
+							setBookToUpdate={props.setBookToUpdate}
 						/>
 					</CSSTransition>
 				))}
