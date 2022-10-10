@@ -862,6 +862,33 @@ dialog::backdrop {
 .notes-header-center h4 {
 	font-size: 1.75rem;
 }
+
+.notes-header-right {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	max-width: 150px;
+}
+
+.notes-header-right button,
+.note-card button {
+	padding-block: 0.25rem;
+	border: none;
+	border-radius: 5px;
+	border-bottom: 2px solid var(--clr-black);
+	border-top: 2px solid var(--clr-black);
+	background-color: var(--clr-main-300);
+}
+.notes-header-right button:not(:last-child) {
+	margin-block-end: 0.5rem;
+}
+.notes-header-right button:hover,
+.note-card button:hover {
+	background-color: var(--clr-accent-dark);
+	color: var(--clr-accent-light);
+	border-color: var(--clr-accent-light);
+}
+
 .note-card {
 	position: relative;
 	display: flex;
@@ -875,14 +902,43 @@ dialog::backdrop {
 		5px 5px 20px -5px rgba(0, 0, 0, 0.5),
 		2px 2px 5px 0px rgba(0, 0, 0, 0.25);
 }
+
+.note-card textarea,
 .note-card p {
 	flex-grow: 1;
 	max-width: 80%;
-	overflow-wrap: normal;
-	font-size: 1.125rem;
 }
+
+.note-card p.no-edit {
+	max-width: 100%;
+}
+
+.note-card textarea {
+	border: none;
+	padding: 0.5rem;
+	font-size: 1rem;
+	background-color: var(--clr-main-300);
+	color: var(--clr-black);
+}
+.note-card p {
+	overflow-wrap: normal;
+	margin-bottom: 0.5rem;
+	font-size: 1.175rem;
+	font-weight: 700;
+}
+
 .note-card div {
+	display: flex;
 	position: absolute;
+	width: calc(20% - 2rem);
 	top: 1rem;
 	right: 1rem;
+}
+
+.note-card button {
+	flex-grow: 1;
+	background-color: var(--clr-main-800);
+}
+.note-card button:first-child {
+	margin-inline-end: 0.5rem;
 }
