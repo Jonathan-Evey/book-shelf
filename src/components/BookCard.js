@@ -41,6 +41,10 @@ const BookCard = ({
 		setIsRatingUpdateDisplayed(true);
 	};
 
+	const closeRatingUpdate = () => {
+		setIsRatingUpdateDisplayed(false);
+	};
+
 	const handleRatingUpdate = (id, newRating) => {
 		updateRating(id, newRating);
 		setIsRatingUpdateDisplayed(false);
@@ -243,7 +247,12 @@ const BookCard = ({
 					) : null}
 					{isRatingUpdateDisplayed ? (
 						<>
-							<p>Select:</p>
+							<button
+								className="select-rating-btn"
+								onClick={() => closeRatingUpdate()}
+							>
+								Cancel
+							</button>
 							<button
 								className="select-rating-btn"
 								onClick={() => handleRatingUpdate(book.id, 0)}

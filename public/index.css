@@ -305,11 +305,6 @@ main {
 	justify-content: space-between;
 }
 
-.book-right-bottom-container p {
-	margin-right: 0.5rem;
-	font-weight: 700;
-	align-self: flex-end;
-}
 .book-right-bottom-container button {
 	display: inline-block;
 	position: relative;
@@ -336,6 +331,10 @@ main {
 	background-color: var(--clr-main-700);
 	border-radius: 0px;
 	margin-inline: 0.125rem;
+}
+
+.book-right-bottom-container button.select-rating-btn:first-child {
+	min-width: 75px;
 }
 
 .book-right-bottom-container button:hover.rating-btn {
