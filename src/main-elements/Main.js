@@ -145,6 +145,7 @@ const Main = (props) => {
 					setIsFullShelfDisplayed={setIsFullShelfDisplayed}
 					setIsBookNotesDisplayed={setIsBookNotesDisplayed}
 					addNewNote={props.addNewNote}
+					deleteNote={props.deleteNote}
 					updateNoteOnBook={props.updateNoteOnBook}
 				/>
 			) : null}

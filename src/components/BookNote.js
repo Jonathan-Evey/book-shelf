@@ -14,12 +14,20 @@ const BookNote = (props) => {
 	};
 
 	const saveEditNoteText = () => {
-		props.updateNoteOnBook(props.noteId, editNoteText);
-		setIsNoteOnEdit(false);
+		if (editNoteText === "") {
+			return;
+		} else {
+			props.updateNoteOnBook(props.noteId, editNoteText);
+			setIsNoteOnEdit(false);
+		}
 	};
 
 	const cancelEditNote = () => {
 		setIsNoteOnEdit(false);
+	};
+
+	const handelDeleteBtnClick = () => {
+		props.deleteNote(props.noteId);
 	};
 
 	return (
@@ -28,12 +36,8 @@ const BookNote = (props) => {
 				<>
 					<textarea
 						onChange={(e) => updateEditNoteText(e)}
-						onKeyUp={(e) =>
-							e.key === "Enter" ? saveEditNoteText() : false
-						}
 						value={editNoteText}
 					></textarea>
-					<p>{props.noteId}</p>
 					<div>
 						<button
 							onClick={() => {
@@ -51,10 +55,10 @@ const BookNote = (props) => {
 						</button>
 					</div>
 				</>
-			) : (
+			) : null}
+			{!isNoteOnEdit && props.isEditNotes ? (
 				<>
 					<p>{props.noteText}</p>
-					<p>{props.noteId}</p>
 					<div>
 						<button
 							onClick={() => {
@@ -63,10 +67,19 @@ const BookNote = (props) => {
 						>
 							Edit
 						</button>
-						<button>Delete</button>
+						<button
+							onClick={() => {
+								handelDeleteBtnClick();
+							}}
+						>
+							Delete
+						</button>
 					</div>
 				</>
-			)}
+			) : null}
+			{!isNoteOnEdit && !props.isEditNotes ? (
+				<p className="no-edit">{props.noteText}</p>
+			) : null}
 		</div>
 	);
 };

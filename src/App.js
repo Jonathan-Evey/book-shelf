@@ -238,6 +238,40 @@ function App() {
 		});
 	};
 
+	const deleteNote = (noteId) => {
+		removeBookNote(noteId);
+		removeBookToUpdateNote(noteId);
+	};
+
+	const removeBookNote = (noteId) => {
+		let index = savedBooks.findIndex(
+			(book) => book.id === bookToUpdateNotes.id
+		);
+		let newNotes = savedBooks[index].notes.filter((note) =>
+			note.id !== noteId ? note : null
+		);
+		console.log(newNotes);
+		return setSavedBooks(
+			savedBooks.map((book) =>
+				book.id === bookToUpdateNotes.id
+					? { ...book, notes: newNotes }
+					: book
+			)
+		);
+	};
+
+	const removeBookToUpdateNote = (noteId) => {
+		let newNotes = bookToUpdateNotes.notes.filter((note) =>
+			note.id !== noteId ? note : null
+		);
+		return setBookToUpdateNotes((bookToUpdateNotes) => {
+			return {
+				...bookToUpdateNotes,
+				notes: newNotes,
+			};
+		});
+	};
+
 	const updateReadNext = (id, value) => {
 		return setSavedBooks(
 			savedBooks.map((book) =>
@@ -277,6 +311,7 @@ function App() {
 				updateReadNext={updateReadNext}
 				addNoteToBookToUpdateNotes={addNoteToBookToUpdateNotes}
 				addNewNote={addNewNote}
+				deleteNote={deleteNote}
 				updateNoteOnBook={updateNoteOnBook}
 				sortBackToDefault={sortBackToDefault}
 				sortAlphabetically={sortAlphabetically}
