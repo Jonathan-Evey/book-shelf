@@ -18,6 +18,10 @@ const BookNote = (props) => {
 		setIsNoteOnEdit(false);
 	};
 
+	const cancelEditNote = () => {
+		setIsNoteOnEdit(false);
+	};
+
 	return (
 		<div className="note-card">
 			{isNoteOnEdit ? (
@@ -38,7 +42,13 @@ const BookNote = (props) => {
 						>
 							Save
 						</button>
-						<button>Cancel</button>
+						<button
+							onClick={() => {
+								cancelEditNote();
+							}}
+						>
+							Cancel
+						</button>
 					</div>
 				</>
 			) : (

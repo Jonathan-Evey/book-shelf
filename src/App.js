@@ -198,14 +198,16 @@ function App() {
 	};
 
 	const updateBookNotes = (noteId, updatedNote) => {
+		let index = savedBooks.findIndex(
+			(book) => book.id === bookToUpdateNotes.id
+		);
+		let newNotes = savedBooks[index].notes.map((note) =>
+			note.id === noteId ? { ...note, noteText: updatedNote } : note
+		);
 		return setSavedBooks(
 			savedBooks.map((book) =>
 				book.id === bookToUpdateNotes.id
-					? book.notes.map((note) =>
-							note.id === noteId
-								? { ...note, noteText: updatedNote }
-								: note
-					  )
+					? { ...book, notes: newNotes }
 					: book
 			)
 		);
