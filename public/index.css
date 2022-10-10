@@ -312,8 +312,12 @@ main {
 	flex: 1;
 }
 .book-right-bottom-container button {
+	display: inline-block;
+	position: relative;
 	padding: 0.25rem 0.5rem;
 	background: transparent;
+	overflow: hidden;
+	color: transparent;
 	border: none;
 	border-bottom: 1px solid black;
 	border-top: 1px solid black;
@@ -323,10 +327,92 @@ main {
 	font-size: 1.1rem;
 }
 
+.book-right-bottom-container button.rating-btn {
+	color: var(--clr-black);
+}
+
+.book-right-bottom-container button:hover.rating-btn {
+	color: var(--clr-accent-dark);
+}
+
+.book-right-bottom-container button.rating-btn.add {
+	color: transparent;
+}
+
 .book-right-bottom-container button:hover {
 	background-color: var(--clr-accent-dark);
-	color: var(--clr-accent-light);
 	border-color: var(--clr-accent-light);
+}
+
+.add-notes-btn::before {
+	content: "Notes";
+}
+.review-btn::before {
+	content: "Review";
+}
+.rating-btn.add::before {
+	content: "Rating";
+}
+
+.rating-btn::before,
+.review-btn::before,
+.add-notes-btn::before {
+	position: absolute;
+	color: var(--clr-black);
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+	transition: transform ease-in-out 250ms;
+}
+
+.rating-btn:hover::before,
+.review-btn:hover::before,
+.add-notes-btn:hover::before {
+	transform: translateX(-50%) translateY(-200%);
+	color: var(--clr-accent-light);
+}
+
+.rating-btn.add::after,
+.review-btn.add::after,
+.add-notes-btn.add::after {
+	content: "Add";
+}
+.review-btn.read::after,
+.add-notes-btn.read::after {
+	content: "Read";
+}
+
+.rating-btn::after {
+	content: "Update";
+	position: absolute;
+	color: var(--clr-main-800);
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+	z-index: -1;
+}
+
+.rating-btn:hover::after {
+	color: var(--clr-accent-light);
+	z-index: 1;
+}
+
+.rating-btn.add::after,
+.review-btn::after,
+.add-notes-btn::after {
+	position: absolute;
+	color: var(--clr-black);
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(100%);
+	transition: transform ease-in-out 250ms;
+}
+
+.rating-btn:hover::after,
+.review-btn:hover::after,
+.add-notes-btn:hover::after {
+	transform: translateX(-50%) translateY(-50%);
+	color: var(--clr-accent-light);
 }
 
 /* .review-btn {

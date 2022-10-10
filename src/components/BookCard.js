@@ -194,6 +194,9 @@ const BookCard = ({
 				<p>{book.genres.join(" / ")}</p>
 				<div className="book-right-bottom-container">
 					<button
+						className={`add-notes-btn ${
+							book.notes[0] ? "read" : "add"
+						}`}
 						onClick={() => {
 							openBookNotes(book);
 						}}
@@ -203,9 +206,21 @@ const BookCard = ({
 
 					{book.readStatus === BookObjKeys.readStatus.read ? (
 						<>
-							<button className="review-btn">Review</button>
-							<button>
-								{book.rating === "" ? "-" : book.rating} / 5
+							<button
+								className={`review-btn ${
+									book.review === "" ? "add" : "read"
+								}`}
+							>
+								Review
+							</button>
+							<button
+								className={`rating-btn ${
+									book.rating === "" ? "add" : ""
+								}`}
+							>
+								{book.rating === ""
+									? "Rating"
+									: `${book.rating} / 5`}
 							</button>
 						</>
 					) : null}
