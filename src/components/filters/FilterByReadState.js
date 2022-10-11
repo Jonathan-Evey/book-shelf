@@ -14,6 +14,10 @@ const FilterByReadState = (props) => {
 					<button
 						className={`filter-option-btn ${
 							props.isReadStatusDropdownOpen ? "open" : "closed"
+						} ${
+							props.readStatusFilter !== readStatusKeys.all
+								? "active"
+								: ""
 						}`}
 						onClick={props.openReadStatusDropdown}
 					>

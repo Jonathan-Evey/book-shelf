@@ -314,9 +314,9 @@ main {
 	color: transparent;
 	border: none;
 	border-bottom: 1px solid black;
-	border-top: 1px solid black;
+	border-top: 1px solid var(--clr-main-700);
 	border-radius: 5px;
-	background-color: var(--clr-main-800);
+	background-image: linear-gradient(var(--clr-main-700), var(--clr-main-800));
 	width: 75px;
 	font-size: 1.1rem;
 }
@@ -351,6 +351,7 @@ main {
 }
 
 .book-right-bottom-container button:hover {
+	background-image: none;
 	background-color: var(--clr-accent-dark);
 	border-color: var(--clr-accent-light);
 }

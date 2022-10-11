@@ -30,7 +30,9 @@ const FoundBookCard = ({ foundBooks, addBookToSavedBooks }) => {
 						)}
 					</div>
 					<div className="found-book-card-right-container">
-						{/* <div className="book-status-options">
+						{/* 
+						////---Might add future feature to make book as read, reading, unread as user adds it to the shelf---////
+						<div className="book-status-options">
 							<fieldset>
 								<legend>Read Statue:</legend>
 								<div>

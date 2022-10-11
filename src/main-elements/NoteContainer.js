@@ -29,7 +29,7 @@ const NoteContainer = (props) => {
 		} else {
 			let noteToAdd = Note(noteText);
 			props.addNewNote(props.bookToUpdate.id, noteToAdd);
-			props.addNoteToBookToUpdateNotes(noteToAdd);
+			props.addNoteToBookToUpdate(noteToAdd);
 			setNoteText("");
 			setIsAddingNewNote(false);
 		}

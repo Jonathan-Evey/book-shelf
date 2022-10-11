@@ -65,9 +65,10 @@ const Main = (props) => {
 							<span>^</span>
 						</button>
 						<Navigation
-							//------menu open state
+							savedBooks={props.savedBooks}
+							////---menu state
 							isFilterMenuOpen={props.isFilterMenuOpen}
-							//-------find book search state
+							////---find new book
 							searchTitleKeyWord={props.searchTitleKeyWord}
 							searchAuthorKeyWord={props.searchAuthorKeyWord}
 							updateTitleKeyWord={props.updateTitleKeyWord}
@@ -79,28 +80,25 @@ const Main = (props) => {
 							updateCurrentSearchPageNumber={
 								props.updateCurrentSearchPageNumber
 							}
-							//----
-							savedBooks={props.savedBooks}
+							////---sort shelf
 							sortBackToDefault={props.sortBackToDefault}
 							sortAlphabetically={props.sortAlphabetically}
 							sortReverseAlphabetically={
 								props.sortReverseAlphabetically
 							}
 							sortByRating={props.sortByRating}
-							//------title state
+							////---search shelf
 							searchTitleFilter={searchTitleFilter}
 							setSearchTitleFilter={setSearchTitleFilter}
 							setIsSearchTitleFilter={setIsSearchTitleFilter}
-							//------author state
 							searchAuthorFilter={searchAuthorFilter}
 							setSearchAuthorFilter={setSearchAuthorFilter}
 							setIsSearchAuthorFilter={setIsSearchAuthorFilter}
-							//------read status state
+							////---filter shelf
 							readStatusFilter={readStatusFilter}
 							setReadStatusFilter={setReadStatusFilter}
 							isReadStatusFilter={isReadStatusFilter}
 							setIsReadStatusFilter={setIsReadStatusFilter}
-							//------book rating state
 							bookRatingFilter={bookRatingFilter}
 							setBookRatingFilter={setBookRatingFilter}
 							isRatingFilter={isRatingFilter}
@@ -109,29 +107,27 @@ const Main = (props) => {
 					</aside>
 
 					<BookContainer
-						//from main
 						savedBooks={props.savedBooks}
+						setBookToUpdate={props.setBookToUpdate}
+						////---main menu state
+						isFilterMenuOpen={props.isFilterMenuOpen}
+						////---book state
 						updateReadStatus={props.updateReadStatus}
 						updateRating={props.updateRating}
-						updateReadNext={props.updateReadNext}
-						isFilterMenuOpen={props.isFilterMenuOpen}
-						// ---- display state
+						////---what is being displayed state
 						setIsFullShelfDisplayed={setIsFullShelfDisplayed}
 						setIsBookNotesDisplayed={setIsBookNotesDisplayed}
 						setIsBookReviewDisplayed={setIsBookReviewDisplayed}
-						setBookToUpdate={props.setBookToUpdate}
-						//------title state
+						////---search  shelf
 						searchTitleFilter={searchTitleFilter}
 						isSearchTitleFilter={isSearchTitleFilter}
-						//------author state
 						searchAuthorFilter={searchAuthorFilter}
 						isSearchAuthorFilter={isSearchAuthorFilter}
-						//------read status state
+						////---filter shelf
 						readStatusFilter={readStatusFilter}
 						setReadStatusFilter={setReadStatusFilter}
 						isReadStatusFilter={isReadStatusFilter}
 						setIsReadStatusFilter={setIsReadStatusFilter}
-						//------book rating state
 						bookRatingFilter={bookRatingFilter}
 						setBookRatingFilter={setBookRatingFilter}
 						isRatingFilter={isRatingFilter}
@@ -141,12 +137,12 @@ const Main = (props) => {
 			) : null}
 			{isBookNotesDisplayed ? (
 				<NoteContainer
-					addNoteToBookToUpdateNotes={
-						props.addNoteToBookToUpdateNotes
-					}
 					bookToUpdate={bookToUpdate}
+					////---what is being displayed state
 					setIsFullShelfDisplayed={setIsFullShelfDisplayed}
 					setIsBookNotesDisplayed={setIsBookNotesDisplayed}
+					////---each book note state
+					addNoteToBookToUpdate={props.addNoteToBookToUpdate}
 					addNewNote={props.addNewNote}
 					deleteNote={props.deleteNote}
 					updateNoteOnBook={props.updateNoteOnBook}
@@ -154,11 +150,13 @@ const Main = (props) => {
 			) : null}
 			{isBookReviewDisplayed ? (
 				<ReviewContainer
-					addReviewToBookToUpdate={props.addReviewToBookToUpdate}
-					addReview={props.addReview}
 					bookToUpdate={bookToUpdate}
+					////---what is being displayed state
 					setIsFullShelfDisplayed={setIsFullShelfDisplayed}
 					setIsBookReviewDisplayed={setIsBookReviewDisplayed}
+					////---each book review state
+					addReviewToBookToUpdate={props.addReviewToBookToUpdate}
+					addReview={props.addReview}
 				/>
 			) : null}
 		</main>

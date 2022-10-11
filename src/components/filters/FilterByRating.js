@@ -9,6 +9,10 @@ const FilterByRating = (props) => {
 					<button
 						className={`filter-option-btn ${
 							props.isRatingFilterDropdownOpen ? "open" : "closed"
+						} ${
+							props.currentRatingSelected !== ratingKeys.all
+								? "active"
+								: ""
 						}`}
 						onClick={props.openRatingFilterDropdown}
 					>

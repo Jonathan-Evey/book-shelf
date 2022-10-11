@@ -44,7 +44,6 @@ const BookContainer = (props) => {
 							book={book}
 							updateReadStatus={props.updateReadStatus}
 							updateRating={props.updateRating}
-							updateReadNext={props.updateReadNext}
 							setIsFullShelfDisplayed={
 								props.setIsFullShelfDisplayed
 							}

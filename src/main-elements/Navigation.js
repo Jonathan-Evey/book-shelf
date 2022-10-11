@@ -16,7 +16,7 @@ import {
 const Navigation = (props) => {
 	const [isSearchMenuOpen, setIsSearchMenuOpen] = useState(false);
 
-	//------------------------------------------------------sort menu state
+	////---sort menu state
 	const [isSortMenuOpen, setIsSortMenuOpen] = useState(false);
 	const [isTitleSortOpen, setIsTitleSortOpen] = useState(false);
 	const [currentTitleSortDisplayText, setCurrentTitleSortDisplayText] =
@@ -28,34 +28,27 @@ const Navigation = (props) => {
 	const [currentRatingSortDisplayText, setCurrentRatingSortDisplayText] =
 		useState("Rating");
 
-	//------------------------------------------------------filter menu state
+	////---filter menu state
 	const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
 	const [isReadStatusDropdownOpen, setIsReadStatusDropdownOpen] =
 		useState(false);
 	const [isRatingFilterDropdownOpen, setIsRatingFilterDropdownOpen] =
 		useState(false);
-	//-------------------------------used to display the rating filter text on the menu
+	////---used to display the rating filter text on the menu
 	const [currentRatingSelected, setCurrentRatingSelected] = useState("All");
 
-	//------------------------------find new books and display
+	////---find new books
 	function openFindBookModel(keyWord) {
 		props.updateCurrentSearchPageNumber(0);
 		if (keyWord === props.searchTitleKeyWord) {
 			let searchTerms = props.searchTitleKeyWord.replaceAll(" ", "+");
 			props.updateUseSearchKeyWord(searchTerms);
 			props.updateSearchType("intitle");
-			console.log("clicked Title");
-			console.log(props.searchTitleKeyWord);
 		}
 		if (keyWord === props.searchAuthorKeyWord) {
 			let searchTerms = props.searchAuthorKeyWord.replace(" ", "+");
-			console.log(searchTerms);
-			console.log(props.searchAuthorKeyWord);
-
 			props.updateUseSearchKeyWord(searchTerms);
 			props.updateSearchType("inauthor");
-			console.log("clicked Author");
-			console.log(props.searchTitleKeyWord);
 		}
 		props.updateTitleKeyWord("");
 		props.updateAuthorKeyWord("");
@@ -63,7 +56,8 @@ const Navigation = (props) => {
 		return model.showModal();
 	}
 
-	//------------------------------search books by title functions
+	////---search shelf functions
+	//////---title
 	const updateTitleSearchWord = (e) => {
 		if (e.target.value === "") {
 			props.setIsSearchTitleFilter(false);
@@ -73,8 +67,7 @@ const Navigation = (props) => {
 			props.setSearchTitleFilter(e.target.value);
 		}
 	};
-
-	//------------------------------search books by author functions
+	//////---author
 	const updateAuthorSearchWord = (e) => {
 		if (e.target.value === "") {
 			props.setIsSearchAuthorFilter(false);
@@ -85,8 +78,8 @@ const Navigation = (props) => {
 		}
 	};
 
-	//-----------------------------sort books functions
-	//-----------------------------------------------by title
+	////---sort shelf functions
+	//////---by title
 	const openTitleSortDropdown = () => {
 		setIsTitleSortOpen(!isTitleSortOpen);
 	};
@@ -119,9 +112,7 @@ const Navigation = (props) => {
 			);
 		}
 	};
-
-	//-----------------------------sort books functions
-	//-----------------------------------------------by author
+	//////---by author
 	const openAuthorSortDropdown = () => {
 		setIsAuthorSortOpen(!isAuthorSortOpen);
 	};
@@ -136,14 +127,12 @@ const Navigation = (props) => {
 		setCurrentAuthorSortDisplayText(newTextValue);
 		setCurrentRatingSortDisplayText(ratingSortOptionKeys.removeSort);
 		if (newTextValue === authorSortOptionKeys.alphabetically) {
-			console.log(`author sort ${newTextValue}`);
 			props.sortAlphabetically(
 				props.savedBooks,
 				authorSortOptionKeys.sortType
 			);
 		}
 		if (newTextValue === authorSortOptionKeys.reverseAlphabetically) {
-			console.log(`author sort ${newTextValue}`);
 			props.sortReverseAlphabetically(
 				props.savedBooks,
 				authorSortOptionKeys.sortType
@@ -156,9 +145,7 @@ const Navigation = (props) => {
 			);
 		}
 	};
-
-	//-----------------------------sort books functions
-	//-----------------------------------------------by rating
+	//////----by rating
 	const openRatingSortDropdown = () => {
 		setIsRatingSortOpen(!isRatingSortOpen);
 	};
@@ -175,8 +162,8 @@ const Navigation = (props) => {
 		props.sortByRating(props.savedBooks, newTextValue);
 	};
 
-	//-----------------------------filter books functions
-	//---------------------------------by read, reading or unread
+	////---filter shelf functions
+	/////---by read, reading or unread
 	const openReadStatusDropdown = () => {
 		if (isReadStatusDropdownOpen) {
 			setIsReadStatusDropdownOpen(false);
@@ -197,13 +184,11 @@ const Navigation = (props) => {
 			openReadStatusDropdown();
 		} else {
 			props.setIsReadStatusFilter(true);
-			console.log(e.target.textContent);
 			props.setReadStatusFilter(e.target.textContent);
 			openReadStatusDropdown();
 		}
 	}
-	//-----------------------------filter books functions
-	//-----------------------------------------by book rating
+	/////---by book rating
 	const openRatingFilterDropdown = () => {
 		if (isRatingFilterDropdownOpen) {
 			setIsRatingFilterDropdownOpen(false);
@@ -224,7 +209,6 @@ const Navigation = (props) => {
 			openRatingFilterDropdown();
 		} else {
 			props.setIsRatingFilter(true);
-			console.log(parseInt(e.target.id));
 			props.setBookRatingFilter(e.target.id);
 			openRatingFilterDropdown();
 		}

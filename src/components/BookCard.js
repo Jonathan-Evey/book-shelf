@@ -28,10 +28,6 @@ const BookCard = ({
 		setIsUpdateDropdownShown(false);
 	};
 
-	// const updateReadNextEvent = (id, value) => {
-	// 	updateReadNext(id, value);
-	// };
-
 	const openBookNotes = (book) => {
 		setBookToUpdate(book);
 		setIsFullShelfDisplayed(false);
@@ -103,20 +99,6 @@ const BookCard = ({
 						</button>
 					</ol>
 				) : null}
-				{/* <button
-					onClick={() => handleOpenClose()}
-					onMouseEnter={() => setIsUpdateShown(true)}
-					onMouseLeave={() => setIsUpdateShown(false)}
-					onFocus={() => setIsUpdateShown(true)}
-					onBlur={() => setIsUpdateShown(false)}
-					className={`read-unread-btn${
-						isUpdateDropdownShown ? " open" : ""
-					}`}
-				>
-					{isUpdateShown && !isUpdateDropdownShown
-						? "Update"
-						: book.readStatus}
-				</button> */}
 				{isUpdateDropdownShown ? (
 					<ol
 						onMouseLeave={() => {
@@ -243,7 +225,7 @@ const BookCard = ({
 							</button>
 							<button
 								className={`rating-btn ${
-									book.rating === "" ? "add" : ""
+									book.rating === "" ? "add" : "added"
 								}`}
 								onClick={() => {
 									openRatingUpdate();
