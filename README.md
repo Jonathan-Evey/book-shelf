@@ -32,7 +32,7 @@ Filter functions -
 - filter by read, reading or unread.
 - filter by rating 0 to 5.
 
-#### Current know issues and bugs
+#### Current known issues and bugs
 
 - minor bug where focuse stays active on menu buttons after clicking on them.
 - visual differences between FireFox and Chrome.
