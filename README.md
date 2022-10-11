@@ -37,9 +37,9 @@ Filter functions -
 - minor bug where focuse stays active on menu buttons after clicking on them.
 - visual differences between FireFox and Chrome.
     
-
 #### Current list of updates to work on
 
+- site is not reactive for mobile. 
 - major CCS code refactoring.
 - add a default book cover image if one is not found with googles API. 
 
