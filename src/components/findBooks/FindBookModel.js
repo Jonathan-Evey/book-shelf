@@ -61,8 +61,6 @@ const FindBookModel = (props) => {
 		}
 
 		if (props.useSearchKeyWord) {
-			console.log("After First Load");
-			console.log(apiURL);
 			setIsLoading(true);
 			let cancel;
 			axios
@@ -70,7 +68,6 @@ const FindBookModel = (props) => {
 					cancelToken: new axios.CancelToken((c) => (cancel = c)),
 				})
 				.then((response) => {
-					console.log(response);
 					setIsLoading(false);
 					handelResponse(response);
 				});

@@ -1,6 +1,5 @@
 const FoundBookCard = ({ foundBooks, addBookToSavedBooks }) => {
 	const addBookToSavedBooksEvent = (bookToAdd) => {
-		console.log(bookToAdd);
 		addBookToSavedBooks(bookToAdd);
 		let model = document.getElementById("find-book");
 		model.close();
