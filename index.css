@@ -29,7 +29,7 @@ body {
 	width: 100vw;
 	font-size: 1.1em;
 	background-color: var(--clr-main-900);
-	font-family: "New Century Schoolbook", sans-serif, serif;
+	font-family: "Volkhov", serif;
 }
 
 button {
@@ -56,6 +56,7 @@ header {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	font-weight: 700;
 	margin-bottom: 0.5rem;
 	box-shadow: 10px 10px 20px -5px rgba(0, 0, 0, 0.25),
 		5px 5px 20px -5px rgba(0, 0, 0, 0.5),
@@ -541,12 +542,6 @@ dialog::backdrop {
 	);
 }
 
-/* .read-next-btn:hover {
-	cursor: pointer;
-	background: var(--clr-main-700);
-	color: var(--clr-accent-light);
-} */
-
 .close-model-btn {
 	position: absolute;
 	top: 1rem;
@@ -599,10 +594,6 @@ dialog::backdrop {
 	padding: 0.25rem 0 0.5rem 0;
 	border: none;
 }
-
-/* .filter-option-fieldset.author .filter-option-fieldset.title {
-	position: relative;
-} */
 
 .filter-option-btn {
 	display: flex;
@@ -667,8 +658,7 @@ dialog::backdrop {
 }
 
 .read-option:nth-child(3) {
-	translate: 0% 99%;
-	width: 101%;
+	translate: 0% 97%;
 }
 
 .filter-option button {
