@@ -509,7 +509,7 @@ dialog::backdrop {
 }
 
 .read-option button {
-	border-top: none;
+	display: block;
 	background-color: var(--clr-accent-dark);
 	color: var(--clr-accent-light);
 }
@@ -582,6 +582,7 @@ dialog::backdrop {
 }
 
 .search-input {
+	padding: 0.125rem 0.25rem;
 	border: 1px solid var(--clr-main-900);
 	background-color: var(--clr-main-300);
 }
@@ -655,10 +656,17 @@ dialog::backdrop {
 
 .read-option {
 	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
 }
 
-.read-option:nth-child(3) {
-	translate: 0% 97%;
+.read-option:nth-child(2) {
+	transform: translateY(95%);
+}
+
+.read-option:last-child {
+	transform: translateY(190%);
 }
 
 .filter-option button {
