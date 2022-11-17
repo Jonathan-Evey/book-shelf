@@ -7,9 +7,9 @@ const BookContainer = (props) => {
 
 	return (
 		<TransitionGroup
-			className={`book-container ${
+			className={`container-book ${
 				props.isFilterMenuOpen ? "open" : "closed"
-			}`}
+			} | grid padding-inline-32 padding-block-24`}
 		>
 			{props.savedBooks
 				.filter(
@@ -35,12 +35,11 @@ const BookContainer = (props) => {
 				)
 				.map((book) => (
 					<CSSTransition
-						timeout={400}
-						classNames="book-card"
+						timeout={500}
+						classNames="card-book"
 						key={book.id}
 					>
 						<BookCard
-							className="book-card"
 							book={book}
 							updateReadStatus={props.updateReadStatus}
 							updateRating={props.updateRating}
