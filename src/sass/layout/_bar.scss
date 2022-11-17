@@ -1,0 +1,10 @@
+.after-element-bar {
+
+    &::after {
+        content: "";
+	    display: inline-block;
+	    width: 55%;
+	    border-top: 2px solid var(--clr-accent-dark);
+        opacity: .35;
+    }
+}

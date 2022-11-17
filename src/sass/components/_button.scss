@@ -1,11 +1,8 @@
 button {
+	cursor: pointer;
 	font-family: "Times New Roman", Times, serif;
 	font-weight: 600;
 	font-size: 1rem;
-}
-
-button:hover {
-	cursor: pointer;
 }
 
 button span {
@@ -13,4 +10,145 @@ button span {
 	font-size: 1.2rem;
 	font-weight: 700;
 	transform: rotate(180deg) translateY(4px);
+}
+
+.btn {
+
+	&.book-right {
+	  	display: inline-block;
+		position: relative;
+		padding: 0.25rem 1rem;
+	  	background: transparent;
+	  	color: transparent;
+		overflow: hidden;
+		border: none;
+		border-bottom: 1px solid black;
+		border-top: 1px solid var(--clr-main-700);
+		border-radius: 5px;
+		background-image: linear-gradient(var(--clr-main-700), var(--clr-main-800));
+		font-size: 1.1rem;
+
+		&.select-rating {
+			color: var(--clr-black);
+
+			&:hover {
+				color: var(--clr-accent-light);
+			}
+		}
+
+		&:hover {
+			background-image: none;
+			background-color: var(--clr-accent-dark);
+			border-color: var(--clr-accent-light);
+			&::before {
+				transform: translateX(-50%) translateY(-200%);
+				color: var(--clr-accent-light);
+			}
+			&::after {
+				transform: translateX(-50%) translateY(-50%);
+				color: var(--clr-accent-light);
+			}
+		}
+
+		&.notes::before {
+			content: "Notes";
+		}
+		&.review::before {
+			content: "Review";
+		}
+		&.rating::before {
+			content: "Rating"
+		}
+		&.rating {
+			&-0::before {
+				content: "0 / 5"
+			}
+			&-1::before {
+				content: "1 / 5"
+			}
+			&-2::before {
+				content: "2 / 5"
+			}
+			&-3::before {
+				content: "3 / 5"
+			}
+			&-4::before {
+				content: "4 / 5"
+			}
+			&-5::before {
+				content: "5 / 5"
+			}
+		}
+		&::before {
+			position: absolute;
+			color: var(--clr-black);
+			top: 50%;
+			left: 50%;
+			transform: translateX(-50%) translateY(-50%);
+			transition: transform ease-in-out 250ms;
+		}
+		&.add::after,
+		&.rating::after {
+			content: "Add";
+		}
+		&.rating-update::after {
+			content: "Update";
+		}
+		&.read::after {
+			content: "Read";
+		}
+		&::after {
+			position: absolute;
+			color: var(--clr-black);
+			top: 50%;
+			left: 50%;
+			transform: translateX(-50%) translateY(100%);
+			transition: transform ease-in-out 250ms;
+		}
+	}
+
+	&.in-dropdown {
+		margin: auto 0;
+		padding: 0.25rem 0;
+		width: 100%;
+		border: solid 1px var(--clr-black);
+		border-left: none;
+		border-right: none;
+		color: var(--clr-main-300);
+		&.option {
+			display: block;
+			background-color: var(--clr-accent-dark);
+			color: var(--clr-accent-light);
+			&:hover {
+				color: var(--clr-accent-dark);
+				background: var(--clr-accent-light);
+				border-left: 1px solid black;
+				border-right: 1px solid black;
+			}
+		}
+	}
+	
+	&.bg-dark-main-900-gradient {
+		background: linear-gradient(
+		to right,
+		rgba(var(--clr-rgb-accent-dark), 1) 0%,
+		rgba(var(--clr-rgb-accent-dark), 1) 5%,
+		rgba(var(--clr-rgb-main-900), 1) 35%,
+		rgba(var(--clr-rgb-main-900), 1) 65%,
+		rgba(var(--clr-rgb-accent-dark), 1) 95%,
+		rgba(var(--clr-rgb-accent-dark), 1) 100%
+		);
+		&.open {
+			background: var(--clr-accent-dark);
+			color: var(--clr-accent-light)
+		}
+		&.hidden {
+			pointer-events: none;
+            opacity: 0;
+		}
+		&:hover {
+			color: var(--clr-accent-light);
+			background: var(--clr-accent-dark);
+		}
+	}
 }

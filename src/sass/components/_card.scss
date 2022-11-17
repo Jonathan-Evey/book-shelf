@@ -1,0 +1,41 @@
+.card {
+    &-book {
+	position: relative;
+    display: flex;
+	padding: 0rem 0.5rem 0rem 1rem;
+	margin-block-end: 3rem;
+	background-color: var(--clr-main-700);
+    border-radius: 150px 5px 5px 200px;
+    &-right {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+    }
+    //------animation in-out
+    &-enter {
+        opacity: 0.1;
+	    transform-origin: top right;
+	    transform: scale(0.45);
+
+        &-active {
+            opacity: 1;
+	        transform-origin: top right;
+	        transform: scale(1);
+	        transition: opacity 200ms ease-in-out 200ms, transform 400ms ease-in-out;
+        }
+    }
+    &-exit {
+        opacity: 1;
+	    transform-origin: top right;
+	    transform: scale(1);
+
+        &-active {
+            opacity: 0.1;
+            transform-origin: top right;
+            transform: scale(.50);
+            transition: opacity 400ms ease-in-out, transform 500ms ease-in-out;
+        }
+    }
+}
+}

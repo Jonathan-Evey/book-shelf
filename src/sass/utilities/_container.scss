@@ -1,4 +1,46 @@
 .container {
     width: min(100% - 2rem, 60rem);
     margin-inline: auto;
-  }
+
+    &-book {
+      flex: 1;
+      place-content: start;
+      grid-template-columns: repeat(auto-fill, minmax(425px, 1fr));
+      transition: all 250ms ease-in-out;
+
+      &-img {
+        // position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transform: translateY(-1.5rem);
+        background-color: var(--clr-accent-dark);
+        height: fit-content;
+        border-radius: 5px;
+        & img {
+          border-radius: 3px;
+        }
+      }
+
+      &-right-bottom {
+        display: flex;
+	      align-items: center;
+	      justify-content: space-between;
+      }
+      &-notes-review-btns {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+      }
+    }
+    &-select-rating-top {
+      position: relative;
+    }
+    &-select-rating-bottom {
+      position: absolute;
+      left: 0;
+      right: 0;
+      background-color: var(--clr-main-700);
+      border-radius: 5px;
+    }
+}

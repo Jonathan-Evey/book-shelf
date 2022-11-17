@@ -1,0 +1,29 @@
+.dropdown {
+    &.li {  
+        list-style: none;
+        &:nth-child(2) {
+            transform: translateY(-1px);
+        }
+        &:nth-child(3) {
+            transform: translateY(-2px);
+        }
+    }
+    &-read-status {
+        pointer-events: none;
+        width: 100%;
+        // top: calc(100% - 0.35rem);
+	    // background-color: var(--clr-accent-dark);
+        &.hidden {
+            pointer-events: none;
+            opacity: 0;
+        }
+        &.open {
+            padding-inline: 0.5rem;
+            position: absolute;
+            top: calc(100% - 2.4rem);
+        }
+        & button {
+            pointer-events: all;
+        }
+    }
+}
