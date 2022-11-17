@@ -65,23 +65,31 @@ const BookCard = ({
 	};
 
 	return (
-		<div className="book-card | box-shadow">
+		<div className="card-book | box-shadow margin-inline-16">
 			<div
-				className={`book-img-container ${getBookImgContainerClass(
+				className={`container-book-img ${getBookImgContainerClass(
 					book.readStatus
-				)}`}
+				)} | padding-8 box-shadow-light`}
 			>
 				{book.thumbnail.thumbnail ? (
-					<img src={book.thumbnail.thumbnail} alt="" />
+					<img
+						className="margin-block-end-8"
+						src={book.thumbnail.thumbnail}
+						alt=""
+					/>
 				) : (
-					<img src={book.thumbnail} alt="" />
+					<img
+						className="margin-block-end-8"
+						src={book.thumbnail}
+						alt=""
+					/>
 				)}
 				{!isUpdateDropdownShown ? (
 					<ol
 						onMouseLeave={() => {
 							handleClose();
 						}}
-						className="read-status-dropdown"
+						className="dropdown-read-status"
 					>
 						<button
 							onClick={() => handleOpenClose()}
@@ -89,40 +97,47 @@ const BookCard = ({
 							onMouseLeave={() => setIsUpdateShown(false)}
 							onFocus={() => setIsUpdateShown(true)}
 							onBlur={() => setIsUpdateShown(false)}
-							className={`read-unread-btn${
-								isUpdateDropdownShown ? " open" : ""
-							}`}
+							className="btn in-dropdown bg-dark-main-900-gradient"
 						>
-							{isUpdateShown && !isUpdateDropdownShown
-								? "Update"
-								: book.readStatus}
+							{isUpdateShown ? "Update" : book.readStatus}
 						</button>
 					</ol>
-				) : null}
+				) : (
+					<ol
+						className="dropdown-read-status hidden"
+						aria-hidden="true"
+					>
+						<button
+							className="btn in-dropdown bg-dark-main-900-gradient hidden"
+							aria-hidden="true"
+						>
+							{isUpdateShown ? "Update" : book.readStatus}
+						</button>
+					</ol>
+				)}
 				{isUpdateDropdownShown ? (
 					<ol
 						onMouseLeave={() => {
 							handleClose();
 						}}
-						className="read-status-dropdown"
+						className="dropdown-read-status open"
 					>
-						<button
-							onClick={() => handleOpenClose()}
-							onMouseEnter={() => setIsUpdateShown(true)}
-							onMouseLeave={() => setIsUpdateShown(false)}
-							onFocus={() => setIsUpdateShown(true)}
-							onBlur={() => setIsUpdateShown(false)}
-							className={`read-unread-btn${
-								isUpdateDropdownShown ? " open" : ""
-							}`}
-						>
-							{isUpdateShown && !isUpdateDropdownShown
-								? "Update"
-								: book.readStatus}
-						</button>
+						<li className="li dropdown">
+							<button
+								className="btn in-dropdown option"
+								onClick={() => handleOpenClose()}
+								onMouseEnter={() => setIsUpdateShown(true)}
+								onMouseLeave={() => setIsUpdateShown(false)}
+								onFocus={() => setIsUpdateShown(true)}
+								onBlur={() => setIsUpdateShown(false)}
+							>
+								{book.readStatus}
+							</button>
+						</li>
 						{book.readStatus !== BookObjKeys.readStatus.unread ? (
-							<li className="read-option">
+							<li className="li dropdown">
 								<button
+									className="btn in-dropdown option"
 									onClick={() =>
 										updateReadStatusEvent(
 											book.id,
@@ -136,8 +151,9 @@ const BookCard = ({
 						) : null}
 						{book.readStatus !== BookObjKeys.readStatus.reading &&
 						book.readStatus !== BookObjKeys.readStatus.read ? (
-							<li className="read-option">
+							<li className="li dropdown">
 								<button
+									className="btn in-dropdown option"
 									onClick={() =>
 										updateReadStatusEvent(
 											book.id,
@@ -151,8 +167,9 @@ const BookCard = ({
 						) : null}
 						{book.readStatus !== BookObjKeys.readStatus.reading &&
 						book.readStatus === BookObjKeys.readStatus.read ? (
-							<li className="read-option">
+							<li className="li dropdown">
 								<button
+									className="btn in-dropdown option"
 									onClick={() =>
 										updateReadStatusEvent(
 											book.id,
@@ -168,8 +185,9 @@ const BookCard = ({
 							</li>
 						) : null}
 						{book.readStatus !== BookObjKeys.readStatus.read ? (
-							<li className="read-option">
+							<li className="li dropdown">
 								<button
+									className="btn in-dropdown option"
 									onClick={() =>
 										updateReadStatusEvent(
 											book.id,
@@ -187,45 +205,58 @@ const BookCard = ({
 					</ol>
 				) : null}
 			</div>
-			<div className="book-right">
-				<div className="book-right-top">
-					<h4>{book.title}</h4>
-					<p>by</p>
+			<div className="card-book-right | padding-inline-4 padding-block-start-24 padding-block-end-8">
+				<div className="after-element-bar">
+					<h4 className="padding-block-8 fs-600 fw-bold">
+						{book.title}
+					</h4>
+					<p className="margin-block-end-8">by</p>
 					{book.author.map((each) => (
-						<p key={book.author.indexOf(each)}>{each}</p>
+						<p
+							className="fs-550 fw-bold"
+							key={book.author.indexOf(each)}
+						>
+							{each}
+						</p>
 					))}
 				</div>
-				<p>{book.genres.join(" / ")}</p>
-				<div className="book-right-bottom-container">
-					{!isRatingUpdateDisplayed ? (
+				<div className="container-book-notes-review-btns | margin-block-start-8 padding-inline-16">
+					<button
+						className={`btn book-right notes ${
+							book.notes[0] ? "read" : "add"
+						}`}
+						onClick={() => {
+							openBookNotes(book);
+						}}
+					>
+						Notes
+					</button>
+					{book.readStatus === BookObjKeys.readStatus.read ? (
 						<button
-							className={`add-notes-btn ${
-								book.notes[0] ? "read" : "add"
+							className={`btn book-right review ${
+								book.review === "" ? "add" : "read"
 							}`}
 							onClick={() => {
-								openBookNotes(book);
+								openBookReview(book);
 							}}
 						>
-							Notes
+							Review
 						</button>
-					) : null}
-
+					) : (
+						<p className="margin-block-start-8 fs-400">
+							{book.genres.join(" / ")}
+						</p>
+					)}
+				</div>
+				<div className="margin-block-start-16 padding-inline-8 padding-block-end-8">
 					{book.readStatus === BookObjKeys.readStatus.read &&
 					!isRatingUpdateDisplayed ? (
-						<>
+						<div className="container-book-right-bottom">
 							<button
-								className={`review-btn ${
-									book.review === "" ? "add" : "read"
-								}`}
-								onClick={() => {
-									openBookReview(book);
-								}}
-							>
-								Review
-							</button>
-							<button
-								className={`rating-btn ${
-									book.rating === "" ? "add" : "added"
+								className={`btn book-right ${
+									book.rating === ""
+										? "rating"
+										: `rating-${book.rating} rating-update`
 								}`}
 								onClick={() => {
 									openRatingUpdate();
@@ -235,52 +266,71 @@ const BookCard = ({
 									? "Rating"
 									: `${book.rating} / 5`}
 							</button>
-						</>
+							<p className="margin-block-start-8 fs-300">
+								{book.genres.join(" / ")}
+							</p>
+						</div>
 					) : null}
 					{isRatingUpdateDisplayed ? (
 						<>
-							<button
-								className="select-rating-btn"
-								onClick={() => closeRatingUpdate()}
-							>
-								Cancel
-							</button>
-							<button
-								className="select-rating-btn"
-								onClick={() => handleRatingUpdate(book.id, 0)}
-							>
-								0
-							</button>
-							<button
-								className="select-rating-btn"
-								onClick={() => handleRatingUpdate(book.id, 1)}
-							>
-								1
-							</button>
-							<button
-								className="select-rating-btn"
-								onClick={() => handleRatingUpdate(book.id, 2)}
-							>
-								2
-							</button>
-							<button
-								className="select-rating-btn"
-								onClick={() => handleRatingUpdate(book.id, 3)}
-							>
-								3
-							</button>
-							<button
-								className="select-rating-btn"
-								onClick={() => handleRatingUpdate(book.id, 4)}
-							>
-								4
-							</button>
-							<button
-								className="select-rating-btn"
-								onClick={() => handleRatingUpdate(book.id, 5)}
-							>
-								5
-							</button>
+							<div className="container-select-rating-top">
+								<button
+									className="btn book-right select-rating"
+									onClick={() =>
+										handleRatingUpdate(book.id, 0)
+									}
+								>
+									0
+								</button>
+								<button
+									className="btn book-right select-rating | margin-inline-start-8"
+									onClick={() =>
+										handleRatingUpdate(book.id, 1)
+									}
+								>
+									1
+								</button>
+								<button
+									className="btn book-right select-rating | margin-inline-start-8"
+									onClick={() =>
+										handleRatingUpdate(book.id, 2)
+									}
+								>
+									2
+								</button>
+								<button
+									className="btn book-right select-rating | margin-inline-start-8"
+									onClick={() =>
+										handleRatingUpdate(book.id, 3)
+									}
+								>
+									3
+								</button>
+								<div className="container-select-rating-bottom | bottom-shadow margin-block-start-8 padding-block-end-8">
+									<button
+										className="btn book-right select-rating"
+										onClick={() =>
+											handleRatingUpdate(book.id, 4)
+										}
+									>
+										4
+									</button>
+									<button
+										className="btn book-right select-rating | margin-inline-start-8"
+										onClick={() =>
+											handleRatingUpdate(book.id, 5)
+										}
+									>
+										5
+									</button>
+									<button
+										className="btn book-right select-rating | margin-inline-start-8"
+										onClick={() => closeRatingUpdate()}
+									>
+										Cancel
+									</button>
+								</div>
+							</div>
 						</>
 					) : null}
 				</div>
