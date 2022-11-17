@@ -65,7 +65,7 @@ const BookCard = ({
 	};
 
 	return (
-		<div className="book-card">
+		<div className="book-card | box-shadow">
 			<div
 				className={`book-img-container ${getBookImgContainerClass(
 					book.readStatus
