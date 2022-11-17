@@ -1,0 +1,32 @@
+$colors: (
+  neutral: (
+    light: white,
+    normal: gray,
+    dark: black,
+  ),
+  primary: (
+    light: lightblue,
+    normal: blue,
+    dark: darkblue,
+  ),
+);
+
+:root {
+	--clr-white: #fff;
+	--clr-black: #000;
+
+	--clr-main-300: #e0fbfc;
+	--clr-main-700: #98c1d9;
+	--clr-main-800: #8bb9d4;
+	--clr-main-900: #3d5a80;
+
+	--clr-rgb-main-300: 224, 251, 252;
+	--clr-rgb-main-700: 152, 193, 217;
+	--clr-rgb-main-900: 61, 90, 128;
+
+	--clr-accent-dark: #293241;
+	--clr-accent-light: #ee6c4d;
+
+	--clr-rgb-accent-dark: 41, 50, 65;
+}
+  

@@ -1,0 +1,16 @@
+button {
+	font-family: "Times New Roman", Times, serif;
+	font-weight: 600;
+	font-size: 1rem;
+}
+
+button:hover {
+	cursor: pointer;
+}
+
+button span {
+	font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+	font-size: 1.2rem;
+	font-weight: 700;
+	transform: rotate(180deg) translateY(4px);
+}

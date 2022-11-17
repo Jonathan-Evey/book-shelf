@@ -3,6 +3,7 @@ import Header from "./main-elements/Header";
 import FindBookModel from "./components/findBooks/FindBookModel";
 import BookObjKeys from "./BookObjKeys";
 import sortFunctions from "./Functions";
+import "./sass/main.scss";
 import React, { useState } from "react";
 
 function App() {
