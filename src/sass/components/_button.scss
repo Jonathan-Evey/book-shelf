@@ -172,4 +172,18 @@ button span {
 			color: var(--clr-accent-light);
 		}
 	}
+
+	&.find-book {
+		align-self: center;
+		padding: 0.125rem 1rem;
+		border: none;
+		border-radius: 5px;
+		border-bottom: 2px solid var(--clr-black);
+		border-top: 2px solid var(--clr-black);
+		background-color: var(--clr-main-300);
+		&:hover {
+			background-color: var(--clr-accent-dark);
+			color: var(--clr-accent-light);
+		}
+	}
 }
