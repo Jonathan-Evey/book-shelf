@@ -10,8 +10,20 @@
 		2px 2px 2px 0px rgba(0, 0, 0, 0.2);
 }
 
+.box-shadow-lightest {
+	box-shadow: 5px 5px 10px -5px rgba(0, 0, 0, 0.2),
+		3px 3px 5px -5px rgba(0, 0, 0, 0.4), 
+		2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+}
+
 .bottom-shadow {
 	box-shadow: 0px 15px 10px -10px rgba(0, 0, 0, 0.2),
 		0px 10px 5px -10px rgba(0, 0, 0, 0.4),
 		0px 2px 2px -1px rgba(0, 0, 0, 0.2);
+}
+
+.top-shadow {
+	box-shadow: 0px -15px 10px -10px rgba(0, 0, 0, 0.2),
+		0px -10px 5px -10px rgba(0, 0, 0, 0.4),
+		0px -2px 2px -1px rgba(0, 0, 0, 0.2);
 }

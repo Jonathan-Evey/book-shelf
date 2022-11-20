@@ -10,10 +10,10 @@ button span {
 	font-size: 1.2rem;
 	font-weight: 700;
 	transform: rotate(180deg) translateY(4px);
+	transition: transform 350ms ease-in-out;
 }
 
 .btn {
-
 	&.book-right {
 	  	display: inline-block;
 		position: relative;
@@ -106,8 +106,7 @@ button span {
 			transition: transform ease-in-out 250ms;
 		}
 	}
-
-	&.in-dropdown {
+	&.read-status-dropdown {
 		margin: auto 0;
 		padding: 0.25rem 0;
 		width: 100%;
@@ -127,7 +126,6 @@ button span {
 			}
 		}
 	}
-	
 	&.bg-dark-main-900-gradient {
 		background: linear-gradient(
 		to right,
@@ -149,6 +147,29 @@ button span {
 		&:hover {
 			color: var(--clr-accent-light);
 			background: var(--clr-accent-dark);
+		}
+	}
+
+	&.aside-toggle {
+		position: relative;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0.5rem 1rem;
+		width: 150px;
+		border: none;
+		border-top: solid 1px var(--clr-black);
+		border-radius: 10px;
+		background-color: var(--clr-main-700);
+		z-index: 3;
+
+		&.open span {
+			transform: rotate(0deg) translateY(4px);
+		}
+
+		&:hover {
+			background-color: var(--clr-accent-dark);
+			color: var(--clr-accent-light);
 		}
 	}
 }
