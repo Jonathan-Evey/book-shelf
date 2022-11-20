@@ -97,7 +97,7 @@ const BookCard = ({
 							onMouseLeave={() => setIsUpdateShown(false)}
 							onFocus={() => setIsUpdateShown(true)}
 							onBlur={() => setIsUpdateShown(false)}
-							className="btn in-dropdown bg-dark-main-900-gradient"
+							className="btn read-status-dropdown bg-dark-main-900-gradient"
 						>
 							{isUpdateShown ? "Update" : book.readStatus}
 						</button>
@@ -108,7 +108,7 @@ const BookCard = ({
 						aria-hidden="true"
 					>
 						<button
-							className="btn in-dropdown bg-dark-main-900-gradient hidden"
+							className="btn read-status-dropdown bg-dark-main-900-gradient hidden"
 							aria-hidden="true"
 						>
 							{isUpdateShown ? "Update" : book.readStatus}
@@ -124,7 +124,7 @@ const BookCard = ({
 					>
 						<li className="li dropdown">
 							<button
-								className="btn in-dropdown option"
+								className="btn read-status-dropdown option"
 								onClick={() => handleOpenClose()}
 								onMouseEnter={() => setIsUpdateShown(true)}
 								onMouseLeave={() => setIsUpdateShown(false)}
@@ -137,7 +137,7 @@ const BookCard = ({
 						{book.readStatus !== BookObjKeys.readStatus.unread ? (
 							<li className="li dropdown">
 								<button
-									className="btn in-dropdown option"
+									className="btn read-status-dropdown option"
 									onClick={() =>
 										updateReadStatusEvent(
 											book.id,
@@ -153,7 +153,7 @@ const BookCard = ({
 						book.readStatus !== BookObjKeys.readStatus.read ? (
 							<li className="li dropdown">
 								<button
-									className="btn in-dropdown option"
+									className="btn read-status-dropdown option"
 									onClick={() =>
 										updateReadStatusEvent(
 											book.id,
@@ -169,7 +169,7 @@ const BookCard = ({
 						book.readStatus === BookObjKeys.readStatus.read ? (
 							<li className="li dropdown">
 								<button
-									className="btn in-dropdown option"
+									className="btn read-status-dropdown option"
 									onClick={() =>
 										updateReadStatusEvent(
 											book.id,
@@ -187,7 +187,7 @@ const BookCard = ({
 						{book.readStatus !== BookObjKeys.readStatus.read ? (
 							<li className="li dropdown">
 								<button
-									className="btn in-dropdown option"
+									className="btn read-status-dropdown option"
 									onClick={() =>
 										updateReadStatusEvent(
 											book.id,
