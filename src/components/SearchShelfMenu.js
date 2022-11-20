@@ -25,22 +25,35 @@ const SearchShelfMenu = (props) => {
 
 	return (
 		<>
-			<label htmlFor="title-search">Book Title:</label>
-			<input
-				className="search-input"
-				type="search"
-				name="title-search"
-				id="title-search"
-				onChange={updateTitleSearchWord}
-			/>
-			<label htmlFor="author-search">Book Author:</label>
-			<input
-				className="search-input"
-				type="search"
-				name="author-search"
-				id="author-search"
-				onChange={updateAuthorSearchWord}
-			/>
+			<div className="input-group | top-shadow margin-block-start-16 padding-inline-end-16">
+				<p className="title">By Title:</p>
+				{/* <label
+					
+					htmlFor="title-search"
+				>
+					Book Title:
+				</label> */}
+				<input
+					className="input controls | margin-inline-8"
+					type="search"
+					name="title-search"
+					id="title-search"
+					onChange={updateTitleSearchWord}
+				/>
+			</div>
+			<div className="input-group | top-shadow margin-block-start-16 padding-inline-end-16">
+				<p className="title">By Author:</p>
+				{/* <label htmlFor="author-search">
+					Book Author:
+				</label> */}
+				<input
+					className="input controls | margin-inline-8"
+					type="search"
+					name="author-search"
+					id="author-search"
+					onChange={updateAuthorSearchWord}
+				/>
+			</div>
 		</>
 	);
 };
