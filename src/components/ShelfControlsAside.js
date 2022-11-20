@@ -12,75 +12,84 @@ const ShelfControlsAside = (props) => {
 	const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
 	return (
 		<aside className="box-shadow">
-			<MenuToggleBtn
-				textProp={"Add Book"}
-				setToggleProp={setIsAddBookMenuOpen}
-				toggleStateProp={isAddBookMenuOpen}
-			/>
-			{isAddBookMenuOpen ? (
-				<FindBookMenu
-					////---find new book
-					searchTitleKeyWord={props.searchTitleKeyWord}
-					searchAuthorKeyWord={props.searchAuthorKeyWord}
-					updateTitleKeyWord={props.updateTitleKeyWord}
-					updateAuthorKeyWord={props.updateAuthorKeyWord}
-					updateSearchType={props.updateSearchType}
-					updateUseSearchKeyWord={props.updateUseSearchKeyWord}
-					updateCurrentSearchPageNumber={
-						props.updateCurrentSearchPageNumber
-					}
+			<div className="card-control-menu">
+				<MenuToggleBtn
+					textProp={"Add Book"}
+					setToggleProp={setIsAddBookMenuOpen}
+					toggleStateProp={isAddBookMenuOpen}
 				/>
-			) : null}
-
-			<MenuToggleBtn
-				classProps={"top-shadow margin-block-start-16"}
-				textProp={"Search Shelf"}
-				setToggleProp={setIsSearchMenuOpen}
-				toggleStateProp={isSearchMenuOpen}
-			/>
-			{isSearchMenuOpen ? (
-				<SearchShelfMenu
-					////---search shelf
-					setSearchTitleFilter={props.setSearchTitleFilter}
-					setIsSearchTitleFilter={props.setIsSearchTitleFilter}
-					setSearchAuthorFilter={props.setSearchAuthorFilter}
-					setIsSearchAuthorFilter={props.setIsSearchAuthorFilter}
+				{isAddBookMenuOpen ? (
+					<FindBookMenu
+						////---find new book
+						searchTitleKeyWord={props.searchTitleKeyWord}
+						searchAuthorKeyWord={props.searchAuthorKeyWord}
+						updateTitleKeyWord={props.updateTitleKeyWord}
+						updateAuthorKeyWord={props.updateAuthorKeyWord}
+						updateSearchType={props.updateSearchType}
+						updateUseSearchKeyWord={props.updateUseSearchKeyWord}
+						updateCurrentSearchPageNumber={
+							props.updateCurrentSearchPageNumber
+						}
+					/>
+				) : null}
+			</div>
+			<div className="card-control-menu">
+				<MenuToggleBtn
+					classProps={"top-shadow margin-block-start-16"}
+					textProp={"Search Shelf"}
+					setToggleProp={setIsSearchMenuOpen}
+					toggleStateProp={isSearchMenuOpen}
 				/>
-			) : null}
-			<MenuToggleBtn
-				classProps={"top-shadow margin-block-start-16"}
-				textProp={"Sort Shelf"}
-				setToggleProp={setIsSortMenuOpen}
-				toggleStateProp={isSortMenuOpen}
-			/>
-			{isSortMenuOpen ? (
-				<SortShelfMenu
-					savedBooks={props.savedBooks}
-					////---sort shelf
-					sortBackToDefault={props.sortBackToDefault}
-					sortAlphabetically={props.sortAlphabetically}
-					sortReverseAlphabetically={props.sortReverseAlphabetically}
-					sortByRating={props.sortByRating}
+				{isSearchMenuOpen ? (
+					<SearchShelfMenu
+						////---search shelf
+						setSearchTitleFilter={props.setSearchTitleFilter}
+						setIsSearchTitleFilter={props.setIsSearchTitleFilter}
+						setSearchAuthorFilter={props.setSearchAuthorFilter}
+						setIsSearchAuthorFilter={props.setIsSearchAuthorFilter}
+					/>
+				) : null}
+			</div>
+			<div className="card-control-menu">
+				<MenuToggleBtn
+					classProps={"top-shadow margin-block-start-16"}
+					textProp={"Sort Shelf"}
+					setToggleProp={setIsSortMenuOpen}
+					toggleStateProp={isSortMenuOpen}
 				/>
-			) : null}
-			<MenuToggleBtn
-				classProps={"top-shadow margin-block-start-16"}
-				textProp={"Filter Shelf"}
-				setToggleProp={setIsFilterMenuOpen}
-				toggleStateProp={isFilterMenuOpen}
-			/>
-			{isFilterMenuOpen ? (
-				<FilterShelfMenu
-					readStatusFilter={props.readStatusFilter}
-					setReadStatusFilter={props.setReadStatusFilter}
-					isReadStatusFilter={props.isReadStatusFilter}
-					setIsReadStatusFilter={props.setIsReadStatusFilter}
-					bookRatingFilter={props.bookRatingFilter}
-					setBookRatingFilter={props.setBookRatingFilter}
-					isRatingFilter={props.isRatingFilter}
-					setIsRatingFilter={props.setIsRatingFilter}
+				{isSortMenuOpen ? (
+					<SortShelfMenu
+						savedBooks={props.savedBooks}
+						////---sort shelf
+						sortBackToDefault={props.sortBackToDefault}
+						sortAlphabetically={props.sortAlphabetically}
+						sortReverseAlphabetically={
+							props.sortReverseAlphabetically
+						}
+						sortByRating={props.sortByRating}
+					/>
+				) : null}
+			</div>
+			<div className="card-control-menu">
+				<MenuToggleBtn
+					classProps={"top-shadow margin-block-start-16"}
+					textProp={"Filter Shelf"}
+					setToggleProp={setIsFilterMenuOpen}
+					toggleStateProp={isFilterMenuOpen}
 				/>
-			) : null}
+				{isFilterMenuOpen ? (
+					<FilterShelfMenu
+						readStatusFilter={props.readStatusFilter}
+						setReadStatusFilter={props.setReadStatusFilter}
+						isReadStatusFilter={props.isReadStatusFilter}
+						setIsReadStatusFilter={props.setIsReadStatusFilter}
+						bookRatingFilter={props.bookRatingFilter}
+						setBookRatingFilter={props.setBookRatingFilter}
+						isRatingFilter={props.isRatingFilter}
+						setIsRatingFilter={props.setIsRatingFilter}
+					/>
+				) : null}
+			</div>
 		</aside>
 	);
 };
