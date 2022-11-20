@@ -1,6 +1,5 @@
 import React from "react";
-import FindBookByTitle from "./FindBookByTitle";
-import FindBookByAuthor from "./FindBookByAuthor";
+import FindBookInput from "./FindBookInput";
 
 const FindBookMenu = (props) => {
 	////---find new books
@@ -21,21 +20,29 @@ const FindBookMenu = (props) => {
 		let model = document.getElementById("find-book");
 		return model.showModal();
 	}
-	return (
-		<fieldset className="filter-container-fieldset">
-			<p>Add New Book</p>
 
-			<FindBookByTitle
-				searchTitleKeyWord={props.searchTitleKeyWord}
-				updateTitleKeyWord={props.updateTitleKeyWord}
-				openFindBookModel={openFindBookModel}
-			/>
-			<FindBookByAuthor
-				searchAuthorKeyWord={props.searchAuthorKeyWord}
-				updateAuthorKeyWord={props.updateAuthorKeyWord}
-				openFindBookModel={openFindBookModel}
-			/>
-		</fieldset>
+	return (
+		<>
+			<div className="input-group | top-shadow margin-block-start-16">
+				<p className="title">By Title:</p>
+
+				<FindBookInput
+					placeholderProp={"Find by title"}
+					onChangeProp={props.updateTitleKeyWord}
+					searchKeyWordProp={props.searchTitleKeyWord}
+					openFindBookModel={openFindBookModel}
+				/>
+			</div>
+			<div className="input-group | top-shadow margin-block-start-16">
+				<p className="title">By Author:</p>
+				<FindBookInput
+					placeholderProp={"Find by author"}
+					onChangeProp={props.updateAuthorKeyWord}
+					searchKeyWordProp={props.searchAuthorKeyWord}
+					openFindBookModel={openFindBookModel}
+				/>
+			</div>
+		</>
 	);
 };
 
