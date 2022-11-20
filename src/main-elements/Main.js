@@ -1,21 +1,22 @@
 import React, { useState } from "react";
 import BookContainer from "./BookContainer";
-import Navigation from "./Navigation";
+import ShelfControlsAside from "../components/ShelfControlsAside";
 import NoteContainer from "./NoteContainer";
 import ReviewContainer from "./ReviewContainer";
 
 const Main = (props) => {
 	let bookToUpdate = props.bookToUpdate;
+
 	//------------------main display state---------------------------//
 	const [isFullShelfDisplayed, setIsFullShelfDisplayed] = useState(true);
 	const [isBookNotesDisplayed, setIsBookNotesDisplayed] = useState(false);
 	const [isBookReviewDisplayed, setIsBookReviewDisplayed] = useState(false);
 
-	//------------------search by title state-----------------------//
+	//---------------------- search state -------------------------//
+	////----------------------------search by title state
 	const [searchTitleFilter, setSearchTitleFilter] = useState("");
 	const [isSearchTitleFilter, setIsSearchTitleFilter] = useState(false);
-
-	//------------------search by author state-----------------------//
+	////---------------------------search by author state
 	const [searchAuthorFilter, setSearchAuthorFilter] = useState("");
 	const [isSearchAuthorFilter, setIsSearchAuthorFilter] = useState(false);
 
@@ -27,85 +28,47 @@ const Main = (props) => {
 	const [bookRatingFilter, setBookRatingFilter] = useState("All");
 	const [isRatingFilter, setIsRatingFilter] = useState(false);
 
-	//------------------filter menu hover state-----------------------//
-	const [isHoverShown, setIsHoverShown] = useState(false);
+	// //------------------filter menu hover state-----------------------//
+	// const [isHoverShown, setIsHoverShown] = useState(false);
 
 	return (
 		<main>
 			{isFullShelfDisplayed ? (
 				<>
-					<aside
-						className={
-							props.isFilterMenuOpen
-								? "main-filter-menu-container open"
-								: "main-filter-menu-container closed"
+					<ShelfControlsAside
+						savedBooks={props.savedBooks}
+						////---find new book
+						searchTitleKeyWord={props.searchTitleKeyWord}
+						searchAuthorKeyWord={props.searchAuthorKeyWord}
+						updateTitleKeyWord={props.updateTitleKeyWord}
+						updateAuthorKeyWord={props.updateAuthorKeyWord}
+						updateSearchType={props.updateSearchType}
+						updateUseSearchKeyWord={props.updateUseSearchKeyWord}
+						updateCurrentSearchPageNumber={
+							props.updateCurrentSearchPageNumber
 						}
-					>
-						<button
-							onMouseEnter={() => setIsHoverShown(true)}
-							onMouseLeave={(e) => {
-								setIsHoverShown(false);
-								e.target.blur();
-							}}
-							onFocus={() => setIsHoverShown(true)}
-							onBlur={() => setIsHoverShown(false)}
-							onClick={(e) => {
-								props.openFilterMenuToggle();
-								e.target.blur();
-							}}
-							className="toggle-filter-menu-btn"
-						>
-							{isHoverShown && !props.isFilterMenuOpen
-								? "Open Menu"
-								: null}
-							{isHoverShown && props.isFilterMenuOpen
-								? "Close Menu"
-								: null}
-							{!isHoverShown ? "Filter Menu" : null}
-							<span>^</span>
-						</button>
-						<Navigation
-							savedBooks={props.savedBooks}
-							////---menu state
-							isFilterMenuOpen={props.isFilterMenuOpen}
-							////---find new book
-							searchTitleKeyWord={props.searchTitleKeyWord}
-							searchAuthorKeyWord={props.searchAuthorKeyWord}
-							updateTitleKeyWord={props.updateTitleKeyWord}
-							updateAuthorKeyWord={props.updateAuthorKeyWord}
-							updateSearchType={props.updateSearchType}
-							updateUseSearchKeyWord={
-								props.updateUseSearchKeyWord
-							}
-							updateCurrentSearchPageNumber={
-								props.updateCurrentSearchPageNumber
-							}
-							////---sort shelf
-							sortBackToDefault={props.sortBackToDefault}
-							sortAlphabetically={props.sortAlphabetically}
-							sortReverseAlphabetically={
-								props.sortReverseAlphabetically
-							}
-							sortByRating={props.sortByRating}
-							////---search shelf
-							searchTitleFilter={searchTitleFilter}
-							setSearchTitleFilter={setSearchTitleFilter}
-							setIsSearchTitleFilter={setIsSearchTitleFilter}
-							searchAuthorFilter={searchAuthorFilter}
-							setSearchAuthorFilter={setSearchAuthorFilter}
-							setIsSearchAuthorFilter={setIsSearchAuthorFilter}
-							////---filter shelf
-							readStatusFilter={readStatusFilter}
-							setReadStatusFilter={setReadStatusFilter}
-							isReadStatusFilter={isReadStatusFilter}
-							setIsReadStatusFilter={setIsReadStatusFilter}
-							bookRatingFilter={bookRatingFilter}
-							setBookRatingFilter={setBookRatingFilter}
-							isRatingFilter={isRatingFilter}
-							setIsRatingFilter={setIsRatingFilter}
-						/>
-					</aside>
-
+						////---search shelf
+						setSearchTitleFilter={setSearchTitleFilter}
+						setIsSearchTitleFilter={setIsSearchTitleFilter}
+						setSearchAuthorFilter={setSearchAuthorFilter}
+						setIsSearchAuthorFilter={setIsSearchAuthorFilter}
+						////---sort shelf
+						sortBackToDefault={props.sortBackToDefault}
+						sortAlphabetically={props.sortAlphabetically}
+						sortReverseAlphabetically={
+							props.sortReverseAlphabetically
+						}
+						sortByRating={props.sortByRating}
+						////---filter shelf
+						readStatusFilter={readStatusFilter}
+						setReadStatusFilter={setReadStatusFilter}
+						isReadStatusFilter={isReadStatusFilter}
+						setIsReadStatusFilter={setIsReadStatusFilter}
+						bookRatingFilter={bookRatingFilter}
+						setBookRatingFilter={setBookRatingFilter}
+						isRatingFilter={isRatingFilter}
+						setIsRatingFilter={setIsRatingFilter}
+					/>
 					<BookContainer
 						savedBooks={props.savedBooks}
 						setBookToUpdate={props.setBookToUpdate}
