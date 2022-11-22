@@ -5,21 +5,24 @@ const MenuToggleBtn = (props) => {
 		props.setToggleProp(!props.toggleStateProp);
 	};
 	return (
-		<button
-			onMouseLeave={(e) => {
-				e.target.blur();
-			}}
-			onClick={(e) => {
-				handleClickEvent();
-				e.target.blur();
-			}}
-			className={`btn aside-toggle${
-				props.toggleStateProp ? " open " : " "
-			}${props.classProps ? props.classProps : ""}`}
-		>
-			{props.textProp}
-			<span>^</span>
-		</button>
+		<li>
+			<button
+				onMouseLeave={(e) => {
+					e.target.blur();
+				}}
+				onClick={(e) => {
+					handleClickEvent();
+					props.closeNoneCurrentMenu(props.textProp);
+					e.target.blur();
+				}}
+				className={`btn aside-toggle${
+					props.toggleStateProp ? " open " : " "
+				}${props.classProps ? props.classProps : ""}`}
+			>
+				{props.textProp}
+				<span>^</span>
+			</button>
+		</li>
 	);
 };
 
