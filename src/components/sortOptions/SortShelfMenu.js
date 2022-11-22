@@ -4,23 +4,17 @@ import {
 	authorSortOptionKeys,
 	ratingSortOptionKeys,
 } from "../../SortKeys";
-import SortByTitle from "./SortByTitle";
-import SortBtAuthor from "./SortBtAuthor";
-import SortBtRating from "./SortByRating";
+import SortSubOptionBtn from "./SortSubOptionBtn";
+import SortOptionBtn from "./SortOptionBtn";
 
 const SortShelfMenu = (props) => {
 	const [isTitleSortOpen, setIsTitleSortOpen] = useState(false);
-	const [currentTitleSortDisplayText, setCurrentTitleSortDisplayText] =
-		useState("Title");
 	const [isAuthorSortOpen, setIsAuthorSortOpen] = useState(false);
-	const [currentAuthorSortDisplayText, setCurrentAuthorSortDisplayText] =
-		useState("Author");
 	const [isRatingSortOpen, setIsRatingSortOpen] = useState(false);
-	const [currentRatingSortDisplayText, setCurrentRatingSortDisplayText] =
-		useState("Rating");
-	////---sort shelf functions
-	//////---by title
-	const openTitleSortDropdown = () => {
+
+	////---sort shelf by title functions
+	const toggleTitleSortDropdown = () => {
+		closeAuthorSortDropdown();
 		setIsTitleSortOpen(!isTitleSortOpen);
 	};
 
@@ -30,30 +24,34 @@ const SortShelfMenu = (props) => {
 
 	const updateTitleSortDisplayText = (newTextValue) => {
 		setIsTitleSortOpen(false);
-		setCurrentTitleSortDisplayText(newTextValue);
-		setCurrentAuthorSortDisplayText(authorSortOptionKeys.removeSort);
-		setCurrentRatingSortDisplayText(ratingSortOptionKeys.removeSort);
+		props.setCurrentTitleSortDisplayText(newTextValue);
+		props.setCurrentAuthorSortDisplayText(authorSortOptionKeys.removeSort);
+		props.setCurrentRatingSortDisplayText(ratingSortOptionKeys.removeSort);
 		if (newTextValue === titleSortOptionKeys.alphabetically) {
+			props.setIsSortActive(true);
 			props.sortAlphabetically(
 				props.savedBooks,
 				titleSortOptionKeys.sortType
 			);
 		}
 		if (newTextValue === titleSortOptionKeys.reverseAlphabetically) {
+			props.setIsSortActive(true);
 			props.sortReverseAlphabetically(
 				props.savedBooks,
 				titleSortOptionKeys.sortType
 			);
 		}
 		if (newTextValue === titleSortOptionKeys.removeSort) {
+			props.setIsSortActive(false);
 			props.sortBackToDefault(
 				props.savedBooks,
 				titleSortOptionKeys.removeSort
 			);
 		}
 	};
-	//////---by author
+	//////---sort shelf by author functions
 	const openAuthorSortDropdown = () => {
+		closeTitleSortDropdown();
 		setIsAuthorSortOpen(!isAuthorSortOpen);
 	};
 
@@ -63,29 +61,32 @@ const SortShelfMenu = (props) => {
 
 	const updateAuthorSortDisplayText = (newTextValue) => {
 		setIsAuthorSortOpen(false);
-		setCurrentTitleSortDisplayText(titleSortOptionKeys.removeSort);
-		setCurrentAuthorSortDisplayText(newTextValue);
-		setCurrentRatingSortDisplayText(ratingSortOptionKeys.removeSort);
+		props.setCurrentTitleSortDisplayText(titleSortOptionKeys.removeSort);
+		props.setCurrentAuthorSortDisplayText(newTextValue);
+		props.setCurrentRatingSortDisplayText(ratingSortOptionKeys.removeSort);
 		if (newTextValue === authorSortOptionKeys.alphabetically) {
+			props.setIsSortActive(true);
 			props.sortAlphabetically(
 				props.savedBooks,
 				authorSortOptionKeys.sortType
 			);
 		}
 		if (newTextValue === authorSortOptionKeys.reverseAlphabetically) {
+			props.setIsSortActive(true);
 			props.sortReverseAlphabetically(
 				props.savedBooks,
 				authorSortOptionKeys.sortType
 			);
 		}
 		if (newTextValue === authorSortOptionKeys.removeSort) {
+			props.setIsSortActive(false);
 			props.sortBackToDefault(
 				props.savedBooks,
 				authorSortOptionKeys.removeSort
 			);
 		}
 	};
-	//////----by rating
+	//////----sort shelf by rating functions
 	const openRatingSortDropdown = () => {
 		setIsRatingSortOpen(!isRatingSortOpen);
 	};
@@ -96,34 +97,223 @@ const SortShelfMenu = (props) => {
 
 	const updateRatingSortDisplayText = (newTextValue) => {
 		setIsRatingSortOpen(false);
-		setCurrentTitleSortDisplayText(titleSortOptionKeys.removeSort);
-		setCurrentAuthorSortDisplayText(authorSortOptionKeys.removeSort);
-		setCurrentRatingSortDisplayText(newTextValue);
+		props.setCurrentTitleSortDisplayText(titleSortOptionKeys.removeSort);
+		props.setCurrentAuthorSortDisplayText(authorSortOptionKeys.removeSort);
+		props.setCurrentRatingSortDisplayText(newTextValue);
 		props.sortByRating(props.savedBooks, newTextValue);
+		if (newTextValue === ratingSortOptionKeys.removeSort) {
+			props.setIsSortActive(false);
+		} else {
+			props.setIsSortActive(true);
+		}
 	};
 	return (
 		<>
-			<SortByTitle
-				isTitleSortOpen={isTitleSortOpen}
-				currentTitleSortDisplayText={currentTitleSortDisplayText}
-				openTitleSortDropdown={openTitleSortDropdown}
-				closeTitleSortDropdown={closeTitleSortDropdown}
-				updateTitleSortDisplayText={updateTitleSortDisplayText}
-			/>
-			<SortBtAuthor
-				isAuthorSortOpen={isAuthorSortOpen}
-				currentAuthorSortDisplayText={currentAuthorSortDisplayText}
-				openAuthorSortDropdown={openAuthorSortDropdown}
-				closeAuthorSortDropdown={closeAuthorSortDropdown}
-				updateAuthorSortDisplayText={updateAuthorSortDisplayText}
-			/>
-			<SortBtRating
-				isRatingSortOpen={isRatingSortOpen}
-				currentRatingSortDisplayText={currentRatingSortDisplayText}
-				openRatingSortDropdown={openRatingSortDropdown}
-				closeRatingSortDropdown={closeRatingSortDropdown}
-				updateRatingSortDisplayText={updateRatingSortDisplayText}
-			/>
+			<ul
+				className="card-sort-option"
+				onMouseLeave={() => {
+					closeTitleSortDropdown();
+				}}
+			>
+				<SortOptionBtn
+					toggleDropdownProp={toggleTitleSortDropdown}
+					isOpen={isTitleSortOpen}
+					classProps={`${
+						props.currentTitleSortDisplayText !==
+						titleSortOptionKeys.removeSort
+							? "active"
+							: ""
+					} top-shadow-light`}
+					textProp={props.currentTitleSortDisplayText}
+				/>
+
+				{isTitleSortOpen ? (
+					<>
+						{props.currentTitleSortDisplayText !==
+						titleSortOptionKeys.removeSort ? (
+							<SortSubOptionBtn
+								clickEventProp={updateTitleSortDisplayText}
+								clickEventDataProp={
+									titleSortOptionKeys.removeSort
+								}
+								textProp={"Remove"}
+							/>
+						) : null}
+						{props.currentTitleSortDisplayText !==
+							titleSortOptionKeys.alphabetically &&
+						props.currentTitleSortDisplayText !==
+							titleSortOptionKeys.reverseAlphabetically ? (
+							<SortSubOptionBtn
+								clickEventProp={updateTitleSortDisplayText}
+								clickEventDataProp={
+									titleSortOptionKeys.alphabetically
+								}
+								textProp={titleSortOptionKeys.alphabetically}
+							/>
+						) : null}
+						{props.currentTitleSortDisplayText !==
+							titleSortOptionKeys.alphabetically &&
+						props.currentTitleSortDisplayText ===
+							titleSortOptionKeys.reverseAlphabetically ? (
+							<SortSubOptionBtn
+								clickEventProp={updateTitleSortDisplayText}
+								clickEventDataProp={
+									titleSortOptionKeys.alphabetically
+								}
+								textProp={titleSortOptionKeys.alphabetically}
+							/>
+						) : null}
+						{props.currentTitleSortDisplayText !==
+						titleSortOptionKeys.reverseAlphabetically ? (
+							<SortSubOptionBtn
+								clickEventProp={updateTitleSortDisplayText}
+								clickEventDataProp={
+									titleSortOptionKeys.reverseAlphabetically
+								}
+								textProp={
+									titleSortOptionKeys.reverseAlphabetically
+								}
+							/>
+						) : null}
+					</>
+				) : null}
+			</ul>
+			<ul
+				className="card-sort-option"
+				onMouseLeave={() => {
+					closeAuthorSortDropdown();
+				}}
+			>
+				<SortOptionBtn
+					toggleDropdownProp={openAuthorSortDropdown}
+					isOpen={isAuthorSortOpen}
+					classProps={`${
+						props.currentAuthorSortDisplayText !==
+						authorSortOptionKeys.removeSort
+							? "active"
+							: ""
+					} top-shadow-light padding-block-end-32`}
+					textProp={props.currentAuthorSortDisplayText}
+				/>
+				{isAuthorSortOpen ? (
+					<>
+						{props.currentAuthorSortDisplayText !==
+						authorSortOptionKeys.removeSort ? (
+							<SortSubOptionBtn
+								clickEventProp={updateAuthorSortDisplayText}
+								clickEventDataProp={
+									authorSortOptionKeys.removeSort
+								}
+								textProp={"Remove"}
+							/>
+						) : null}
+						{props.currentAuthorSortDisplayText !==
+							authorSortOptionKeys.alphabetically &&
+						props.currentAuthorSortDisplayText !==
+							authorSortOptionKeys.reverseAlphabetically ? (
+							<SortSubOptionBtn
+								clickEventProp={updateAuthorSortDisplayText}
+								clickEventDataProp={
+									authorSortOptionKeys.alphabetically
+								}
+								textProp={authorSortOptionKeys.alphabetically}
+							/>
+						) : null}
+						{props.currentAuthorSortDisplayText !==
+							authorSortOptionKeys.alphabetically &&
+						props.currentAuthorSortDisplayText ===
+							authorSortOptionKeys.reverseAlphabetically ? (
+							<SortSubOptionBtn
+								clickEventProp={updateAuthorSortDisplayText}
+								clickEventDataProp={
+									authorSortOptionKeys.alphabetically
+								}
+								textProp={authorSortOptionKeys.alphabetically}
+							/>
+						) : null}
+						{props.currentAuthorSortDisplayText !==
+						authorSortOptionKeys.reverseAlphabetically ? (
+							<SortSubOptionBtn
+								clickEventProp={updateAuthorSortDisplayText}
+								clickEventDataProp={
+									authorSortOptionKeys.reverseAlphabetically
+								}
+								textProp={
+									authorSortOptionKeys.reverseAlphabetically
+								}
+							/>
+						) : null}
+					</>
+				) : null}
+			</ul>
+			<ul
+				className="card-sort-option"
+				onMouseLeave={() => {
+					closeRatingSortDropdown();
+				}}
+			>
+				<SortOptionBtn
+					toggleDropdownProp={openRatingSortDropdown}
+					isOpen={isRatingSortOpen}
+					classProps={`${
+						props.currentRatingSortDisplayText !==
+						ratingSortOptionKeys.removeSort
+							? "active"
+							: ""
+					} top-shadow-light padding-block-end-16`}
+					textProp={props.currentRatingSortDisplayText}
+				/>
+
+				{isRatingSortOpen ? (
+					<>
+						{props.currentRatingSortDisplayText !==
+						ratingSortOptionKeys.removeSort ? (
+							<SortSubOptionBtn
+								clickEventProp={updateRatingSortDisplayText}
+								clickEventDataProp={
+									ratingSortOptionKeys.removeSort
+								}
+								textProp={ratingSortOptionKeys.removeSort}
+							/>
+						) : null}
+						{props.currentRatingSortDisplayText !==
+							ratingSortOptionKeys.highToLow &&
+						props.currentRatingSortDisplayText !==
+							ratingSortOptionKeys.lowToHigh ? (
+							<SortSubOptionBtn
+								clickEventProp={updateRatingSortDisplayText}
+								clickEventDataProp={
+									ratingSortOptionKeys.highToLow
+								}
+								textProp={ratingSortOptionKeys.highToLow}
+							/>
+						) : null}
+
+						{props.currentRatingSortDisplayText !==
+							ratingSortOptionKeys.highToLow &&
+						props.currentRatingSortDisplayText ===
+							ratingSortOptionKeys.lowToHigh ? (
+							<SortSubOptionBtn
+								clickEventProp={updateRatingSortDisplayText}
+								clickEventDataProp={
+									ratingSortOptionKeys.highToLow
+								}
+								textProp={ratingSortOptionKeys.highToLow}
+							/>
+						) : null}
+						{props.currentRatingSortDisplayText !==
+						ratingSortOptionKeys.lowToHigh ? (
+							<SortSubOptionBtn
+								clickEventProp={updateRatingSortDisplayText}
+								clickEventDataProp={
+									ratingSortOptionKeys.lowToHigh
+								}
+								textProp={ratingSortOptionKeys.lowToHigh}
+							/>
+						) : null}
+					</>
+				) : null}
+			</ul>
 		</>
 	);
 };
