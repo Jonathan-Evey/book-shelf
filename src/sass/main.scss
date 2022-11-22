@@ -172,10 +172,10 @@ dialog::backdrop {
 	background-color: var(--clr-main-300);
 }
 
-.filter-option-fieldset {
-	padding: 0.25rem 0 0.5rem 0;
-	border: none;
-}
+// .filter-option-fieldset {
+// 	padding: 0.25rem 0 0.5rem 0;
+// 	border: none;
+// }
 
 .filter-option-btn {
 	display: flex;
@@ -205,18 +205,18 @@ dialog::backdrop {
 	color: var(--clr-accent-light);
 }
 
-.filter-option-dropdown {
-	pointer-events: none;
-}
+// .filter-option-dropdown {
+// 	pointer-events: none;
+// }
 
-.filter-option-dropdown button {
-	pointer-events: all;
-}
+// .filter-option-dropdown button {
+// 	pointer-events: all;
+// }
 
-.filter-option-dropdown {
-	width: 100%;
-	background-color: var(--clr-main-300);
-}
+// .filter-option-dropdown {
+// 	width: 100%;
+// 	background-color: var(--clr-main-300);
+// }
 
 .filter-option {
 	list-style: none;

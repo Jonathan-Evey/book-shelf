@@ -155,23 +155,73 @@ button span {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		padding: 0.5rem 1rem;
+		padding: 0.5rem 1rem 1.5rem 1rem;
 		width: 150px;
 		border: none;
 		border-top: solid 1px var(--clr-black);
 		border-radius: 10px;
-		background-color: var(--clr-main-700);
+		background-color: var(--clr-main-800);
 		z-index: 3;
+		&.last-toggle {
+			padding: 1rem;
+		}
+
+		&:not(.last-toggle) {
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
+		}
+		&.open {
+			margin-block-end: -8px;
+		}
+		&.active {
+			background-color: var(--clr-main-900);
+				color: var(--clr-white);
+		}
 
 		&.open span {
 			transform: rotate(0deg) translateY(4px);
 		}
-
+		&.sort-option {
+			border-bottom-right-radius: 0;
+			border-bottom-left-radius: 0;
+			padding-bottom: 1rem;
+			background-color: var(--clr-main-680);
+			border-color: var(--clr-main-900);
+			&.active {
+				background-color: var(--clr-main-900);
+				color: var(--clr-white);
+				&:hover {
+					background-color: var(--clr-accent-dark);
+					color: var(--clr-accent-light);
+				}
+			}
+			&.open {
+				background-color: var(--clr-accent-dark);
+				color: var(--clr-accent-light);
+				border-color: var(--clr-black);
+				&:hover {
+					background-color: var(--clr-accent-light);
+					color: var(--clr-accent-dark);
+				}
+			}
+			&.sub {
+				justify-content: center;
+				background-color: var(--clr-accent-dark);
+				color: var(--clr-accent-light);
+				border-color: var(--clr-black);
+				&:hover {
+					background-color: var(--clr-accent-light);
+					color: var(--clr-accent-dark);
+				}
+			}
+		}
 		&:hover {
 			background-color: var(--clr-accent-dark);
 			color: var(--clr-accent-light);
 		}
 	}
+		
+
 
 	&.find-book {
 		align-self: center;

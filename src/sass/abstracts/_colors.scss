@@ -10,12 +10,17 @@ $colors: (
     dark: darkblue,
   ),
 );
+.bg-color-680 {
+	background-color: #ABCDE0;
+}
 
 :root {
 	--clr-white: #fff;
 	--clr-black: #000;
 
 	--clr-main-300: #e0fbfc;
+	--clr-main-680: #ABCDE0;
+	--clr-main-690: #A1C7DD;
 	--clr-main-700: #98c1d9;
 	--clr-main-800: #8bb9d4;
 	--clr-main-900: #3d5a80;
