@@ -5,75 +5,6 @@
 @use "vendor";
 
 
-
-
-
-
-.filter-menu {
-	padding: 0.5rem;
-	margin-left: -0.5rem;
-	margin-top: -1.5rem;
-	margin-right: 0.75rem;
-	width: 150px;
-	height: fit-content;
-	background-color: var(--clr-main-700);
-	transition: all 350ms ease-in-out;
-	box-shadow: 10px 10px 20px -5px rgba(0, 0, 0, 0.25),
-		5px 5px 20px -5px rgba(0, 0, 0, 0.5),
-		2px 2px 5px 0px rgba(0, 0, 0, 0.25);
-}
-
-.filter-menu.open {
-	opacity: 1;
-	transform-origin: top;
-	transform: scaleY(1);
-}
-
-.filter-menu.closed {
-	position: absolute;
-	opacity: 0;
-	transform-origin: top;
-	transform: scaleY(0);
-}
-
-.filter-menu p {
-	border-bottom: 1px solid var(--clr-black);
-	padding-top: 1rem;
-	margin: 1rem 0 0.5rem 0;
-}
-
-.toggle-submenu-btn {
-	border: none;
-	background-color: var(--clr-main-700);
-	width: 100%;
-	border-bottom: 1px solid var(--clr-black);
-	margin: 1.5rem 0 0.5rem 0;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 0 0.5rem 0 0.35rem;
-}
-
-.toggle-submenu-btn:hover,
-.toggle-submenu-btn:focus {
-	border-radius: 5px;
-	background-color: var(--clr-accent-dark);
-	color: var(--clr-accent-light);
-}
-
-.toggle-submenu-btn span {
-	transform: rotate(180deg) translateY(4px);
-}
-
-.filter-menu input {
-	width: 100%;
-}
-
-.filter-option-legend {
-	margin-bottom: -0.35rem;
-}
-
-
 dialog {
 	position: fixed;
 	top: 50%;
@@ -161,86 +92,12 @@ dialog::backdrop {
 	color: var(--clr-accent-light);
 }
 
-/* Nav Bar Styles */
-// .filter-container-fieldset {
-// 	border: none;
-// }
 
-.search-input {
-	padding: 0.125rem 0.25rem;
-	border: 1px solid var(--clr-main-900);
-	background-color: var(--clr-main-300);
-}
-
-// .filter-option-fieldset {
-// 	padding: 0.25rem 0 0.5rem 0;
-// 	border: none;
-// }
-
-.filter-option-btn {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	width: 100%;
-	padding: 0 0.5rem 0 0.35rem;
-	margin: auto;
-	border: none;
-	border-bottom: solid 1px var(--clr-black);
-	background-color: var(--clr-main-300);
-}
-
-.filter-option-btn.open {
-	background-color: var(--clr-accent-dark);
-	color: var(--clr-accent-light);
-}
-.filter-option-btn.active {
-	background-color: var(--clr-main-900);
-	color: var(--clr-white);
-}
-
-.filter-option-btn:hover,
-.filter-option-btn:focus {
-	cursor: pointer;
-	background-color: var(--clr-accent-dark);
-	color: var(--clr-accent-light);
-}
-
-// .filter-option-dropdown {
-// 	pointer-events: none;
-// }
-
-// .filter-option-dropdown button {
-// 	pointer-events: all;
-// }
-
-// .filter-option-dropdown {
-// 	width: 100%;
+// .search-input {
+// 	padding: 0.125rem 0.25rem;
+// 	border: 1px solid var(--clr-main-900);
 // 	background-color: var(--clr-main-300);
 // }
-
-.filter-option {
-	list-style: none;
-	pointer-events: all;
-	width: 100%;
-	margin: auto;
-}
-
-
-.filter-option button {
-	background-color: var(--clr-accent-dark);
-	color: var(--clr-accent-light);
-	padding: 0.25rem 0 0.15rem 0rem;
-	border-bottom: 1px solid black;
-}
-
-.filter-option button:hover,
-.filter-option button:focus,
-.filter-option-btn.open:hover,
-.filter-option-btn.open:focus {
-	cursor: pointer;
-	background-color: var(--clr-accent-light);
-	color: var(--clr-accent-dark);
-}
 
 .found-book-container {
 	display: flex;
