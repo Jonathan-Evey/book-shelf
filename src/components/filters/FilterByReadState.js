@@ -1,98 +1,54 @@
 import { readStatusKeys } from "../../filterKeyObjs";
+import FilterSubOptionBtn from "./FilterSubOptionBtn";
 
 const FilterByReadState = (props) => {
 	return (
-		<fieldset className="filter-option-fieldset">
-			<legend className="filter-option-legend">Read Status</legend>
-			{!props.isReadStatusDropdownOpen ? (
-				<ol
-					className="filter-option-dropdown"
-					onMouseLeave={() => {
-						props.closeReadStatusDropdown();
-					}}
-				>
-					<button
-						className={`filter-option-btn ${
-							props.isReadStatusDropdownOpen ? "open" : "closed"
-						} ${
-							props.readStatusFilter !== readStatusKeys.all
-								? "active"
-								: ""
-						}`}
-						onClick={props.openReadStatusDropdown}
-					>
-						{props.readStatusFilter}
-						<span>^</span>
-					</button>
-				</ol>
+		<>
+			{props.readStatusFilter !== readStatusKeys.all ? (
+				<FilterSubOptionBtn
+					clickEventProp={props.updateReadStatusFilter}
+					clickEventDataProp={readStatusKeys.all}
+					textProp={readStatusKeys.all}
+					filterNumberProp={false}
+				/>
 			) : null}
-			{props.isReadStatusDropdownOpen ? (
-				<ol
-					className="filter-option-dropdown"
-					onMouseLeave={() => {
-						props.closeReadStatusDropdown();
-					}}
-				>
-					<button
-						className={`filter-option-btn ${
-							props.isReadStatusDropdownOpen ? "open" : "closed"
-						}`}
-						onClick={props.openReadStatusDropdown}
-					>
-						{props.readStatusFilter}
-						<span>^</span>
-					</button>
-					{props.readStatusFilter !== readStatusKeys.all ? (
-						<li
-							className="filter-option"
-							onClick={props.updateReadStatusFilter}
-						>
-							<button>All</button>
-						</li>
-					) : null}
-					{props.readStatusFilter !== readStatusKeys.unread ? (
-						<li
-							className="filter-option"
-							onClick={props.updateReadStatusFilter}
-						>
-							<button>Unread</button>
-						</li>
-					) : null}
-					{props.readStatusFilter !== readStatusKeys.reading &&
-					props.readStatusFilter !== readStatusKeys.read ? (
-						<li
-							className="filter-option"
-							onClick={props.updateReadStatusFilter}
-						>
-							<button>Reading</button>
-						</li>
-					) : null}
-					{props.readStatusFilter !== readStatusKeys.reading &&
-					props.readStatusFilter === readStatusKeys.read ? (
-						<li
-							className="filter-option"
-							onClick={props.updateReadStatusFilter}
-							onBlur={() => {
-								props.openReadStatusDropdown();
-							}}
-						>
-							<button>Reading</button>
-						</li>
-					) : null}
-					{props.readStatusFilter !== readStatusKeys.read ? (
-						<li
-							className="filter-option"
-							onClick={props.updateReadStatusFilter}
-							onBlur={() => {
-								props.openReadStatusDropdown();
-							}}
-						>
-							<button>Read</button>
-						</li>
-					) : null}
-				</ol>
+			{props.readStatusFilter !== readStatusKeys.unread ? (
+				<FilterSubOptionBtn
+					clickEventProp={props.updateReadStatusFilter}
+					clickEventDataProp={readStatusKeys.unread}
+					textProp={readStatusKeys.unread}
+					filterNumberProp={false}
+				/>
 			) : null}
-		</fieldset>
+			{props.readStatusFilter !== readStatusKeys.reading &&
+			props.readStatusFilter === readStatusKeys.read ? (
+				<FilterSubOptionBtn
+					clickEventProp={props.updateReadStatusFilter}
+					clickEventDataProp={readStatusKeys.reading}
+					onBlurProp={props.toggleReadStatusDropdown}
+					textProp={readStatusKeys.reading}
+					filterNumberProp={false}
+				/>
+			) : null}
+			{props.readStatusFilter !== readStatusKeys.reading &&
+			props.readStatusFilter !== readStatusKeys.read ? (
+				<FilterSubOptionBtn
+					clickEventProp={props.updateReadStatusFilter}
+					clickEventDataProp={readStatusKeys.reading}
+					textProp={readStatusKeys.reading}
+					filterNumberProp={false}
+				/>
+			) : null}
+			{props.readStatusFilter !== readStatusKeys.read ? (
+				<FilterSubOptionBtn
+					clickEventProp={props.updateReadStatusFilter}
+					clickEventDataProp={readStatusKeys.read}
+					onBlurProp={props.toggleReadStatusDropdown}
+					textProp={readStatusKeys.read}
+					filterNumberProp={false}
+				/>
+			) : null}
+		</>
 	);
 };
 

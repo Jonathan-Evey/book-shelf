@@ -1,116 +1,80 @@
 import { ratingKeys } from "../../filterKeyObjs";
+import FilterSubOptionBtn from "./FilterSubOptionBtn";
 
 const FilterByRating = (props) => {
 	return (
-		<fieldset className="filter-option-fieldset">
-			<legend className="filter-option-legend">Rating</legend>
-			{!props.isRatingFilterDropdownOpen ? (
-				<ol className="filter-option-dropdown">
-					<button
-						className={`filter-option-btn ${
-							props.isRatingFilterDropdownOpen ? "open" : "closed"
-						} ${
-							props.currentRatingSelected !== ratingKeys.all
-								? "active"
-								: ""
-						}`}
-						onClick={props.openRatingFilterDropdown}
-					>
-						{props.currentRatingSelected}
-						<span>^</span>
-					</button>
-				</ol>
+		<>
+			{props.currentRatingSelected !== ratingKeys.all ? (
+				<FilterSubOptionBtn
+					clickEventProp={props.updateRatingFilter}
+					clickEventDataProp={ratingKeys.all}
+					filterNumberProp={ratingKeys.all}
+					textProp={ratingKeys.all}
+				/>
 			) : null}
-
-			{props.isRatingFilterDropdownOpen ? (
-				<ol
-					className="filter-option-dropdown"
-					onMouseLeave={() => {
-						props.closeRatingFilterDropdown();
-					}}
-				>
-					<button
-						className={`filter-option-btn ${
-							props.isRatingFilterDropdownOpen ? "open" : "closed"
-						}`}
-						onClick={props.openRatingFilterDropdown}
-					>
-						{props.currentRatingSelected}
-						<span>^</span>
-					</button>
-					{props.currentRatingSelected !== ratingKeys.all ? (
-						<li className="filter-option">
-							<button onClick={props.updateRatingFilter} id="All">
-								All
-							</button>
-						</li>
-					) : null}
-					{props.currentRatingSelected !== ratingKeys.zeroToOne ? (
-						<li className="filter-option">
-							<button onClick={props.updateRatingFilter} id="0">
-								0 - 1
-							</button>
-						</li>
-					) : null}
-					{props.currentRatingSelected !== ratingKeys.oneToTwo ? (
-						<li className="filter-option">
-							<button onClick={props.updateRatingFilter} id="1">
-								1 - 2
-							</button>
-						</li>
-					) : null}
-					{props.currentRatingSelected !== ratingKeys.twoToThree ? (
-						<li className="filter-option">
-							<button onClick={props.updateRatingFilter} id="2">
-								2 - 3
-							</button>
-						</li>
-					) : null}
-					{props.currentRatingSelected !== ratingKeys.threeToFour ? (
-						<li className="filter-option">
-							<button onClick={props.updateRatingFilter} id="3">
-								3 - 4
-							</button>
-						</li>
-					) : null}
-					{props.currentRatingSelected !== ratingKeys.fourToFive &&
-					props.currentRatingSelected === ratingKeys.five ? (
-						<li className="filter-option">
-							<button
-								id="4"
-								onClick={props.updateRatingFilter}
-								onBlur={() => {
-									props.closeRatingFilterDropdown();
-								}}
-							>
-								4 - 5
-							</button>
-						</li>
-					) : null}
-					{props.currentRatingSelected !== ratingKeys.fourToFive &&
-					props.currentRatingSelected !== ratingKeys.five ? (
-						<li className="filter-option">
-							<button onClick={props.updateRatingFilter} id="4">
-								4 - 5
-							</button>
-						</li>
-					) : null}
-					{props.currentRatingSelected !== ratingKeys.five ? (
-						<li className="filter-option">
-							<button
-								id="5"
-								onClick={props.updateRatingFilter}
-								onBlur={() => {
-									props.closeRatingFilterDropdown();
-								}}
-							>
-								Rated 5
-							</button>
-						</li>
-					) : null}
-				</ol>
+			{props.currentRatingSelected !== ratingKeys.zeroToOne ? (
+				<FilterSubOptionBtn
+					clickEventProp={props.updateRatingFilter}
+					clickEventDataProp={ratingKeys.zeroToOne}
+					filterNumberProp={"0"}
+					textProp={ratingKeys.zeroToOne}
+				/>
 			) : null}
-		</fieldset>
+			{props.currentRatingSelected !== ratingKeys.oneToTwo ? (
+				<FilterSubOptionBtn
+					clickEventProp={props.updateRatingFilter}
+					clickEventDataProp={ratingKeys.oneToTwo}
+					filterNumberProp={"1"}
+					textProp={ratingKeys.oneToTwo}
+				/>
+			) : null}
+			{props.currentRatingSelected !== ratingKeys.twoToThree ? (
+				<FilterSubOptionBtn
+					clickEventProp={props.updateRatingFilter}
+					clickEventDataProp={ratingKeys.twoToThree}
+					filterNumberProp={"2"}
+					textProp={ratingKeys.twoToThree}
+				/>
+			) : null}
+			{props.currentRatingSelected !== ratingKeys.threeToFour ? (
+				<FilterSubOptionBtn
+					clickEventProp={props.updateRatingFilter}
+					clickEventDataProp={ratingKeys.threeToFour}
+					filterNumberProp={"3"}
+					textProp={ratingKeys.threeToFour}
+				/>
+			) : null}
+			{props.currentRatingSelected !== ratingKeys.fourToFive &&
+			props.currentRatingSelected === ratingKeys.five ? (
+				<FilterSubOptionBtn
+					clickEventProp={props.updateRatingFilter}
+					clickEventDataProp={ratingKeys.fourToFive}
+					filterNumberProp={"4"}
+					textProp={ratingKeys.fourToFive}
+					onBlurProp={props.closeRatingFilterDropdown}
+				/>
+			) : null}
+			{props.currentRatingSelected !== ratingKeys.fourToFive &&
+			props.currentRatingSelected !== ratingKeys.five ? (
+				<FilterSubOptionBtn
+					clickEventProp={props.updateRatingFilter}
+					clickEventDataProp={ratingKeys.fourToFive}
+					filterNumberProp={"4"}
+					textProp={ratingKeys.fourToFive}
+				/>
+			) : null}
+			{props.currentRatingSelected !== ratingKeys.five ? (
+				<FilterSubOptionBtn
+					clickEventProp={props.updateRatingFilter}
+					clickEventDataProp={ratingKeys.five}
+					filterNumberProp={"5"}
+					textProp={ratingKeys.five}
+					onBlurProp={props.closeRatingFilterDropdown}
+					classProps={"last-option"}
+					liClassProps={"last-option"}
+				/>
+			) : null}
+		</>
 	);
 };
 

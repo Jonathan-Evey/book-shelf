@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { readStatusKeys, ratingKeys } from "../../filterKeyObjs";
+import FilterOptionBtn from "./FilterOptionBtn";
 import FilterByReadState from "./FilterByReadState";
 import FilterByRating from "./FilterByRating";
 const FilterShelfMenu = (props) => {
@@ -7,11 +9,9 @@ const FilterShelfMenu = (props) => {
 		useState(false);
 	const [isRatingFilterDropdownOpen, setIsRatingFilterDropdownOpen] =
 		useState(false);
-	////---used to display the rating filter text on the menu
-	const [currentRatingSelected, setCurrentRatingSelected] = useState("All");
-	////---filter shelf functions
-	/////---by read, reading or unread
-	const openReadStatusDropdown = () => {
+
+	////---filter by read, reading or unread
+	const toggleReadStatusDropdown = () => {
 		if (isReadStatusDropdownOpen) {
 			setIsReadStatusDropdownOpen(false);
 		} else {
@@ -24,19 +24,19 @@ const FilterShelfMenu = (props) => {
 		setIsReadStatusDropdownOpen(false);
 	};
 
-	function updateReadStatusFilter(e) {
-		if (e.target.textContent === "All") {
+	const updateReadStatusFilter = (filterSelectedData) => {
+		if (filterSelectedData === readStatusKeys.all) {
 			props.setIsReadStatusFilter(false);
-			props.setReadStatusFilter("All");
-			openReadStatusDropdown();
+			props.setReadStatusFilter(readStatusKeys.all);
+			FilterOptionBtn();
 		} else {
 			props.setIsReadStatusFilter(true);
-			props.setReadStatusFilter(e.target.textContent);
-			openReadStatusDropdown();
+			props.setReadStatusFilter(filterSelectedData);
+			FilterOptionBtn();
 		}
-	}
-	/////---by book rating
-	const openRatingFilterDropdown = () => {
+	};
+	/////---filter by book rating
+	const toggleRatingFilterDropdown = () => {
 		if (isRatingFilterDropdownOpen) {
 			setIsRatingFilterDropdownOpen(false);
 		} else {
@@ -48,34 +48,80 @@ const FilterShelfMenu = (props) => {
 	const closeRatingFilterDropdown = () => {
 		setIsRatingFilterDropdownOpen();
 	};
-	function updateRatingFilter(e) {
-		setCurrentRatingSelected(e.target.textContent);
-		if (e.target.textContent === "All") {
+	const updateRatingFilter = (filterSelectedData, filterNumber) => {
+		props.setCurrentRatingSelected(filterSelectedData);
+		if (filterNumber === ratingKeys.all) {
 			props.setIsRatingFilter(false);
-			props.setBookRatingFilter("All");
-			openRatingFilterDropdown();
+			props.setBookRatingFilter(ratingKeys.all);
+			toggleRatingFilterDropdown();
 		} else {
 			props.setIsRatingFilter(true);
-			props.setBookRatingFilter(e.target.id);
-			openRatingFilterDropdown();
+			props.setBookRatingFilter(filterNumber);
+			toggleRatingFilterDropdown();
 		}
-	}
+	};
 	return (
 		<>
-			<FilterByReadState
-				openReadStatusDropdown={openReadStatusDropdown}
-				closeReadStatusDropdown={closeReadStatusDropdown}
-				isReadStatusDropdownOpen={isReadStatusDropdownOpen}
-				updateReadStatusFilter={updateReadStatusFilter}
-				readStatusFilter={props.readStatusFilter}
-			/>
-			<FilterByRating
-				updateRatingFilter={updateRatingFilter}
-				isRatingFilterDropdownOpen={isRatingFilterDropdownOpen}
-				openRatingFilterDropdown={openRatingFilterDropdown}
-				closeRatingFilterDropdown={closeRatingFilterDropdown}
-				currentRatingSelected={currentRatingSelected}
-			/>
+			<ul
+				className="card-sort-option"
+				onMouseLeave={() => {
+					closeReadStatusDropdown();
+				}}
+			>
+				<FilterOptionBtn
+					toggleDropdownProp={toggleReadStatusDropdown}
+					isOpen={isReadStatusDropdownOpen}
+					classProps={`${
+						props.readStatusFilter !== readStatusKeys.all
+							? "active"
+							: ""
+					} top-shadow-light`}
+					textProp={
+						props.readStatusFilter === readStatusKeys.all
+							? "Read Status"
+							: `Status - ${props.readStatusFilter}`
+					}
+				/>
+				{isReadStatusDropdownOpen ? (
+					<FilterByReadState
+						toggleReadStatusDropdown={toggleReadStatusDropdown}
+						closeReadStatusDropdown={closeReadStatusDropdown}
+						isReadStatusDropdownOpen={isReadStatusDropdownOpen}
+						updateReadStatusFilter={updateReadStatusFilter}
+						readStatusFilter={props.readStatusFilter}
+					/>
+				) : null}
+			</ul>
+			<ul
+				className="card-sort-option last-option"
+				onMouseLeave={() => {
+					closeRatingFilterDropdown();
+				}}
+			>
+				<FilterOptionBtn
+					toggleDropdownProp={toggleRatingFilterDropdown}
+					isOpen={isRatingFilterDropdownOpen}
+					classProps={`${
+						props.bookRatingFilter !== ratingKeys.all
+							? "active"
+							: ""
+					} last-option top-shadow-light`}
+					textProp={
+						props.bookRatingFilter === ratingKeys.all
+							? "Book Rating"
+							: `Rated ${props.currentRatingSelected}`
+					}
+				/>
+				{isRatingFilterDropdownOpen ? (
+					<FilterByRating
+						updateRatingFilter={updateRatingFilter}
+						isRatingFilterDropdownOpen={isRatingFilterDropdownOpen}
+						openRatingFilterDropdown={toggleRatingFilterDropdown}
+						closeRatingFilterDropdown={closeRatingFilterDropdown}
+						currentRatingSelected={props.currentRatingSelected}
+					/>
+				) : null}
+			</ul>
 		</>
 	);
 };
