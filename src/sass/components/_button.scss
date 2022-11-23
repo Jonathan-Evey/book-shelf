@@ -163,7 +163,14 @@ button span {
 		background-color: var(--clr-main-800);
 		z-index: 3;
 		&.last-toggle {
-			padding: 1rem;
+			padding-block: 0.6rem;
+			border-bottom: solid 1px var(--clr-black);
+			&.open {
+				padding-block-end: 1rem;
+				border-bottom: none;
+				border-bottom-left-radius: 0;
+				border-bottom-right-radius: 0;
+			}
 		}
 
 		&:not(.last-toggle) {
@@ -187,6 +194,11 @@ button span {
 			padding-bottom: 1rem;
 			background-color: var(--clr-main-680);
 			border-color: var(--clr-main-900);
+			&.last-option:not(.open) {
+				border-radius: 10px;
+				padding-block: 0.60rem;
+				border-bottom: solid 1px var(--clr-black);
+			}
 			&.active {
 				background-color: var(--clr-main-900);
 				color: var(--clr-white);

@@ -273,7 +273,7 @@ const SortShelfMenu = (props) => {
 								clickEventDataProp={
 									ratingSortOptionKeys.removeSort
 								}
-								textProp={ratingSortOptionKeys.removeSort}
+								textProp={"Remove"}
 							/>
 						) : null}
 						{props.currentRatingSortDisplayText !==

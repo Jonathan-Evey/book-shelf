@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { readStatusKeys, ratingKeys } from "../filterKeyObjs";
 import MenuToggleBtn from "../utility/MenuToggleBtn";
 import FindBookMenu from "./findBooks/FindBookMenu";
 import SearchShelfMenu from "./SearchShelfMenu";
@@ -10,6 +11,7 @@ const ShelfControlsAside = (props) => {
 	const [isSearchMenuOpen, setIsSearchMenuOpen] = useState(false);
 	const [isSortMenuOpen, setIsSortMenuOpen] = useState(false);
 	const [isSortActive, setIsSortActive] = useState(false);
+
 	const [currentTitleSortDisplayText, setCurrentTitleSortDisplayText] =
 		useState("Title");
 	const [currentAuthorSortDisplayText, setCurrentAuthorSortDisplayText] =
@@ -17,6 +19,7 @@ const ShelfControlsAside = (props) => {
 	const [currentRatingSortDisplayText, setCurrentRatingSortDisplayText] =
 		useState("Rating");
 	const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
+	const [currentRatingSelected, setCurrentRatingSelected] = useState("All");
 
 	const closeNonCurrentMenu = (textProp) => {
 		if (textProp === "Add Book") {
@@ -74,26 +77,32 @@ const ShelfControlsAside = (props) => {
 					</ul>
 				</li>
 				<li className="card-control-menu">
-					<MenuToggleBtn
-						classProps={"top-shadow"}
-						textProp={"Search Shelf"}
-						setToggleProp={setIsSearchMenuOpen}
-						toggleStateProp={isSearchMenuOpen}
-						closeNonCurrentMenu={closeNonCurrentMenu}
-					/>
-					{isSearchMenuOpen ? (
-						<SearchShelfMenu
-							////---search shelf
-							setSearchTitleFilter={props.setSearchTitleFilter}
-							setIsSearchTitleFilter={
-								props.setIsSearchTitleFilter
-							}
-							setSearchAuthorFilter={props.setSearchAuthorFilter}
-							setIsSearchAuthorFilter={
-								props.setIsSearchAuthorFilter
-							}
+					<ul>
+						<MenuToggleBtn
+							classProps={"top-shadow"}
+							textProp={"Search Shelf"}
+							setToggleProp={setIsSearchMenuOpen}
+							toggleStateProp={isSearchMenuOpen}
+							closeNonCurrentMenu={closeNonCurrentMenu}
 						/>
-					) : null}
+						{isSearchMenuOpen ? (
+							<SearchShelfMenu
+								////---search shelf
+								setSearchTitleFilter={
+									props.setSearchTitleFilter
+								}
+								setIsSearchTitleFilter={
+									props.setIsSearchTitleFilter
+								}
+								setSearchAuthorFilter={
+									props.setSearchAuthorFilter
+								}
+								setIsSearchAuthorFilter={
+									props.setIsSearchAuthorFilter
+								}
+							/>
+						) : null}
+					</ul>
 				</li>
 				<li className="card-control-menu">
 					<ul>
@@ -142,7 +151,15 @@ const ShelfControlsAside = (props) => {
 				<li className="card-control-menu">
 					<ul>
 						<MenuToggleBtn
-							classProps={"last-toggle top-shadow"}
+							classProps={`${
+								(props.readStatusFilter !==
+									readStatusKeys.all ||
+									props.bookRatingFilter !==
+										ratingKeys.all) &&
+								!isFilterMenuOpen
+									? "active "
+									: ""
+							}last-toggle top-shadow`}
 							textProp={"Filter Shelf"}
 							setToggleProp={setIsFilterMenuOpen}
 							toggleStateProp={isFilterMenuOpen}
@@ -160,6 +177,10 @@ const ShelfControlsAside = (props) => {
 								setBookRatingFilter={props.setBookRatingFilter}
 								isRatingFilter={props.isRatingFilter}
 								setIsRatingFilter={props.setIsRatingFilter}
+								currentRatingSelected={currentRatingSelected}
+								setCurrentRatingSelected={
+									setCurrentRatingSelected
+								}
 							/>
 						) : null}
 					</ul>

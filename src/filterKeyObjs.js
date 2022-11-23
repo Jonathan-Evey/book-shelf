@@ -12,7 +12,7 @@ const ratingKeys = {
 	twoToThree: "2 - 3",
 	threeToFour: "3 - 4",
 	fourToFive: "4 - 5",
-	five: "Rated 5",
+	five: "5",
 };
 
 export { readStatusKeys, ratingKeys };
