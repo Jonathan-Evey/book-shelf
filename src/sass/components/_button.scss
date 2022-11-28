@@ -179,8 +179,14 @@ button span {
 			margin-block-end: -8px;
 		}
 		&.active {
-			background-color: var(--clr-main-900);
+			outline: 1px solid var(--clr-accent-dark);
+			border-color: var(--clr-accent-dark);
+			background-color: var(--clr-main-850);
 				color: var(--clr-white);
+			&:hover {
+				outline: none;
+				border-color: var(--clr-black);
+			}
 		}
 
 		&.open span {
@@ -193,13 +199,16 @@ button span {
 			background-color: var(--clr-main-680);
 			
 
-			&.last-option:not(.open) {
-				border-radius: 10px;
-				padding-block: 0.60rem;
-				border-bottom: solid 1px var(--clr-black);
-			}
+			// &.last-option:not(.open) {
+			// 	border-radius: 10px;
+			// 	padding-block: 0.60rem;
+			// 	border-bottom: solid 1px var(--clr-black);
+			// }
+			
 			&.active {
-				background-color: var(--clr-main-900);
+				outline: none;
+				border-color: var(--clr-black);
+				background-color: var(--clr-main-850);
 				color: var(--clr-white);
 				&:hover {
 					background-color: var(--clr-accent-dark);

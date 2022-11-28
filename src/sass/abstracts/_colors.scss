@@ -4,10 +4,14 @@ $colors: (
     normal: gray,
     dark: black,
   ),
-  primary: (
-    light: lightblue,
-    normal: blue,
-    dark: darkblue,
+  main: (
+    300: #e0fbfc,
+    680: #ABCDE0,
+    690: #A1C7DD,
+	700: #98c1d9,
+    800: #8bb9d4,
+	850: #476995,
+    900: #3d5a80,
   ),
 );
 .bg-color-680 {
@@ -23,6 +27,7 @@ $colors: (
 	--clr-main-690: #A1C7DD;
 	--clr-main-700: #98c1d9;
 	--clr-main-800: #8bb9d4;
+	--clr-main-850: #476995;
 	--clr-main-900: #3d5a80;
 
 	--clr-rgb-main-300: 224, 251, 252;

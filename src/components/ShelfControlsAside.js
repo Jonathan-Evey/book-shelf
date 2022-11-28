@@ -113,7 +113,6 @@ const ShelfControlsAside = (props) => {
 							textProp={"Sort Shelf"}
 							setToggleProp={setIsSortMenuOpen}
 							toggleStateProp={isSortMenuOpen}
-							closeNonCurrentMenu={closeNonCurrentMenu}
 						/>
 						<SortShelfMenu
 							isSortMenuOpen={isSortMenuOpen}
@@ -158,30 +157,25 @@ const ShelfControlsAside = (props) => {
 								!isFilterMenuOpen
 									? "active "
 									: ""
-							}last-toggle box-shadow`}
+							}z-index-10 box-shadow`}
 							textProp={"Filter Shelf"}
 							setToggleProp={setIsFilterMenuOpen}
 							toggleStateProp={isFilterMenuOpen}
-							closeNonCurrentMenu={closeNonCurrentMenu}
 						/>
-						{isFilterMenuOpen ? (
-							<FilterShelfMenu
-								readStatusFilter={props.readStatusFilter}
-								setReadStatusFilter={props.setReadStatusFilter}
-								isReadStatusFilter={props.isReadStatusFilter}
-								setIsReadStatusFilter={
-									props.setIsReadStatusFilter
-								}
-								bookRatingFilter={props.bookRatingFilter}
-								setBookRatingFilter={props.setBookRatingFilter}
-								isRatingFilter={props.isRatingFilter}
-								setIsRatingFilter={props.setIsRatingFilter}
-								currentRatingSelected={currentRatingSelected}
-								setCurrentRatingSelected={
-									setCurrentRatingSelected
-								}
-							/>
-						) : null}
+
+						<FilterShelfMenu
+							isFilterMenuOpen={isFilterMenuOpen}
+							readStatusFilter={props.readStatusFilter}
+							setReadStatusFilter={props.setReadStatusFilter}
+							isReadStatusFilter={props.isReadStatusFilter}
+							setIsReadStatusFilter={props.setIsReadStatusFilter}
+							bookRatingFilter={props.bookRatingFilter}
+							setBookRatingFilter={props.setBookRatingFilter}
+							isRatingFilter={props.isRatingFilter}
+							setIsRatingFilter={props.setIsRatingFilter}
+							currentRatingSelected={currentRatingSelected}
+							setCurrentRatingSelected={setCurrentRatingSelected}
+						/>
 					</ul>
 				</li>
 			</ul>

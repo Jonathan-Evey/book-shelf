@@ -118,7 +118,12 @@ const SortShelfMenu = (props) => {
 				unmountOnExit
 			>
 				<ul
-					className="card-sort-option z-index-9"
+					className={`card-sort-option z-index-9 ${
+						props.currentAuthorSortDisplayText !==
+						authorSortOptionKeys.removeSort
+							? " bg-main-850"
+							: ""
+					}`}
 					onMouseLeave={() => {
 						closeTitleSortDropdown();
 					}}
@@ -254,7 +259,12 @@ const SortShelfMenu = (props) => {
 				appear
 			>
 				<ul
-					className="card-sort-option z-index-6"
+					className={`card-sort-option z-index-6${
+						props.currentRatingSortDisplayText !==
+						ratingSortOptionKeys.removeSort
+							? " bg-main-850"
+							: ""
+					}`}
 					onMouseLeave={() => {
 						closeAuthorSortDropdown();
 					}}
