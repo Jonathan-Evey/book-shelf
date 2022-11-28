@@ -50,7 +50,7 @@ const NoteContainer = (props) => {
 		<div className="notes-container">
 			<div className="notes-header">
 				<div className="notes-header-left">
-					<h3>My Notes</h3>
+					<h3 className="ff-main-accent">My Notes</h3>
 				</div>
 				<div className="notes-header-center">
 					<h4>{props.bookToUpdate.title}</h4>
