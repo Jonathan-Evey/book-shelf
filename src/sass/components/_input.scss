@@ -10,13 +10,12 @@
     }
     &-group {
         position: relative;
-        margin-bottom: -4px;
+        margin-bottom: -8px;
         background-color: var(--clr-main-680);
-        border-top: 1px solid var(--clr-main-900);
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-        padding-block-start: 0.25rem;
-        z-index: 3;
+        border-bottom: 1px solid var(--clr-main-900);
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        padding-block-start: 1.25rem;
         & .title {
             display: inline-block;
             margin: 0.25rem 0 .5rem 0;

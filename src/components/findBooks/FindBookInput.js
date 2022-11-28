@@ -6,7 +6,11 @@ const FindBookInput = (props) => {
 	};
 
 	return (
-		<li className="input-group | top-shadow-light padding-block-end-16">
+		<li
+			className={`input-group | padding-block-end-8 box-shadow-light ${
+				props.liClassProp ? props.liClassProp : ""
+			}`}
+		>
 			<div className="input-btn-group | padding-inline-8">
 				<label className="title" htmlFor={props.inputIdProp}>
 					{props.labelTextProp}

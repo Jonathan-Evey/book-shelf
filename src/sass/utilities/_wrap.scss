@@ -1,0 +1,6 @@
+.wrap {
+    &-overflow-hidden {
+        overflow: clip;
+        overflow-clip-margin: .75rem; 
+    }
+}

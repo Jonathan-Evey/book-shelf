@@ -53,14 +53,15 @@ const ShelfControlsAside = (props) => {
 					<ul>
 						<MenuToggleBtn
 							textProp={"Add Book"}
-							classProps={"box-shadow"}
+							classProps={"box-shadow z-index-10"}
 							setToggleProp={setIsAddBookMenuOpen}
 							toggleStateProp={isAddBookMenuOpen}
 							closeNonCurrentMenu={closeNonCurrentMenu}
 						/>
-						{isAddBookMenuOpen ? (
+						<div className="wrap-overflow-hidden">
 							<FindBookMenu
 								////---find new book
+								isAddBookMenuOpen={isAddBookMenuOpen}
 								searchTitleKeyWord={props.searchTitleKeyWord}
 								searchAuthorKeyWord={props.searchAuthorKeyWord}
 								updateTitleKeyWord={props.updateTitleKeyWord}
@@ -73,21 +74,23 @@ const ShelfControlsAside = (props) => {
 									props.updateCurrentSearchPageNumber
 								}
 							/>
-						) : null}
+						</div>
 					</ul>
 				</li>
 				<li className="card-control-menu">
 					<ul>
 						<MenuToggleBtn
-							classProps={"box-shadow"}
+							classProps={"box-shadow z-index-10"}
 							textProp={"Search Shelf"}
 							setToggleProp={setIsSearchMenuOpen}
 							toggleStateProp={isSearchMenuOpen}
 							closeNonCurrentMenu={closeNonCurrentMenu}
 						/>
-						{isSearchMenuOpen ? (
+
+						<div className="wrap-overflow-hidden">
 							<SearchShelfMenu
 								////---search shelf
+								isSearchMenuOpen={isSearchMenuOpen}
 								setSearchTitleFilter={
 									props.setSearchTitleFilter
 								}
@@ -101,7 +104,7 @@ const ShelfControlsAside = (props) => {
 									props.setIsSearchAuthorFilter
 								}
 							/>
-						) : null}
+						</div>
 					</ul>
 				</li>
 				<li className="card-control-menu">
@@ -114,36 +117,38 @@ const ShelfControlsAside = (props) => {
 							setToggleProp={setIsSortMenuOpen}
 							toggleStateProp={isSortMenuOpen}
 						/>
-						<SortShelfMenu
-							isSortMenuOpen={isSortMenuOpen}
-							savedBooks={props.savedBooks}
-							////---sort shelf
-							setIsSortActive={setIsSortActive}
-							currentTitleSortDisplayText={
-								currentTitleSortDisplayText
-							}
-							setCurrentTitleSortDisplayText={
-								setCurrentTitleSortDisplayText
-							}
-							currentAuthorSortDisplayText={
-								currentAuthorSortDisplayText
-							}
-							setCurrentAuthorSortDisplayText={
-								setCurrentAuthorSortDisplayText
-							}
-							currentRatingSortDisplayText={
-								currentRatingSortDisplayText
-							}
-							setCurrentRatingSortDisplayText={
-								setCurrentRatingSortDisplayText
-							}
-							sortBackToDefault={props.sortBackToDefault}
-							sortAlphabetically={props.sortAlphabetically}
-							sortReverseAlphabetically={
-								props.sortReverseAlphabetically
-							}
-							sortByRating={props.sortByRating}
-						/>
+						<div className="wrap-overflow-hidden">
+							<SortShelfMenu
+								isSortMenuOpen={isSortMenuOpen}
+								savedBooks={props.savedBooks}
+								////---sort shelf
+								setIsSortActive={setIsSortActive}
+								currentTitleSortDisplayText={
+									currentTitleSortDisplayText
+								}
+								setCurrentTitleSortDisplayText={
+									setCurrentTitleSortDisplayText
+								}
+								currentAuthorSortDisplayText={
+									currentAuthorSortDisplayText
+								}
+								setCurrentAuthorSortDisplayText={
+									setCurrentAuthorSortDisplayText
+								}
+								currentRatingSortDisplayText={
+									currentRatingSortDisplayText
+								}
+								setCurrentRatingSortDisplayText={
+									setCurrentRatingSortDisplayText
+								}
+								sortBackToDefault={props.sortBackToDefault}
+								sortAlphabetically={props.sortAlphabetically}
+								sortReverseAlphabetically={
+									props.sortReverseAlphabetically
+								}
+								sortByRating={props.sortByRating}
+							/>
+						</div>
 					</ul>
 				</li>
 				<li className="card-control-menu">
@@ -162,20 +167,25 @@ const ShelfControlsAside = (props) => {
 							setToggleProp={setIsFilterMenuOpen}
 							toggleStateProp={isFilterMenuOpen}
 						/>
-
-						<FilterShelfMenu
-							isFilterMenuOpen={isFilterMenuOpen}
-							readStatusFilter={props.readStatusFilter}
-							setReadStatusFilter={props.setReadStatusFilter}
-							isReadStatusFilter={props.isReadStatusFilter}
-							setIsReadStatusFilter={props.setIsReadStatusFilter}
-							bookRatingFilter={props.bookRatingFilter}
-							setBookRatingFilter={props.setBookRatingFilter}
-							isRatingFilter={props.isRatingFilter}
-							setIsRatingFilter={props.setIsRatingFilter}
-							currentRatingSelected={currentRatingSelected}
-							setCurrentRatingSelected={setCurrentRatingSelected}
-						/>
+						<div className="wrap-overflow-hidden">
+							<FilterShelfMenu
+								isFilterMenuOpen={isFilterMenuOpen}
+								readStatusFilter={props.readStatusFilter}
+								setReadStatusFilter={props.setReadStatusFilter}
+								isReadStatusFilter={props.isReadStatusFilter}
+								setIsReadStatusFilter={
+									props.setIsReadStatusFilter
+								}
+								bookRatingFilter={props.bookRatingFilter}
+								setBookRatingFilter={props.setBookRatingFilter}
+								isRatingFilter={props.isRatingFilter}
+								setIsRatingFilter={props.setIsRatingFilter}
+								currentRatingSelected={currentRatingSelected}
+								setCurrentRatingSelected={
+									setCurrentRatingSelected
+								}
+							/>
+						</div>
 					</ul>
 				</li>
 			</ul>

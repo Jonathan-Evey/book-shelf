@@ -1,4 +1,5 @@
 import React from "react";
+import { CSSTransition } from "react-transition-group";
 import FindBookInput from "./FindBookInput";
 
 const FindBookMenu = (props) => {
@@ -22,22 +23,40 @@ const FindBookMenu = (props) => {
 
 	return (
 		<>
-			<FindBookInput
-				labelTextProp={"By Title:"}
-				inputIdProp={"new-book-search-title"}
-				placeholderProp={"Find by title"}
-				onChangeProp={props.updateTitleKeyWord}
-				searchKeyWordProp={props.searchTitleKeyWord}
-				openFindBookModel={openFindBookModel}
-			/>
-			<FindBookInput
-				labelTextProp={"By Author:"}
-				inputIdProp={"new-book-search-author"}
-				placeholderProp={"Find by author"}
-				onChangeProp={props.updateAuthorKeyWord}
-				searchKeyWordProp={props.searchAuthorKeyWord}
-				openFindBookModel={openFindBookModel}
-			/>
+			<CSSTransition
+				in={props.isAddBookMenuOpen}
+				timeout={{ appear: 150, enter: 150, exit: 300 }}
+				classNames="aside-menu-animation"
+				unmountOnExit
+				appear
+			>
+				<FindBookInput
+					labelTextProp={"By Title:"}
+					inputIdProp={"new-book-search-title"}
+					placeholderProp={"Find by title"}
+					onChangeProp={props.updateTitleKeyWord}
+					searchKeyWordProp={props.searchTitleKeyWord}
+					openFindBookModel={openFindBookModel}
+					liClassProp={"z-index-9"}
+				/>
+			</CSSTransition>
+			<CSSTransition
+				in={props.isAddBookMenuOpen}
+				timeout={{ appear: 300, enter: 300, exit: 300 }}
+				classNames="aside-menu-animation"
+				unmountOnExit
+				appear
+			>
+				<FindBookInput
+					labelTextProp={"By Author:"}
+					inputIdProp={"new-book-search-author"}
+					placeholderProp={"Find by author"}
+					onChangeProp={props.updateAuthorKeyWord}
+					searchKeyWordProp={props.searchAuthorKeyWord}
+					openFindBookModel={openFindBookModel}
+					liClassProp={"z-index-8"}
+				/>
+			</CSSTransition>
 		</>
 	);
 };

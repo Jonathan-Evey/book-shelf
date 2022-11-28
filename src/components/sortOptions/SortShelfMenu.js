@@ -139,8 +139,6 @@ const SortShelfMenu = (props) => {
 						} z-index-9`}
 						textProp={props.currentTitleSortDisplayText}
 					/>
-
-					{/* {isTitleSortOpen ? ( */}
 					<>
 						{props.currentTitleSortDisplayText !==
 						titleSortOptionKeys.removeSort ? (
@@ -248,7 +246,6 @@ const SortShelfMenu = (props) => {
 							</CSSTransition>
 						) : null}
 					</>
-					{/* ) : null} */}
 				</ul>
 			</CSSTransition>
 			<CSSTransition
