@@ -243,7 +243,7 @@ const BookCard = ({
 							Review
 						</button>
 					) : (
-						<p className="margin-block-start-8 fs-400">
+						<p className="margin-block-start-8 margin-block-end-4 fs-300">
 							{book.genres.join(" / ")}
 						</p>
 					)}
@@ -266,7 +266,7 @@ const BookCard = ({
 									? "Rating"
 									: `${book.rating} / 5`}
 							</button>
-							<p className="margin-block-start-8 fs-300">
+							<p className="margin-block-start-8 margin-block-end-4 fs-300">
 								{book.genres.join(" / ")}
 							</p>
 						</div>

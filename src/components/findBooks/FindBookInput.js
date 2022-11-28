@@ -8,7 +8,7 @@ const FindBookInput = (props) => {
 	return (
 		<li className="input-group | top-shadow-light padding-block-end-16">
 			<div className="input-btn-group | padding-inline-8">
-				<label className="margin-block-4" htmlFor={props.inputIdProp}>
+				<label className="title" htmlFor={props.inputIdProp}>
 					{props.labelTextProp}
 				</label>
 				<input
