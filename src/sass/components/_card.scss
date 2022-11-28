@@ -39,18 +39,23 @@
         }
     }
     &-control-menu {
+        display: flex;
+        flex-direction: column;
         width: 150px;
-        &:not(:last-child) {
-            margin-block-end: -8px;
-        }
+        margin-block-end: 2rem;
+        border-radius: 10px;
+        isolation: isolate;
+        z-index: 10;
+        
         & .input-btn-group {
             display: flex;
             flex-direction: column;
         }
     }
     &-sort-option {
-        border-top-right-radius: 10px;
-        border-top-left-radius: 10px;
+        position: relative;
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
         background-color: var(--clr-main-680);
         margin-block-end: -8px;
         &.last-option {

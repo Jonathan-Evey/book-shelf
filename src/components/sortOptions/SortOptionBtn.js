@@ -16,7 +16,7 @@ const SortOptionBtn = (props) => {
 					// props.closeNoneCurrentMenu(props.textProp);
 					e.target.blur();
 				}}
-				className={`btn aside-toggle sort-option${
+				className={`btn aside-toggle sort-option box-shadow-light${
 					props.isOpen ? " open " : " "
 				}${props.classProps ? props.classProps : ""}`}
 			>

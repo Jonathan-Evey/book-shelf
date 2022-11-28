@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { CSSTransition } from "react-transition-group";
 import {
 	titleSortOptionKeys,
 	authorSortOptionKeys,
@@ -108,213 +109,404 @@ const SortShelfMenu = (props) => {
 		}
 	};
 	return (
-		<>
-			<ul
-				className="card-sort-option"
-				onMouseLeave={() => {
-					closeTitleSortDropdown();
-				}}
+		<li>
+			<CSSTransition
+				in={props.isSortMenuOpen}
+				timeout={{ appear: 150, enter: 150, exit: 300 }}
+				classNames="aside-menu-animation"
+				appear
+				unmountOnExit
 			>
-				<SortOptionBtn
-					toggleDropdownProp={toggleTitleSortDropdown}
-					isOpen={isTitleSortOpen}
-					classProps={`${
-						props.currentTitleSortDisplayText !==
-						titleSortOptionKeys.removeSort
-							? "active"
-							: ""
-					} top-shadow-light`}
-					textProp={props.currentTitleSortDisplayText}
-				/>
+				<ul
+					className="card-sort-option z-index-9"
+					onMouseLeave={() => {
+						closeTitleSortDropdown();
+					}}
+				>
+					<SortOptionBtn
+						toggleDropdownProp={toggleTitleSortDropdown}
+						isOpen={isTitleSortOpen}
+						classProps={`${
+							props.currentTitleSortDisplayText !==
+							titleSortOptionKeys.removeSort
+								? "active"
+								: ""
+						} z-index-9`}
+						textProp={props.currentTitleSortDisplayText}
+					/>
 
-				{isTitleSortOpen ? (
+					{/* {isTitleSortOpen ? ( */}
 					<>
 						{props.currentTitleSortDisplayText !==
 						titleSortOptionKeys.removeSort ? (
-							<SortSubOptionBtn
-								clickEventProp={updateTitleSortDisplayText}
-								clickEventDataProp={
-									titleSortOptionKeys.removeSort
-								}
-								textProp={"Remove"}
-							/>
+							<CSSTransition
+								in={isTitleSortOpen}
+								timeout={{
+									appear: 150,
+									enter: 150,
+									exit: 300,
+								}}
+								classNames="aside-menu-animation"
+								appear
+								unmountOnExit
+							>
+								<SortSubOptionBtn
+									clickEventProp={updateTitleSortDisplayText}
+									clickEventDataProp={
+										titleSortOptionKeys.removeSort
+									}
+									textProp={"Remove"}
+									liClassProp={"z-index-8 box-shadow-light"}
+								/>
+							</CSSTransition>
 						) : null}
+
 						{props.currentTitleSortDisplayText !==
 							titleSortOptionKeys.alphabetically &&
 						props.currentTitleSortDisplayText !==
 							titleSortOptionKeys.reverseAlphabetically ? (
-							<SortSubOptionBtn
-								clickEventProp={updateTitleSortDisplayText}
-								clickEventDataProp={
-									titleSortOptionKeys.alphabetically
-								}
-								textProp={titleSortOptionKeys.alphabetically}
-							/>
+							<CSSTransition
+								in={isTitleSortOpen}
+								timeout={{
+									appear: 150,
+									enter: 150,
+									exit: 300,
+								}}
+								classNames="aside-menu-animation"
+								appear
+								unmountOnExit
+							>
+								<SortSubOptionBtn
+									clickEventProp={updateTitleSortDisplayText}
+									clickEventDataProp={
+										titleSortOptionKeys.alphabetically
+									}
+									textProp={
+										titleSortOptionKeys.alphabetically
+									}
+									liClassProp={"z-index-8 box-shadow-light"}
+								/>
+							</CSSTransition>
 						) : null}
+
 						{props.currentTitleSortDisplayText !==
 							titleSortOptionKeys.alphabetically &&
 						props.currentTitleSortDisplayText ===
 							titleSortOptionKeys.reverseAlphabetically ? (
-							<SortSubOptionBtn
-								clickEventProp={updateTitleSortDisplayText}
-								clickEventDataProp={
-									titleSortOptionKeys.alphabetically
-								}
-								textProp={titleSortOptionKeys.alphabetically}
-							/>
+							<CSSTransition
+								in={isTitleSortOpen}
+								timeout={{
+									appear: 300,
+									enter: 300,
+									exit: 300,
+								}}
+								classNames="aside-menu-animation"
+								appear
+								unmountOnExit
+							>
+								<SortSubOptionBtn
+									clickEventProp={updateTitleSortDisplayText}
+									clickEventDataProp={
+										titleSortOptionKeys.alphabetically
+									}
+									textProp={
+										titleSortOptionKeys.alphabetically
+									}
+									liClassProp={"z-index-7 box-shadow"}
+								/>
+							</CSSTransition>
 						) : null}
+
 						{props.currentTitleSortDisplayText !==
 						titleSortOptionKeys.reverseAlphabetically ? (
-							<SortSubOptionBtn
-								clickEventProp={updateTitleSortDisplayText}
-								clickEventDataProp={
-									titleSortOptionKeys.reverseAlphabetically
-								}
-								textProp={
-									titleSortOptionKeys.reverseAlphabetically
-								}
-							/>
+							<CSSTransition
+								in={isTitleSortOpen}
+								timeout={{
+									appear: 300,
+									enter: 300,
+									exit: 300,
+								}}
+								classNames="aside-menu-animation"
+								appear
+								unmountOnExit
+							>
+								<SortSubOptionBtn
+									clickEventProp={updateTitleSortDisplayText}
+									clickEventDataProp={
+										titleSortOptionKeys.reverseAlphabetically
+									}
+									textProp={
+										titleSortOptionKeys.reverseAlphabetically
+									}
+									liClassProp={"z-index-7 box-shadow"}
+								/>
+							</CSSTransition>
 						) : null}
 					</>
-				) : null}
-			</ul>
-			<ul
-				className="card-sort-option"
-				onMouseLeave={() => {
-					closeAuthorSortDropdown();
-				}}
+					{/* ) : null} */}
+				</ul>
+			</CSSTransition>
+			<CSSTransition
+				in={props.isSortMenuOpen}
+				timeout={{ appear: 300, enter: 300, exit: 300 }}
+				classNames="aside-menu-animation"
+				unmountOnExit
+				appear
 			>
-				<SortOptionBtn
-					toggleDropdownProp={openAuthorSortDropdown}
-					isOpen={isAuthorSortOpen}
-					classProps={`${
-						props.currentAuthorSortDisplayText !==
-						authorSortOptionKeys.removeSort
-							? "active"
-							: ""
-					} top-shadow-light padding-block-end-32`}
-					textProp={props.currentAuthorSortDisplayText}
-				/>
-				{isAuthorSortOpen ? (
+				<ul
+					className="card-sort-option z-index-6"
+					onMouseLeave={() => {
+						closeAuthorSortDropdown();
+					}}
+				>
+					<SortOptionBtn
+						toggleDropdownProp={openAuthorSortDropdown}
+						isOpen={isAuthorSortOpen}
+						classProps={`${
+							props.currentAuthorSortDisplayText !==
+							authorSortOptionKeys.removeSort
+								? "active"
+								: ""
+						} padding-block-end-32 z-index-6`}
+						textProp={props.currentAuthorSortDisplayText}
+					/>
 					<>
 						{props.currentAuthorSortDisplayText !==
 						authorSortOptionKeys.removeSort ? (
-							<SortSubOptionBtn
-								clickEventProp={updateAuthorSortDisplayText}
-								clickEventDataProp={
-									authorSortOptionKeys.removeSort
-								}
-								textProp={"Remove"}
-							/>
+							<CSSTransition
+								in={isAuthorSortOpen}
+								timeout={{
+									appear: 150,
+									enter: 150,
+									exit: 300,
+								}}
+								classNames="aside-menu-animation"
+								appear
+								unmountOnExit
+							>
+								<SortSubOptionBtn
+									clickEventProp={updateAuthorSortDisplayText}
+									clickEventDataProp={
+										authorSortOptionKeys.removeSort
+									}
+									textProp={"Remove"}
+									liClassProp={"z-index-5 box-shadow-light"}
+								/>
+							</CSSTransition>
 						) : null}
 						{props.currentAuthorSortDisplayText !==
 							authorSortOptionKeys.alphabetically &&
 						props.currentAuthorSortDisplayText !==
 							authorSortOptionKeys.reverseAlphabetically ? (
-							<SortSubOptionBtn
-								clickEventProp={updateAuthorSortDisplayText}
-								clickEventDataProp={
-									authorSortOptionKeys.alphabetically
-								}
-								textProp={authorSortOptionKeys.alphabetically}
-							/>
+							<CSSTransition
+								in={isAuthorSortOpen}
+								timeout={{
+									appear: 150,
+									enter: 150,
+									exit: 300,
+								}}
+								classNames="aside-menu-animation"
+								appear
+								unmountOnExit
+							>
+								<SortSubOptionBtn
+									clickEventProp={updateAuthorSortDisplayText}
+									clickEventDataProp={
+										authorSortOptionKeys.alphabetically
+									}
+									textProp={
+										authorSortOptionKeys.alphabetically
+									}
+									liClassProp={"z-index-5 box-shadow-light"}
+								/>
+							</CSSTransition>
 						) : null}
 						{props.currentAuthorSortDisplayText !==
 							authorSortOptionKeys.alphabetically &&
 						props.currentAuthorSortDisplayText ===
 							authorSortOptionKeys.reverseAlphabetically ? (
-							<SortSubOptionBtn
-								clickEventProp={updateAuthorSortDisplayText}
-								clickEventDataProp={
-									authorSortOptionKeys.alphabetically
-								}
-								textProp={authorSortOptionKeys.alphabetically}
-							/>
+							<CSSTransition
+								in={isAuthorSortOpen}
+								timeout={{
+									appear: 300,
+									enter: 300,
+									exit: 300,
+								}}
+								classNames="aside-menu-animation"
+								appear
+								unmountOnExit
+							>
+								<SortSubOptionBtn
+									clickEventProp={updateAuthorSortDisplayText}
+									clickEventDataProp={
+										authorSortOptionKeys.alphabetically
+									}
+									textProp={
+										authorSortOptionKeys.alphabetically
+									}
+									liClassProp={"z-index-4 box-shadow"}
+								/>
+							</CSSTransition>
 						) : null}
 						{props.currentAuthorSortDisplayText !==
 						authorSortOptionKeys.reverseAlphabetically ? (
-							<SortSubOptionBtn
-								clickEventProp={updateAuthorSortDisplayText}
-								clickEventDataProp={
-									authorSortOptionKeys.reverseAlphabetically
-								}
-								textProp={
-									authorSortOptionKeys.reverseAlphabetically
-								}
-							/>
+							<CSSTransition
+								in={isAuthorSortOpen}
+								timeout={{
+									appear: 300,
+									enter: 300,
+									exit: 300,
+								}}
+								classNames="aside-menu-animation"
+								appear
+								unmountOnExit
+							>
+								<SortSubOptionBtn
+									clickEventProp={updateAuthorSortDisplayText}
+									clickEventDataProp={
+										authorSortOptionKeys.reverseAlphabetically
+									}
+									textProp={
+										authorSortOptionKeys.reverseAlphabetically
+									}
+									liClassProp={"z-index-4 box-shadow"}
+								/>
+							</CSSTransition>
 						) : null}
 					</>
-				) : null}
-			</ul>
-			<ul
-				className="card-sort-option"
-				onMouseLeave={() => {
-					closeRatingSortDropdown();
-				}}
+				</ul>
+			</CSSTransition>
+			<CSSTransition
+				in={props.isSortMenuOpen}
+				timeout={{ appear: 450, enter: 450, exit: 300 }}
+				classNames="aside-menu-animation"
+				unmountOnExit
+				appear
 			>
-				<SortOptionBtn
-					toggleDropdownProp={openRatingSortDropdown}
-					isOpen={isRatingSortOpen}
-					classProps={`${
-						props.currentRatingSortDisplayText !==
-						ratingSortOptionKeys.removeSort
-							? "active"
-							: ""
-					} top-shadow-light padding-block-end-16`}
-					textProp={props.currentRatingSortDisplayText}
-				/>
-
-				{isRatingSortOpen ? (
+				<ul
+					className="card-sort-option z-index-3 bg-clr-900"
+					onMouseLeave={() => {
+						closeRatingSortDropdown();
+					}}
+				>
+					<SortOptionBtn
+						toggleDropdownProp={openRatingSortDropdown}
+						isOpen={isRatingSortOpen}
+						classProps={`${
+							props.currentRatingSortDisplayText !==
+							ratingSortOptionKeys.removeSort
+								? "active"
+								: ""
+						} padding-block-start-16 z-index-3`}
+						textProp={
+							props.currentRatingSortDisplayText ===
+							ratingSortOptionKeys.removeSort
+								? "Rating"
+								: `Ratings - ${props.currentRatingSortDisplayText}`
+						}
+					/>
 					<>
 						{props.currentRatingSortDisplayText !==
 						ratingSortOptionKeys.removeSort ? (
-							<SortSubOptionBtn
-								clickEventProp={updateRatingSortDisplayText}
-								clickEventDataProp={
-									ratingSortOptionKeys.removeSort
-								}
-								textProp={"Remove"}
-							/>
+							<CSSTransition
+								in={isRatingSortOpen}
+								timeout={{
+									appear: 150,
+									enter: 150,
+									exit: 300,
+								}}
+								classNames="aside-menu-animation"
+								appear
+								unmountOnExit
+							>
+								<SortSubOptionBtn
+									clickEventProp={updateRatingSortDisplayText}
+									clickEventDataProp={
+										ratingSortOptionKeys.removeSort
+									}
+									textProp={"Remove"}
+									liClassProp={"z-index-2 box-shadow-light"}
+								/>
+							</CSSTransition>
 						) : null}
 						{props.currentRatingSortDisplayText !==
 							ratingSortOptionKeys.highToLow &&
 						props.currentRatingSortDisplayText !==
 							ratingSortOptionKeys.lowToHigh ? (
-							<SortSubOptionBtn
-								clickEventProp={updateRatingSortDisplayText}
-								clickEventDataProp={
-									ratingSortOptionKeys.highToLow
-								}
-								textProp={ratingSortOptionKeys.highToLow}
-							/>
+							<CSSTransition
+								in={isRatingSortOpen}
+								timeout={{
+									appear: 150,
+									enter: 150,
+									exit: 300,
+								}}
+								classNames="aside-menu-animation"
+								appear
+								unmountOnExit
+							>
+								<SortSubOptionBtn
+									clickEventProp={updateRatingSortDisplayText}
+									clickEventDataProp={
+										ratingSortOptionKeys.highToLow
+									}
+									textProp={ratingSortOptionKeys.highToLow}
+									liClassProp={"z-index-2 box-shadow-light"}
+								/>
+							</CSSTransition>
 						) : null}
 
 						{props.currentRatingSortDisplayText !==
 							ratingSortOptionKeys.highToLow &&
 						props.currentRatingSortDisplayText ===
 							ratingSortOptionKeys.lowToHigh ? (
-							<SortSubOptionBtn
-								clickEventProp={updateRatingSortDisplayText}
-								clickEventDataProp={
-									ratingSortOptionKeys.highToLow
-								}
-								textProp={ratingSortOptionKeys.highToLow}
-							/>
+							<CSSTransition
+								in={isRatingSortOpen}
+								timeout={{
+									appear: 300,
+									enter: 300,
+									exit: 300,
+								}}
+								classNames="aside-menu-animation"
+								appear
+								unmountOnExit
+							>
+								<SortSubOptionBtn
+									clickEventProp={updateRatingSortDisplayText}
+									clickEventDataProp={
+										ratingSortOptionKeys.highToLow
+									}
+									textProp={ratingSortOptionKeys.highToLow}
+									liClassProp={"z-index-1 box-shadow"}
+								/>
+							</CSSTransition>
 						) : null}
 						{props.currentRatingSortDisplayText !==
 						ratingSortOptionKeys.lowToHigh ? (
-							<SortSubOptionBtn
-								clickEventProp={updateRatingSortDisplayText}
-								clickEventDataProp={
-									ratingSortOptionKeys.lowToHigh
-								}
-								textProp={ratingSortOptionKeys.lowToHigh}
-							/>
+							<CSSTransition
+								in={isRatingSortOpen}
+								timeout={{
+									appear: 300,
+									enter: 300,
+									exit: 300,
+								}}
+								classNames="aside-menu-animation"
+								appear
+								unmountOnExit
+							>
+								<SortSubOptionBtn
+									clickEventProp={updateRatingSortDisplayText}
+									clickEventDataProp={
+										ratingSortOptionKeys.lowToHigh
+									}
+									textProp={ratingSortOptionKeys.lowToHigh}
+									liClassProp={"z-index-1 box-shadow"}
+								/>
+							</CSSTransition>
 						) : null}
 					</>
-				) : null}
-			</ul>
-		</>
+				</ul>
+			</CSSTransition>
+		</li>
 	);
 };
 

@@ -47,13 +47,13 @@ const ShelfControlsAside = (props) => {
 		}
 	};
 	return (
-		<aside className="box-shadow">
+		<aside>
 			<ul>
 				<li className="card-control-menu">
 					<ul>
 						<MenuToggleBtn
 							textProp={"Add Book"}
-							classProps={""}
+							classProps={"box-shadow"}
 							setToggleProp={setIsAddBookMenuOpen}
 							toggleStateProp={isAddBookMenuOpen}
 							closeNonCurrentMenu={closeNonCurrentMenu}
@@ -79,7 +79,7 @@ const ShelfControlsAside = (props) => {
 				<li className="card-control-menu">
 					<ul>
 						<MenuToggleBtn
-							classProps={"top-shadow"}
+							classProps={"box-shadow"}
 							textProp={"Search Shelf"}
 							setToggleProp={setIsSearchMenuOpen}
 							toggleStateProp={isSearchMenuOpen}
@@ -109,43 +109,42 @@ const ShelfControlsAside = (props) => {
 						<MenuToggleBtn
 							classProps={`${
 								isSortActive && !isSortMenuOpen ? "active " : ""
-							}top-shadow`}
+							}box-shadow z-index-10`}
 							textProp={"Sort Shelf"}
 							setToggleProp={setIsSortMenuOpen}
 							toggleStateProp={isSortMenuOpen}
 							closeNonCurrentMenu={closeNonCurrentMenu}
 						/>
-						{isSortMenuOpen ? (
-							<SortShelfMenu
-								savedBooks={props.savedBooks}
-								////---sort shelf
-								setIsSortActive={setIsSortActive}
-								currentTitleSortDisplayText={
-									currentTitleSortDisplayText
-								}
-								setCurrentTitleSortDisplayText={
-									setCurrentTitleSortDisplayText
-								}
-								currentAuthorSortDisplayText={
-									currentAuthorSortDisplayText
-								}
-								setCurrentAuthorSortDisplayText={
-									setCurrentAuthorSortDisplayText
-								}
-								currentRatingSortDisplayText={
-									currentRatingSortDisplayText
-								}
-								setCurrentRatingSortDisplayText={
-									setCurrentRatingSortDisplayText
-								}
-								sortBackToDefault={props.sortBackToDefault}
-								sortAlphabetically={props.sortAlphabetically}
-								sortReverseAlphabetically={
-									props.sortReverseAlphabetically
-								}
-								sortByRating={props.sortByRating}
-							/>
-						) : null}
+						<SortShelfMenu
+							isSortMenuOpen={isSortMenuOpen}
+							savedBooks={props.savedBooks}
+							////---sort shelf
+							setIsSortActive={setIsSortActive}
+							currentTitleSortDisplayText={
+								currentTitleSortDisplayText
+							}
+							setCurrentTitleSortDisplayText={
+								setCurrentTitleSortDisplayText
+							}
+							currentAuthorSortDisplayText={
+								currentAuthorSortDisplayText
+							}
+							setCurrentAuthorSortDisplayText={
+								setCurrentAuthorSortDisplayText
+							}
+							currentRatingSortDisplayText={
+								currentRatingSortDisplayText
+							}
+							setCurrentRatingSortDisplayText={
+								setCurrentRatingSortDisplayText
+							}
+							sortBackToDefault={props.sortBackToDefault}
+							sortAlphabetically={props.sortAlphabetically}
+							sortReverseAlphabetically={
+								props.sortReverseAlphabetically
+							}
+							sortByRating={props.sortByRating}
+						/>
 					</ul>
 				</li>
 				<li className="card-control-menu">
@@ -159,7 +158,7 @@ const ShelfControlsAside = (props) => {
 								!isFilterMenuOpen
 									? "active "
 									: ""
-							}last-toggle top-shadow`}
+							}last-toggle box-shadow`}
 							textProp={"Filter Shelf"}
 							setToggleProp={setIsFilterMenuOpen}
 							toggleStateProp={isFilterMenuOpen}

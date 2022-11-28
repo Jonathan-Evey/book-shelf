@@ -26,7 +26,10 @@ const SearchShelfMenu = (props) => {
 	return (
 		<>
 			<li className="input-group | top-shadow-light padding-block-end-16 padding-inline-end-16">
-				<label className="title" htmlFor="title-search">
+				<label
+					className="title | padding-inline-start-8"
+					htmlFor="title-search"
+				>
 					By Title:
 				</label>
 				<input
@@ -38,7 +41,10 @@ const SearchShelfMenu = (props) => {
 				/>
 			</li>
 			<li className="input-group | top-shadow-light padding-block-end-16 padding-inline-end-16">
-				<label className="title" htmlFor="author-search">
+				<label
+					className="title | padding-inline-start-8"
+					htmlFor="author-search"
+				>
 					By Author:
 				</label>
 				<input

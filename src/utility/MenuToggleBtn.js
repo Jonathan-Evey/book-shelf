@@ -12,7 +12,7 @@ const MenuToggleBtn = (props) => {
 				}}
 				onClick={(e) => {
 					handleClickEvent();
-					props.closeNonCurrentMenu(props.textProp);
+					// props.closeNonCurrentMenu(props.textProp);
 					e.target.blur();
 				}}
 				className={`btn aside-toggle${

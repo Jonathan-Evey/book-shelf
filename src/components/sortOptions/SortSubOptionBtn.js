@@ -5,7 +5,11 @@ const SortSubOptionBtn = (props) => {
 		props.clickEventProp(props.clickEventDataProp);
 	};
 	return (
-		<li className="card-sort-option sub">
+		<li
+			className={`card-sort-option sub ${
+				props.liClassProp ? props.liClassProp : null
+			}`}
+		>
 			<button
 				onMouseLeave={(e) => {
 					e.target.blur();

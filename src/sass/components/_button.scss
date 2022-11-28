@@ -1,8 +1,7 @@
 button {
 	cursor: pointer;
-	font-family: "Times New Roman", Times, serif;
 	font-weight: 600;
-	font-size: 1rem;
+	
 }
 
 button span {
@@ -16,6 +15,7 @@ button span {
 .btn {
 	&.book-right {
 	  	display: inline-block;
+		  max-height: 2rem;
 		position: relative;
 		padding: 0.25rem 1rem;
 	  	background: transparent;
@@ -26,7 +26,6 @@ button span {
 		border-top: 1px solid var(--clr-main-700);
 		border-radius: 5px;
 		background-image: linear-gradient(var(--clr-main-700), var(--clr-main-800));
-		font-size: 1.1rem;
 
 		&.select-rating {
 			color: var(--clr-black);
@@ -60,6 +59,10 @@ button span {
 			content: "Rating"
 		}
 		&.rating {
+			
+			&-update {
+				padding-inline: 1.25rem;
+			}
 			&-0::before {
 				content: "0 / 5"
 			}
@@ -155,13 +158,13 @@ button span {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		padding: 0.5rem 1rem 1.5rem 1rem;
+		padding: 0.6rem 0.75rem;
 		width: 150px;
 		border: none;
-		border-top: solid 1px var(--clr-black);
+		border-bottom: solid 1px var(--clr-black);
 		border-radius: 10px;
 		background-color: var(--clr-main-800);
-		z-index: 3;
+		
 		&.last-toggle {
 			padding-block: 0.6rem;
 			border-bottom: solid 1px var(--clr-black);
@@ -171,11 +174,6 @@ button span {
 				border-bottom-left-radius: 0;
 				border-bottom-right-radius: 0;
 			}
-		}
-
-		&:not(.last-toggle) {
-			border-bottom-left-radius: 0;
-			border-bottom-right-radius: 0;
 		}
 		&.open {
 			margin-block-end: -8px;
@@ -189,11 +187,12 @@ button span {
 			transform: rotate(0deg) translateY(4px);
 		}
 		&.sort-option {
-			border-bottom-right-radius: 0;
-			border-bottom-left-radius: 0;
-			padding-bottom: 1rem;
+			border-top-right-radius: 0px;
+			border-top-left-radius: 0px;
+			padding-block-start: 1rem;
 			background-color: var(--clr-main-680);
-			border-color: var(--clr-main-900);
+			
+
 			&.last-option:not(.open) {
 				border-radius: 10px;
 				padding-block: 0.60rem;

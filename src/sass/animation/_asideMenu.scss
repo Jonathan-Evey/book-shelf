@@ -1,0 +1,24 @@
+.aside-menu-animation {
+    
+    &-enter {
+            opacity: 0;
+            transform: translateY(-100%);
+        &-done {
+            transition: all ease-in-out 450ms;
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    &-exit {
+            opacity: 1;
+            transform: translateY(0);
+        &-active {
+            transition: all ease-in-out 450ms;
+            opacity: 0;
+            transform: translateY(-100%);
+        }
+
+       
+    }
+}
