@@ -59,13 +59,7 @@ const ShelfControlsAside = (props) => {
 			aria-hidden={props.isMobileShelfMenuOpen ? false : true}
 		>
 			<ul>
-				<li
-					className={`${
-						!props.isMobileShelfMenuOpen
-							? "display-hidden-mobile"
-							: ""
-					}`}
-				>
+				<li className="display-hidden-web">
 					<button
 						className="btn close-mobile-aside-menu"
 						onClick={() => {

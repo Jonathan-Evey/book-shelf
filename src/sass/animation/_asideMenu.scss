@@ -1,5 +1,4 @@
 .aside-menu-animation {
-    
     &-enter {
             opacity: 0;
             transform: translateY(-100%);
@@ -9,7 +8,6 @@
             transform: translateY(0);
         }
     }
-    
     &-exit {
             opacity: 1;
             transform: translateY(0);
@@ -18,7 +16,5 @@
             opacity: 0.5;
             transform: translateY(-100%);
         }
-
-       
     }
 }

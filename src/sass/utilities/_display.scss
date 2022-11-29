@@ -1,8 +1,13 @@
 .display {
     &-hidden {
         display: none;
-        &-mobile {
+        &-web {
             @media (min-width: 650px) {
+                display: none;
+            }
+        }
+        &-mobile {
+            @media (max-width: 650px) {
                 display: none;
             }
         }

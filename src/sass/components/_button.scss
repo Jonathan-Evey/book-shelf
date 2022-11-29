@@ -16,10 +16,9 @@ button span {
 .btn {
 	&.book-right {
 	  	display: inline-block;
-		  max-height: 2rem;
+		max-height: 2rem;
 		position: relative;
 		padding: 0.25rem 1rem;
-	  	background: transparent;
 	  	color: transparent;
 		overflow: hidden;
 		border: none;
@@ -198,14 +197,6 @@ button span {
 			border-top-left-radius: 0px;
 			padding-block-start: 1rem;
 			background-color: var(--clr-main-680);
-			
-
-			// &.last-option:not(.open) {
-			// 	border-radius: 10px;
-			// 	padding-block: 0.60rem;
-			// 	border-bottom: solid 1px var(--clr-black);
-			// }
-			
 			&.active {
 				outline: none;
 				border-color: var(--clr-black);
