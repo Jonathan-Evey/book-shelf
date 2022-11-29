@@ -30,7 +30,7 @@ const FindBookInput = (props) => {
 					value={props.searchKeyWordProp}
 				/>
 				<button
-					className="btn find-book | margin-block-8"
+					className="btn in-input-group linear-gradient clr-680-700 | margin-block-8"
 					onClick={(e) => {
 						props.openFindBookModel(props.searchKeyWordProp);
 						e.target.blur();

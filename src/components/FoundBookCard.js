@@ -8,12 +8,12 @@ const FoundBookCard = ({ foundBooks, addBookToSavedBooks }) => {
 		<div className="container-found-book">
 			{foundBooks.map((book) => (
 				<div className="card-found-book" key={book.id}>
-					<div className="container-found-book-inside-container left">
+					<div className="container-found-book inside-container left">
 						{!book.thumbnail ? null : (
 							<img src={book.thumbnail.thumbnail} alt="" />
 						)}
 					</div>
-					<div className="container-found-book-inside-container center | margin-block-end-16">
+					<div className="container-found-book inside-container center | margin-block-end-16">
 						<div className="after-element-bar-50 padding-block-end-8">
 							<h4 className="fs-125-rem">{book.title}</h4>
 						</div>
@@ -29,7 +29,7 @@ const FoundBookCard = ({ foundBooks, addBookToSavedBooks }) => {
 							</p>
 						)}
 					</div>
-					<div className="container-found-book-inside-container right">
+					<div className="container-found-book inside-container right">
 						{/* 
 						////---Might add future feature to make book as read, reading, unread as user adds it to the shelf---////
 						<div className="book-status-options">
@@ -50,7 +50,7 @@ const FoundBookCard = ({ foundBooks, addBookToSavedBooks }) => {
 							</fieldset>
 						</div> */}
 						<button
-							className="add-book-btn"
+							className="btn in-card-found-book linear-gradient clr-700-800"
 							onClick={() => addBookToSavedBooksEvent(book)}
 						>
 							Add Book

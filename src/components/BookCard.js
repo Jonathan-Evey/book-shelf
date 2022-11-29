@@ -206,7 +206,7 @@ const BookCard = ({
 				) : null}
 			</div>
 			<div className="card-book-right | padding-inline-4 padding-block-start-24 padding-block-end-8">
-				<div className="after-element-bar">
+				<div className="after-element-bar-50">
 					<h4 className="padding-block-8 fs-600 fw-bold">
 						{book.title}
 					</h4>
@@ -222,7 +222,7 @@ const BookCard = ({
 				</div>
 				<div className="container-book-notes-review-btns | margin-block-start-8 padding-inline-16">
 					<button
-						className={`btn book-right notes ${
+						className={`btn book-card linear-gradient clr-700-800 notes ${
 							book.notes[0] ? "read" : "add"
 						}`}
 						onClick={() => {
@@ -233,7 +233,7 @@ const BookCard = ({
 					</button>
 					{book.readStatus === BookObjKeys.readStatus.read ? (
 						<button
-							className={`btn book-right review ${
+							className={`btn book-card linear-gradient clr-700-800 review ${
 								book.review === "" ? "add" : "read"
 							}`}
 							onClick={() => {
@@ -253,7 +253,7 @@ const BookCard = ({
 					!isRatingUpdateDisplayed ? (
 						<div className="container-book-right-bottom">
 							<button
-								className={`btn book-right ${
+								className={`btn book-card linear-gradient clr-700-800 ${
 									book.rating === ""
 										? "rating"
 										: `rating-${book.rating} rating-update`
@@ -275,7 +275,7 @@ const BookCard = ({
 						<>
 							<div className="container-select-rating-top">
 								<button
-									className="btn book-right select-rating"
+									className="btn book-card linear-gradient clr-700-800 select-rating"
 									onClick={() =>
 										handleRatingUpdate(book.id, 0)
 									}
@@ -283,7 +283,7 @@ const BookCard = ({
 									0
 								</button>
 								<button
-									className="btn book-right select-rating | margin-inline-start-8"
+									className="btn book-card linear-gradient clr-700-800 select-rating | margin-inline-start-8"
 									onClick={() =>
 										handleRatingUpdate(book.id, 1)
 									}
@@ -291,7 +291,7 @@ const BookCard = ({
 									1
 								</button>
 								<button
-									className="btn book-right select-rating | margin-inline-start-8"
+									className="btn book-card linear-gradient clr-700-800 select-rating | margin-inline-start-8"
 									onClick={() =>
 										handleRatingUpdate(book.id, 2)
 									}
@@ -299,7 +299,7 @@ const BookCard = ({
 									2
 								</button>
 								<button
-									className="btn book-right select-rating | margin-inline-start-8"
+									className="btn book-card linear-gradient clr-700-800 select-rating | margin-inline-start-8"
 									onClick={() =>
 										handleRatingUpdate(book.id, 3)
 									}
@@ -308,7 +308,7 @@ const BookCard = ({
 								</button>
 								<div className="container-select-rating-bottom | bottom-shadow margin-block-start-8 padding-block-end-8">
 									<button
-										className="btn book-right select-rating"
+										className="btn book-card linear-gradient clr-700-800 select-rating"
 										onClick={() =>
 											handleRatingUpdate(book.id, 4)
 										}
@@ -316,7 +316,7 @@ const BookCard = ({
 										4
 									</button>
 									<button
-										className="btn book-right select-rating | margin-inline-start-8"
+										className="btn book-card linear-gradient clr-700-800 select-rating | margin-inline-start-8"
 										onClick={() =>
 											handleRatingUpdate(book.id, 5)
 										}
@@ -324,7 +324,7 @@ const BookCard = ({
 										5
 									</button>
 									<button
-										className="btn book-right select-rating | margin-inline-start-8"
+										className="btn book-card linear-gradient clr-700-800 select-rating | margin-inline-start-8"
 										onClick={() => closeRatingUpdate()}
 									>
 										Cancel

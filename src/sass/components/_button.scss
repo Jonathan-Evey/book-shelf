@@ -14,38 +14,70 @@ button span {
 }
 
 .btn {
-	&.book-right {
+	&.linear-gradient {
 	  	display: inline-block;
-		max-height: 2rem;
+		
 		position: relative;
 		padding: 0.25rem 1rem;
-	  	color: transparent;
 		overflow: hidden;
 		border: none;
 		border-bottom: 1px solid black;
-		border-top: 1px solid var(--clr-main-700);
 		border-radius: 5px;
-		background-image: linear-gradient(var(--clr-main-700), var(--clr-main-800));
+		&.clr-680-700 {
+			background-image: linear-gradient(var(--clr-main-680), var(--clr-main-700));
+		}
+		&.clr-700-800{
+			background-image: linear-gradient(var(--clr-main-700), var(--clr-main-800));
+		}
+
+		&.in-input-group {
+			margin-inline: 1rem;
+			border-top: 1px solid var(--clr-main-680);
+			&:hover {
+				background-image: none;
+				background-color: var(--clr-accent-dark);
+				border-color: var(--clr-accent-light);
+				color: var(--clr-accent-light);
+			}
+			
+		}
+
+		&.in-card-found-book {
+			border-top: 1px solid var(--clr-main-700);
+			&:hover {
+				background-image: none;
+				background-color: var(--clr-accent-dark);
+				border-color: var(--clr-accent-light);
+				color: var(--clr-accent-light);
+			}
+		}
+	
+		
 
 		&.select-rating {
 			color: var(--clr-black);
-
+			
 			&:hover {
 				color: var(--clr-accent-light);
 			}
 		}
-
-		&:hover {
-			background-image: none;
-			background-color: var(--clr-accent-dark);
-			border-color: var(--clr-accent-light);
-			&::before {
-				transform: translateX(-50%) translateY(-200%);
-				color: var(--clr-accent-light);
-			}
-			&::after {
-				transform: translateX(-50%) translateY(-50%);
-				color: var(--clr-accent-light);
+		&.book-card {
+			max-height: 2rem;
+			color: transparent;
+			border-top: 1px solid var(--clr-main-700);
+			&:hover {
+				background-image: none;
+				background-color: var(--clr-accent-dark);
+				border-color: var(--clr-accent-light);
+				
+				&::before {
+					transform: translateX(-50%) translateY(-200%);
+					color: var(--clr-accent-light);
+				}
+				&::after {
+					transform: translateX(-50%) translateY(-50%);
+					color: var(--clr-accent-light);
+				}
 			}
 		}
 
@@ -82,14 +114,17 @@ button span {
 				content: "5 / 5"
 			}
 		}
-		&::before {
-			position: absolute;
-			color: var(--clr-black);
-			top: 50%;
-			left: 50%;
-			transform: translateX(-50%) translateY(-50%);
-			transition: transform ease-in-out 250ms;
-		}
+
+		&.book-card {
+			&::before {
+				position: absolute;
+				color: var(--clr-black);
+				top: 50%;
+				left: 50%;
+				transform: translateX(-50%) translateY(-50%);
+				transition: transform ease-in-out 250ms;
+			}
+		}	
 		&.add::after,
 		&.rating::after {
 			content: "Add";
@@ -100,13 +135,15 @@ button span {
 		&.read::after {
 			content: "Read";
 		}
-		&::after {
-			position: absolute;
-			color: var(--clr-black);
-			top: 50%;
-			left: 50%;
-			transform: translateX(-50%) translateY(100%);
-			transition: transform ease-in-out 250ms;
+		&.book-card {
+			&::after {
+				position: absolute;
+				color: var(--clr-black);
+				top: 50%;
+				left: 50%;
+				transform: translateX(-50%) translateY(100%);
+				transition: transform ease-in-out 250ms;
+			}
 		}
 	}
 	&.read-status-dropdown {
@@ -235,19 +272,19 @@ button span {
 		
 
 
-	&.find-book {
-		align-self: center;
-		padding: 0.125rem 1rem;
-		border: none;
-		border-radius: 5px;
-		border-bottom: 2px solid var(--clr-black);
-		border-top: 2px solid var(--clr-black);
-		background-color: var(--clr-main-300);
-		&:hover {
-			background-color: var(--clr-accent-dark);
-			color: var(--clr-accent-light);
-		}
-	}
+	// &.find-book {
+	// 	align-self: center;
+	// 	padding: 0.125rem 1rem;
+	// 	border: none;
+	// 	border-radius: 5px;
+	// 	border-bottom: 2px solid var(--clr-black);
+	// 	border-top: 2px solid var(--clr-black);
+	// 	background-color: var(--clr-main-300);
+	// 	&:hover {
+	// 		background-color: var(--clr-accent-dark);
+	// 		color: var(--clr-accent-light);
+	// 	}
+	// }
 
 	&.open-mobile-aside-menu {
 		display: none;
