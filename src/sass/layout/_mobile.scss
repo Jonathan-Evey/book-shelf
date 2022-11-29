@@ -1,0 +1,19 @@
+.mobile {
+    @media (max-width: 650px) {
+    &-aside {
+        position: fixed;
+        background-color: rgba(41, 50, 65, 0.95);
+        min-height: 100vh;
+        top: 0;
+        left: 0;
+        padding-block-start: 6rem;
+        padding-inline: 1rem;
+        border-radius: 0;
+        transform: translateX(calc(-100% - 1.5rem));
+        transition: all ease-in-out 350ms;
+        &.open {
+            transform: translateX(0);
+        }
+    }
+    }
+}

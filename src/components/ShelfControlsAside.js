@@ -46,9 +46,36 @@ const ShelfControlsAside = (props) => {
 			setIsSortMenuOpen(false);
 		}
 	};
+
+	const handleEvent = () => {
+		props.setIsMobileShelfMenuOpen(false);
+	};
+
 	return (
-		<aside>
+		<aside
+			className={`mobile-aside ${
+				props.isMobileShelfMenuOpen ? "open" : "closed"
+			}`}
+			aria-hidden={props.isMobileShelfMenuOpen ? false : true}
+		>
 			<ul>
+				<li
+					className={`${
+						!props.isMobileShelfMenuOpen
+							? "display-hidden-mobile"
+							: ""
+					}`}
+				>
+					<button
+						className="btn close-mobile-aside-menu"
+						onClick={() => {
+							handleEvent();
+						}}
+					>
+						X
+					</button>
+				</li>
+
 				<li className="card-control-menu">
 					<ul>
 						<MenuToggleBtn
@@ -57,6 +84,9 @@ const ShelfControlsAside = (props) => {
 							setToggleProp={setIsAddBookMenuOpen}
 							toggleStateProp={isAddBookMenuOpen}
 							closeNonCurrentMenu={closeNonCurrentMenu}
+							isMobileShelfMenuOpenProp={
+								props.isMobileShelfMenuOpen
+							}
 						/>
 						<div className="wrap-overflow-hidden">
 							<FindBookMenu
@@ -85,6 +115,9 @@ const ShelfControlsAside = (props) => {
 							setToggleProp={setIsSearchMenuOpen}
 							toggleStateProp={isSearchMenuOpen}
 							closeNonCurrentMenu={closeNonCurrentMenu}
+							isMobileShelfMenuOpenProp={
+								props.isMobileShelfMenuOpen
+							}
 						/>
 
 						<div className="wrap-overflow-hidden">
@@ -116,6 +149,9 @@ const ShelfControlsAside = (props) => {
 							textProp={"Sort Shelf"}
 							setToggleProp={setIsSortMenuOpen}
 							toggleStateProp={isSortMenuOpen}
+							isMobileShelfMenuOpenProp={
+								props.isMobileShelfMenuOpen
+							}
 						/>
 						<div className="wrap-overflow-hidden">
 							<SortShelfMenu
@@ -166,6 +202,9 @@ const ShelfControlsAside = (props) => {
 							textProp={"Filter Shelf"}
 							setToggleProp={setIsFilterMenuOpen}
 							toggleStateProp={isFilterMenuOpen}
+							isMobileShelfMenuOpenProp={
+								props.isMobileShelfMenuOpen
+							}
 						/>
 						<div className="wrap-overflow-hidden">
 							<FilterShelfMenu

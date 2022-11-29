@@ -4,8 +4,16 @@
 
     &-book {
       flex: 1;
+      padding: 2rem 2rem 1.5rem 1rem;
       place-content: start;
       grid-template-columns: repeat(auto-fill, minmax(425px, 1fr));
+
+      @media (max-width: 650px) {
+        
+      }
+      @media (max-width: 450px) {
+        padding: 2rem 0rem 1.5rem 0rem;
+      }
 
       &-img {
         display: flex;

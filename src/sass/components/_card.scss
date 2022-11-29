@@ -65,5 +65,10 @@
             margin-block-start: -8px;
             background-color: var(--clr-accent-dark);
         }
+        &.bg-main-900 {
+            @media (max-width: 650px) {
+                background-color: transparent;
+            }
+        }
     }
 }

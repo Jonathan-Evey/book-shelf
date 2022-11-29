@@ -1,0 +1,10 @@
+.display {
+    &-hidden {
+        display: none;
+        &-mobile {
+            @media (min-width: 650px) {
+                display: none;
+            }
+        }
+    }
+}

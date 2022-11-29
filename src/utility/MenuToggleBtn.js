@@ -18,6 +18,7 @@ const MenuToggleBtn = (props) => {
 				className={`btn aside-toggle${
 					props.toggleStateProp ? " open " : " "
 				}${props.classProps ? props.classProps : ""}`}
+				tabIndex={props.isMobileShelfMenuOpenProp === false ? -1 : 0}
 			>
 				{props.textProp}
 				<span>^</span>

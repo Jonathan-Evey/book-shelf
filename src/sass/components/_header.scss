@@ -1,6 +1,9 @@
 header {
 	background-color: var(--clr-main-700);
-	align-items: center;
-	justify-content: space-between;
 	font-weight: 700;
+	margin-block-end: 1.5rem;
+	@media (max-width: 650px) {
+		
+        margin-block-end: 3.5rem;
+    }
 }

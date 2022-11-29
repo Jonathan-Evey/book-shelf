@@ -1,5 +1,6 @@
 button {
 	cursor: pointer;
+	pointer-events: all;
 	font-weight: 600;
 	
 }
@@ -255,5 +256,36 @@ button span {
 			background-color: var(--clr-accent-dark);
 			color: var(--clr-accent-light);
 		}
+	}
+
+	&.open-mobile-aside-menu {
+		display: none;
+		@media (max-width: 650px) {
+			display: inline-block;
+			position: absolute;
+			right: 1.5rem;
+			top: -2rem;
+			align-items: center;
+			padding: 0.6rem 0.75rem;
+			width: 150px;
+			border: none;
+			border-bottom: solid 1px var(--clr-black);
+			border-radius: 10px;
+			background-color: var(--clr-main-700);
+			transition: all ease-in-out 250ms;
+		&.open {
+			opacity: 0;
+			pointer-events: none;
+		}
+		&.closed {
+			opacity: 1;
+			
+		}
+		}
+	}
+	&.close-mobile-aside-menu {
+		position: absolute;
+		top: 1rem;
+		right: 1rem;
 	}
 }

@@ -391,7 +391,7 @@ const SortShelfMenu = (props) => {
 				appear
 			>
 				<ul
-					className="card-sort-option z-index-3 bg-clr-900"
+					className="card-sort-option z-index-3 bg-main-900"
 					onMouseLeave={() => {
 						closeRatingSortDropdown();
 					}}
