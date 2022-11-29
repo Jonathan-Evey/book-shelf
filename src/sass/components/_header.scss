@@ -5,3 +5,15 @@ header {
         margin-block-end: 3.5rem;
     }
 }
+.header {
+	&-modal-find-book {
+		position: sticky;
+		top: 0;
+		z-index: 2;
+		width: 100%;
+		background-color: var(--clr-main-700);
+		display: flex;
+		justify-content: space-between;
+		padding: 1rem 2rem;
+	}
+}

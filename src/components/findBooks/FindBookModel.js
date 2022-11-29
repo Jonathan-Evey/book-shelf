@@ -92,9 +92,16 @@ const FindBookModel = (props) => {
 
 	return (
 		<dialog id="find-book">
-			<button className="close-model-btn" onClick={() => closeModel()}>
-				X
-			</button>
+			<div className="header-modal-find-book | box-shadow">
+				<p>Found Books</p>
+				<button
+					className="close-model-btn"
+					onClick={() => closeModel()}
+				>
+					X
+				</button>
+			</div>
+
 			<FoundBookCard
 				className="found-book-card"
 				foundBooks={foundBooks}

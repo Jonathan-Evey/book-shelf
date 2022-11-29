@@ -5,9 +5,7 @@
 @use "animation";
 
 .close-model-btn {
-	position: absolute;
-	top: 1rem;
-	right: 1rem;
+	
 	padding: 0.4rem;
 	font-size: 18px;
 	background: transparent;
@@ -20,23 +18,23 @@
 	color: var(--clr-accent-light);
 }
 
-.add-book-btn {
-	cursor: pointer;
-	padding: 0.25rem 0.5rem;
-	border: solid 2px var(--clr-black);
-	border-left: none;
-	border-right: none;
-	border-radius: 5px;
-	background-color: var(--clr-main-900);
-	color: var(--clr-main-300);
-}
+// .add-book-btn {
+// 	cursor: pointer;
+// 	padding: 0.25rem 0.5rem;
+// 	border: solid 2px var(--clr-black);
+// 	border-left: none;
+// 	border-right: none;
+// 	border-radius: 5px;
+// 	background-color: var(--clr-main-900);
+// 	color: var(--clr-main-300);
+// }
 
-.add-book-btn:hover,
-.add-book-btn:focus {
-	border-color: var(--clr-accent-light);
-	background-color: var(--clr-accent-dark);
-	color: var(--clr-accent-light);
-}
+// .add-book-btn:hover,
+// .add-book-btn:focus {
+// 	border-color: var(--clr-accent-light);
+// 	background-color: var(--clr-accent-dark);
+// 	color: var(--clr-accent-light);
+// }
 
 .page-nav-container {
 	display: flex;

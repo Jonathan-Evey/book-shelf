@@ -8,6 +8,10 @@ dialog {
 	    border: none;
 	    border-radius: 10px;
 	    height: 90%;
+        width: min(75%, 750px);
+        @media (max-width: 750px) {
+            width: 85%;
+        }
         @media (max-width: 650px) {
             width: 95%;
         }
