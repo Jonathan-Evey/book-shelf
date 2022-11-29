@@ -4,60 +4,6 @@
 @use "utilities";
 @use "animation";
 
-
-dialog {
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	padding: 0.35rem;
-	background: var(--clr-main-900);
-	border: none;
-	border-radius: 10px;
-	width: 55vw;
-	max-height: 80vh;
-	min-height: 50vh;
-}
-
-dialog[open=""] {
-	display: flex;
-	flex-direction: column;
-}
-
-dialog::backdrop {
-	background: rgba(0, 0, 0, 0.75);
-}
-
-
-
-.read-option button,
-.filter-option button {
-	margin: auto 0;
-	padding: 0.1rem 0;
-	width: 100%;
-	border: solid 1px var(--clr-black);
-	border-left: none;
-	border-right: none;
-	color: var(--clr-main-300);
-}
-
-.read-next-btn {
-	min-width: 12ch;
-	background: none;
-	border: none;
-	border-top: 1px solid black;
-	border-bottom: 1px solid black;
-	background: linear-gradient(
-		to right,
-		rgba(var(--clr-rgb-main-700), 1) 0%,
-		rgba(var(--clr-rgb-main-700), 1) 5%,
-		rgba(var(--clr-rgb-main-300), 1) 35%,
-		rgba(var(--clr-rgb-main-300), 1) 65%,
-		rgba(var(--clr-rgb-main-700), 1) 95%,
-		rgba(var(--clr-rgb-main-700), 1) 100%
-	);
-}
-
 .close-model-btn {
 	position: absolute;
 	top: 1rem;
@@ -90,77 +36,6 @@ dialog::backdrop {
 	border-color: var(--clr-accent-light);
 	background-color: var(--clr-accent-dark);
 	color: var(--clr-accent-light);
-}
-
-
-// .search-input {
-// 	padding: 0.125rem 0.25rem;
-// 	border: 1px solid var(--clr-main-900);
-// 	background-color: var(--clr-main-300);
-// }
-
-.found-book-container {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	background-color: var(--clr-main-900);
-}
-
-.found-book-card {
-	border-radius: 8px;
-	padding: 1rem 1rem 3rem 1rem;
-	margin: 4rem 0 0 0;
-	position: relative;
-	display: flex;
-	flex: 1;
-	width: 75%;
-	align-items: center;
-	padding-left: calc(100px + 2.5rem);
-	background: linear-gradient(
-		rgba(var(--clr-rgb-main-700), 1) 0%,
-		rgba(var(--clr-rgb-main-700), 1) 55%,
-		rgba(var(--clr-rgb-main-900), 1) 85%,
-		rgba(var(--clr-rgb-main-900), 1) 100%
-	);
-}
-
-.found-book-card-left-container {
-	position: absolute;
-	left: 0;
-	margin-left: 1rem;
-	transform: translateY(-1rem);
-}
-
-.found-book-card-left-container img {
-	height: 155px;
-	width: 100px;
-}
-
-.found-book-card-center-container,
-.found-book-card-right-container {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-
-.found-book-card-center-container {
-	flex-grow: 1;
-	text-align: center;
-}
-
-.found-book-card-center-container p {
-	padding-block-end: 0.5rem;
-}
-
-.found-book-title {
-	font-size: 1.25rem;
-	padding-block-end: 0.5rem;
-}
-
-.found-book-card-right-container {
-	align-items: flex-start;
-	flex-shrink: 0;
 }
 
 .page-nav-container {

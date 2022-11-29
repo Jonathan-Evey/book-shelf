@@ -1,6 +1,14 @@
 .after-element-bar {
 
-    &::after {
+    &-25::after {
+        content: "";
+	    display: inline-block;
+	    width: 25%;
+	    border-top: 2px solid var(--clr-accent-dark);
+        opacity: .35;
+    }
+
+    &-50::after {
         content: "";
 	    display: inline-block;
 	    width: 50%;

@@ -5,30 +5,31 @@ const FoundBookCard = ({ foundBooks, addBookToSavedBooks }) => {
 		model.close();
 	};
 	return (
-		<div className="found-book-container">
+		<div className="container-found-book">
 			{foundBooks.map((book) => (
-				<div className="found-book-card" key={book.id}>
-					<div className="found-book-card-left-container">
+				<div className="card-found-book" key={book.id}>
+					<div className="container-found-book-inside-container left">
 						{!book.thumbnail ? null : (
-							<img
-								src={book.thumbnail.thumbnail}
-								alt=""
-								width="128"
-								height="193"
-							/>
+							<img src={book.thumbnail.thumbnail} alt="" />
 						)}
 					</div>
-					<div className="found-book-card-center-container">
-						<h4 className="found-book-title">{book.title}</h4>
-						<p>by</p>
-						<p className="found-book-author">
+					<div className="container-found-book-inside-container center | margin-block-end-16">
+						<div className="after-element-bar-50 padding-block-end-8">
+							<h4 className="fs-125-rem">{book.title}</h4>
+						</div>
+						{/* <p className="padding-block-end-8">by</p> */}
+
+						<p className="fs-11-rem margin-block-end-24">
 							{book.author.join(" / ")}
 						</p>
+
 						{!book.genres ? null : (
-							<p>Genre: {book.genres.join(" / ")}</p>
+							<p className="fs-09-rem">
+								{book.genres.join(" / ")}
+							</p>
 						)}
 					</div>
-					<div className="found-book-card-right-container">
+					<div className="container-found-book-inside-container right">
 						{/* 
 						////---Might add future feature to make book as read, reading, unread as user adds it to the shelf---////
 						<div className="book-status-options">
@@ -52,7 +53,7 @@ const FoundBookCard = ({ foundBooks, addBookToSavedBooks }) => {
 							className="add-book-btn"
 							onClick={() => addBookToSavedBooksEvent(book)}
 						>
-							Add to Shelf
+							Add Book
 						</button>
 					</div>
 				</div>
