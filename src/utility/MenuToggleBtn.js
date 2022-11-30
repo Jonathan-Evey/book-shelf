@@ -21,7 +21,7 @@ const MenuToggleBtn = (props) => {
 				tabIndex={props.isMobileShelfMenuOpenProp === false ? -1 : 0}
 			>
 				{props.textProp}
-				<span>^</span>
+				<span className="menu-arrow">^</span>
 			</button>
 		</li>
 	);

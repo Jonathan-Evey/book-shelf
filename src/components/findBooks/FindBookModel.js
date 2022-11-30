@@ -93,12 +93,13 @@ const FindBookModel = (props) => {
 	return (
 		<dialog id="find-book">
 			<div className="header-modal-find-book | box-shadow">
-				<p>Found Books</p>
+				<p className="ff-main-accent fs-125-rem ">Found Books</p>
 				<button
-					className="close-model-btn"
+					className="btn close-menu-x on-modal"
 					onClick={() => closeModel()}
 				>
-					X
+					<span className="bar top open"></span>
+					<span className="bar bottom open"></span>
 				</button>
 			</div>
 
@@ -111,11 +112,12 @@ const FindBookModel = (props) => {
 				<div>
 					{props.currentSearchPageNumber !== 0 ? (
 						<button
+							className="btn modal-arrows"
 							onClick={() => {
 								updateBookResults(-10);
 							}}
 						>
-							Previous
+							←
 						</button>
 					) : null}{" "}
 				</div>
@@ -127,11 +129,12 @@ const FindBookModel = (props) => {
 				</p>
 				<div>
 					<button
+						className="btn modal-arrows"
 						onClick={() => {
 							updateBookResults(+10);
 						}}
 					>
-						Next
+						→
 					</button>
 				</div>
 			</div>

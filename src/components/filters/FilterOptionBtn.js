@@ -19,7 +19,7 @@ const FilterOptionBtn = (props) => {
 				}${props.classProps ? props.classProps : ""}`}
 			>
 				{props.textProp}
-				<span>^</span>
+				<span className="menu-arrow">^</span>
 			</button>
 		</li>
 	);

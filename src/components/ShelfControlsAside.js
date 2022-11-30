@@ -61,12 +61,21 @@ const ShelfControlsAside = (props) => {
 			<ul>
 				<li className="display-hidden-web">
 					<button
-						className="btn close-mobile-aside-menu"
+						className="btn close-menu-x"
 						onClick={() => {
 							handleEvent();
 						}}
 					>
-						X
+						<span
+							className={`bar top ${
+								props.isMobileShelfMenuOpen ? "open" : "closed"
+							}`}
+						></span>
+						<span
+							className={`bar bottom ${
+								props.isMobileShelfMenuOpen ? "open" : "closed"
+							}`}
+						></span>
 					</button>
 				</li>
 

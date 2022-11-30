@@ -10,7 +10,7 @@
             padding-inline: 1rem;
             border-radius: 0;
             transform: translateX(calc(-100% - 1.5rem));
-            transition: all ease-in-out 350ms;
+            transition: all ease-in-out 450ms;
             &.open {
                 transform: translateX(0);
             }
