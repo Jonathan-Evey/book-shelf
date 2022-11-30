@@ -65,7 +65,7 @@ const BookCard = ({
 	};
 
 	return (
-		<div className="card-book | box-shadow margin-inline-16">
+		<div className="card-book | box-shadow">
 			<div
 				className={`container-book-img ${getBookImgContainerClass(
 					book.readStatus
@@ -205,12 +205,14 @@ const BookCard = ({
 					</ol>
 				) : null}
 			</div>
-			<div className="card-book-right | padding-inline-4 padding-block-start-24 padding-block-end-8">
+			<div className="card-book-right | padding-block-start-24 padding-block-end-8">
 				<div className="after-element-bar-50">
 					<h4 className="padding-block-8 fs-600 fw-bold">
 						{book.title}
 					</h4>
-					<p className="margin-block-end-8">by</p>
+					<p className="margin-block-end-8 fs-300 mobile-fs-300">
+						by
+					</p>
 					{book.author.map((each) => (
 						<p
 							className="fs-550 fw-bold"
@@ -220,7 +222,7 @@ const BookCard = ({
 						</p>
 					))}
 				</div>
-				<div className="container-book-notes-review-btns | margin-block-start-8 padding-inline-16">
+				<div className="container-book-notes-review-btns | margin-block-start-8">
 					<button
 						className={`btn book-card linear-gradient clr-700-800 notes ${
 							book.notes[0] ? "read" : "add"
@@ -248,7 +250,7 @@ const BookCard = ({
 						</p>
 					)}
 				</div>
-				<div className="margin-block-start-16 padding-inline-8 padding-block-end-8">
+				<div className="container-book-rating-genre-btns | padding-block-end-8">
 					{book.readStatus === BookObjKeys.readStatus.read &&
 					!isRatingUpdateDisplayed ? (
 						<div className="container-book-right-bottom">

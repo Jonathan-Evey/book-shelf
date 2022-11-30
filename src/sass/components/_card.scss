@@ -3,14 +3,27 @@
 	position: relative;
     display: flex;
 	padding: 0rem 0.5rem 0rem 1rem;
+    margin-inline: 1rem;
 	margin-block-end: 3rem;
 	background-color: var(--clr-main-700);
     border-radius: 150px 5px 5px 200px;
+    @media (max-width: 450px) {
+        padding: 0rem;
+    }
+
+    @media (max-width: 325px) {
+        margin-inline: 0.5rem;
+    }
         &-right {
             display: flex;
             flex-direction: column;
-            width: 100%;
             text-align: center;
+            padding-inline: 0.25rem; 
+            @media (max-width: 450px) {
+                width: 100%;
+                padding-inline: 0rem 0.25rem;
+            }
+            
         }
         //------animation in-out
         &-enter {

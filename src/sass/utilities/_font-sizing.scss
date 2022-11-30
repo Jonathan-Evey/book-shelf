@@ -5,3 +5,21 @@
     font-size: $size-value;
   }
 }
+
+.fs-600 {
+  @media (max-width: 450px) {
+    font-size: 1.25rem;
+  }
+}
+
+.fs-550 {
+  @media (max-width: 450px) {
+    font-size: 1rem;
+  }
+}
+
+.fs-300 {
+  @media (max-width: 450px) {
+    font-size: 0.85rem;
+  }
+}

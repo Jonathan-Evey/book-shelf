@@ -23,4 +23,10 @@
         //     height: 100%;
         // }
     }
+
+    @media (max-width: 450px) {
+        &-fs-300.fs-300 {
+            font-size: 0.75rem;
+        }
+    }
 }

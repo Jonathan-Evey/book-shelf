@@ -1,7 +1,10 @@
 button {
 	cursor: pointer;
 	pointer-events: all;
-	font-weight: 600;
+	font-size: 0.9em;
+	@media (max-width: 450px) {
+		font-size: 0.85em;
+	}
 	
 }
 
@@ -89,7 +92,11 @@ button .menu-arrow {
 		&.rating {
 			
 			&-update {
+				white-space: nowrap;
 				padding-inline: 1.25rem;
+				@media (max-width: 375px) {
+					padding-inline: 0.75rem;
+				}
 			}
 			&-0::before {
 				content: "0 / 5"
