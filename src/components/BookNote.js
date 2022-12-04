@@ -31,15 +31,16 @@ const BookNote = (props) => {
 	};
 
 	return (
-		<div className="note-card">
+		<div className="card-note">
 			{isNoteOnEdit ? (
 				<>
 					<textarea
 						onChange={(e) => updateEditNoteText(e)}
 						value={editNoteText}
 					></textarea>
-					<div>
+					<div className="card-note-btn-container">
 						<button
+							className="btn linear-gradient clr-800-850"
 							onClick={() => {
 								saveEditNoteText();
 							}}
@@ -47,6 +48,7 @@ const BookNote = (props) => {
 							Save
 						</button>
 						<button
+							className="btn linear-gradient clr-800-850"
 							onClick={() => {
 								cancelEditNote();
 							}}
@@ -59,8 +61,9 @@ const BookNote = (props) => {
 			{!isNoteOnEdit && props.isEditNotes ? (
 				<>
 					<p>{props.noteText}</p>
-					<div>
+					<div className="card-note-btn-container">
 						<button
+							className="btn linear-gradient clr-800-850"
 							onClick={() => {
 								handelEditBtnClick(props.noteText);
 							}}
@@ -68,6 +71,7 @@ const BookNote = (props) => {
 							Edit
 						</button>
 						<button
+							className="btn linear-gradient clr-800-850"
 							onClick={() => {
 								handelDeleteBtnClick();
 							}}

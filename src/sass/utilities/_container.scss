@@ -7,10 +7,6 @@
       padding: 2rem 2rem 1.5rem 1rem;
       place-content: start;
       grid-template-columns: repeat(auto-fill, minmax(425px, 1fr));
-
-      @media (max-width: 650px) {
-        
-      }
       @media (max-width: 450px) {
         padding: 2rem 0rem 1.5rem 0rem;
         grid-template-columns: 1fr;
@@ -84,7 +80,10 @@
     @media (max-width: 650px) {
       padding-inline: 1rem;
     }
-    &.inside-container {
+    @media (max-width: 450px) {
+      padding-inline: 0.5rem 0.75rem;
+    }
+    &-inside-container {
       display: flex;
 	    flex-direction: column;
 	    align-items: center;
@@ -94,20 +93,54 @@
 	      padding: 0.25rem;
 	      border-radius: 5px;
 	      margin-inline-start: 0.5rem;
+        @media (max-width: 450px) {
+          margin-inline-start: 0;
+          transform: translateY(-4rem);
+          scale: (0.85);
+        }
+      }
+      &.center-right-wraper {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        @media (max-width: 550px) {
+          flex-direction: column;
+        }
       }
       &.center {
         flex-grow: 1;
 	      text-align: center;
 	      padding-inline: 1rem;
+        @media (max-width: 450px) {
+          padding-inline: 0.25rem;
+        }
       }
       &.right {
         padding-inline: 0;
         margin-block-start: 1rem;
 	      flex-shrink: 0;
+        align-self: flex-start;
         @media (max-width: 550px) {
+          margin-block-start: 0;
           flex-shrink: 1;
+          align-self: center;
         }
       }
     }
+    
+  }
+  &-notes {
+    position: relative;
+    width: min(75%, 1000px);
+    margin-inline: auto;
+    padding-inline: 1rem;
+    margin-top: 2rem;
+    background-color: var(--clr-main-700);
+		@media (max-width: 750px) {
+            width: 85%;
+        }
+        // @media (max-width: 650px) {
+        //     width: 95%;
+        // }
   }
 }

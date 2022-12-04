@@ -42,51 +42,41 @@ const ReviewContainer = (props) => {
 	};
 
 	return (
-		<div className="notes-container">
-			<div className="notes-header">
-				<div className="notes-header-left">
-					<h3>My Review</h3>
-				</div>
-				<div className="notes-header-center">
-					<h4>{props.bookToUpdate.title}</h4>
-					<p>by</p>
-					<p>{props.bookToUpdate.author}</p>
-				</div>
-				<div className="notes-header-right">
+		<section className="container-notes | box-shadow">
+			<header className="header-notes">
+				<h2 className="notes-title | ff-main-accent">My Review</h2>
+				<div className="header-notes-wraper-center-right">
+					<div className="padding-inline-8 text-centered">
+						<h4 className="fs-600 fw-bold margin-block-end-8">
+							{props.bookToUpdate.title}
+						</h4>
+						<p className="fs-300 mobile-fs-300 margin-block-end-8">
+							by
+						</p>
+						<p className="fs-550 fw-bold">
+							{props.bookToUpdate.author}
+						</p>
+					</div>
 					<button
+						className="btn close-menu-x on-notes"
 						onClick={() => {
 							backToShelfEvent();
 						}}
 					>
-						Back to Shelf
+						<span className="bar top"></span>
+						<span className="bar bottom"></span>
 					</button>
-					{props.bookToUpdate.review === "" ? (
-						<button
-							onClick={() => {
-								addReviewBtnEvent();
-							}}
-						>
-							Add Review
-						</button>
-					) : (
-						<button
-							onClick={() => {
-								editReviewBtnEvent();
-							}}
-						>
-							Edit review
-						</button>
-					)}
 				</div>
-			</div>
+			</header>
 			{isAddingReview ? (
-				<div className="note-card">
+				<div className="card-note | box-shadow">
 					<textarea
 						onChange={(e) => updateReviewText(e)}
 						value={reviewText}
 					></textarea>
-					<div>
+					<div className="card-note-btn-container">
 						<button
+							className="btn linear-gradient clr-800-850"
 							onClick={() => {
 								saveReviewEvent();
 							}}
@@ -94,6 +84,7 @@ const ReviewContainer = (props) => {
 							Save
 						</button>
 						<button
+							className="btn linear-gradient clr-800-850"
 							onClick={() => {
 								cancelBtnEvent();
 							}}
@@ -114,7 +105,28 @@ const ReviewContainer = (props) => {
 					saveReviewEvent={saveReviewEvent}
 				/>
 			) : null}
-		</div>
+			<div className="wrap-notes-edit-write-btns | margin-block-16">
+				{props.bookToUpdate.review === "" ? (
+					<button
+						className="btn linear-gradient notes-reviews clr-700-800"
+						onClick={() => {
+							addReviewBtnEvent();
+						}}
+					>
+						Add Review
+					</button>
+				) : (
+					<button
+						className="btn linear-gradient notes-reviews clr-700-800"
+						onClick={() => {
+							editReviewBtnEvent();
+						}}
+					>
+						Edit review
+					</button>
+				)}
+			</div>
+		</section>
 	);
 };
 

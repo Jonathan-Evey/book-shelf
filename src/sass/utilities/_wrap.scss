@@ -3,4 +3,9 @@
         overflow: clip;
         overflow-clip-margin: .75rem; 
     }
+    &-notes-edit-write-btns {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+    }
 }

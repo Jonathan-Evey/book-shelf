@@ -78,12 +78,16 @@ const FindBookModel = (props) => {
 	if (isLoading)
 		return (
 			<dialog id="find-book">
-				<button
-					className="close-model-btn"
-					onClick={() => closeModel()}
-				>
-					X
-				</button>
+				<div className="header-modal-find-book | box-shadow">
+					<p className="ff-main-accent fs-125-rem ">Found Books</p>
+					<button
+						className="btn close-menu-x on-modal"
+						onClick={() => closeModel()}
+					>
+						<span className="bar top open"></span>
+						<span className="bar bottom open"></span>
+					</button>
+				</div>
 				<div className="loading-title">
 					<h3>Please wait a moment as we search for your book.</h3>
 				</div>
