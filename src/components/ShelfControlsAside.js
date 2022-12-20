@@ -53,7 +53,7 @@ const ShelfControlsAside = (props) => {
 
 	return (
 		<aside
-			className={`mobile-aside ${
+			className={`aside-book-container mobile-aside ${
 				props.isMobileShelfMenuOpen ? "open" : "closed"
 			}`}
 			aria-hidden={props.isMobileShelfMenuOpen ? false : true}

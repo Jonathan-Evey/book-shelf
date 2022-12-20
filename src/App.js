@@ -3,10 +3,12 @@ import Header from "./main-elements/Header";
 import FindBookModel from "./components/findBooks/FindBookModel";
 import BookObjKeys from "./BookObjKeys";
 import sortFunctions from "./Functions";
+import LandingPage from "./pages/landing/LandingPage";
 import "./sass/main.scss";
 import React, { useState } from "react";
 
 function App() {
+	const [user, setUser] = useState(null);
 	const [searchTitleKeyWord, setSearchTitleKeyWord] = useState("");
 	const [searchAuthorKeyWord, setSearchAuthorKeyWord] = useState("");
 	const [useSearchType, setUseSearchType] = useState("");
@@ -272,6 +274,10 @@ function App() {
 			};
 		});
 	};
+
+	if (!user) {
+		return <LandingPage setUser={setUser} />;
+	}
 
 	return (
 		<div className="App">

@@ -34,7 +34,7 @@ const Main = (props) => {
 	// const [isHoverShown, setIsHoverShown] = useState(false);
 
 	return (
-		<main>
+		<main className="main-book-container">
 			{isFullShelfDisplayed ? (
 				<>
 					<ShelfControlsAside
