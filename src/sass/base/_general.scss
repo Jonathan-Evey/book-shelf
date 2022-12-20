@@ -7,12 +7,12 @@ body {
 	font-weight: 600;
 }
 
-main {
+.main-book-container {
 	position: relative;
 	display: flex;
 }
 
-aside {
+.aside-book-container {
     position: sticky;
 	display: flex;
 	flex-direction: column;
