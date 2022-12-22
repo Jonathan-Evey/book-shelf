@@ -5,7 +5,10 @@ import BookObjKeys from "./BookObjKeys";
 import sortFunctions from "./Functions";
 import LandingPage from "./pages/landing/LandingPage";
 import "./sass/main.scss";
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { getDoc, doc } from "firebase/firestore";
+import { auth, db, addBookToDb, updateBookInDb } from "./firebase";
 
 function App() {
 	const [user, setUser] = useState(null);
@@ -95,6 +98,7 @@ function App() {
 			dateAdded: 1663510396776,
 		},
 	]);
+
 	const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(true);
 	const [bookToUpdate, setBookToUpdate] = useState(null);
 
@@ -142,24 +146,29 @@ function App() {
 	};
 
 	const addBookToSavedBooks = (bookToAdd) => {
+		if (user.uid !== "guest") {
+			addBookToDb(bookToAdd, user.uid);
+		}
 		return setSavedBooks([bookToAdd, ...savedBooks]);
 	};
 
 	//-------------passed down to /Main/BookContainer to update each book state
 	const updateReadStatus = (id, value) => {
+		let updatedBook = savedBooks.filter((book) => book.id === id);
+		updatedBook = {
+			...updatedBook[0],
+			readStatus: value,
+			rating:
+				value === BookObjKeys.readStatus.unread
+					? ""
+					: updatedBook[0].rating,
+		};
+		if (user.uid !== "guest") {
+			updateBookInDb(updatedBook, user.uid);
+		}
+
 		return setSavedBooks(
-			savedBooks.map((book) =>
-				book.id === id
-					? {
-							...book,
-							readStatus: value,
-							rating:
-								value === BookObjKeys.readStatus.unread
-									? ""
-									: book.rating,
-					  }
-					: book
-			)
+			savedBooks.map((book) => (book.id === id ? updatedBook : book))
 		);
 	};
 
@@ -275,52 +284,121 @@ function App() {
 		});
 	};
 
+	const checkForData = async () => {
+		let docRef = doc(db, "users", auth.currentUser.uid);
+		let docSnap = await getDoc(docRef);
+		if (docSnap.exists()) {
+			let data = docSnap.data();
+			getAllbooksFromDb(data.allBookIds);
+			console.log(data.allBookIds);
+			return;
+		} else {
+			console.log("No such document!");
+		}
+	};
+
+	const getAllbooksFromDb = (array) => {
+		let allBooks = [];
+		array.forEach(async (bookId, index) => {
+			let bookRef = doc(
+				db,
+				"users",
+				auth.currentUser.uid,
+				"allBooks",
+				bookId
+			);
+			let docSnap = await getDoc(bookRef);
+			if (docSnap.exists()) {
+				let data = docSnap.data();
+				allBooks.push(data.data);
+				console.log("book found");
+				if (index === array.length - 1) {
+					setSavedBooks(allBooks);
+				}
+			} else {
+				console.log("No such document!");
+			}
+		});
+	};
+
+	const handleGuestLogin = () => {
+		let emptyArray = [];
+		setSavedBooks(emptyArray);
+		setUser({ uid: "guest", displayName: "guest" });
+	};
+
+	useEffect(() => {
+		console.log("run once");
+		onAuthStateChanged(auth, (user) => {
+			console.log("onAuthStateChanged");
+			if (user) {
+				//user.photoURL
+				setUser({ uid: user.uid, displayName: user.displayName });
+				checkForData();
+			} else {
+				setSavedBooks([]);
+				setUser(null);
+			}
+		});
+	}, []);
+
 	if (!user) {
-		return <LandingPage setUser={setUser} />;
+		return (
+			<LandingPage
+				handleGuestLogin={handleGuestLogin}
+				setUser={setUser}
+			/>
+		);
 	}
 
-	return (
-		<div className="App">
-			<FindBookModel
-				useSearchType={useSearchType}
-				useSearchKeyWord={useSearchKeyWord}
-				currentSearchPageNumber={currentSearchPageNumber}
-				updateCurrentSearchPageNumber={updateCurrentSearchPageNumber}
-				addBookToSavedBooks={addBookToSavedBooks}
-			/>
-			<Header />
-			<Main
-				savedBooks={savedBooks}
-				bookToUpdate={bookToUpdate}
-				isFilterMenuOpen={isFilterMenuOpen}
-				////---find new book
-				searchTitleKeyWord={searchTitleKeyWord}
-				searchAuthorKeyWord={searchAuthorKeyWord}
-				updateTitleKeyWord={updateTitleKeyWord}
-				updateAuthorKeyWord={updateAuthorKeyWord}
-				updateSearchType={updateSearchType}
-				updateUseSearchKeyWord={updateUseSearchKeyWord}
-				updateCurrentSearchPageNumber={updateCurrentSearchPageNumber}
-				////---main menu state
-				openFilterMenuToggle={openFilterMenuToggle}
-				////---sort shelf
-				sortBackToDefault={sortBackToDefault}
-				sortAlphabetically={sortAlphabetically}
-				sortReverseAlphabetically={sortReverseAlphabetically}
-				sortByRating={sortByRating}
-				////---book state
-				updateReadStatus={updateReadStatus}
-				updateRating={updateRating}
-				setBookToUpdate={setBookToUpdate}
-				addNoteToBookToUpdate={addNoteToBookToUpdate}
-				addNewNote={addNewNote}
-				deleteNote={deleteNote}
-				updateNoteOnBook={updateNoteOnBook}
-				addReviewToBookToUpdate={addReviewToBookToUpdate}
-				addReview={addReview}
-			/>
-		</div>
-	);
+	if (user) {
+		return (
+			<div className="App">
+				<FindBookModel
+					useSearchType={useSearchType}
+					useSearchKeyWord={useSearchKeyWord}
+					currentSearchPageNumber={currentSearchPageNumber}
+					updateCurrentSearchPageNumber={
+						updateCurrentSearchPageNumber
+					}
+					addBookToSavedBooks={addBookToSavedBooks}
+				/>
+				<Header user={user} setUser={setUser} savedBooks={savedBooks} />
+				<Main
+					savedBooks={savedBooks}
+					bookToUpdate={bookToUpdate}
+					isFilterMenuOpen={isFilterMenuOpen}
+					////---find new book
+					searchTitleKeyWord={searchTitleKeyWord}
+					searchAuthorKeyWord={searchAuthorKeyWord}
+					updateTitleKeyWord={updateTitleKeyWord}
+					updateAuthorKeyWord={updateAuthorKeyWord}
+					updateSearchType={updateSearchType}
+					updateUseSearchKeyWord={updateUseSearchKeyWord}
+					updateCurrentSearchPageNumber={
+						updateCurrentSearchPageNumber
+					}
+					////---main menu state
+					openFilterMenuToggle={openFilterMenuToggle}
+					////---sort shelf
+					sortBackToDefault={sortBackToDefault}
+					sortAlphabetically={sortAlphabetically}
+					sortReverseAlphabetically={sortReverseAlphabetically}
+					sortByRating={sortByRating}
+					////---book state
+					updateReadStatus={updateReadStatus}
+					updateRating={updateRating}
+					setBookToUpdate={setBookToUpdate}
+					addNoteToBookToUpdate={addNoteToBookToUpdate}
+					addNewNote={addNewNote}
+					deleteNote={deleteNote}
+					updateNoteOnBook={updateNoteOnBook}
+					addReviewToBookToUpdate={addReviewToBookToUpdate}
+					addReview={addReview}
+				/>
+			</div>
+		);
+	}
 }
 
 export default App;

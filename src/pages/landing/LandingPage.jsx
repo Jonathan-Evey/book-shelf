@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import { auth } from '../../firebase'
 import Form from './Form'
 
 const LandingPage = (props) => {
@@ -23,6 +24,10 @@ const LandingPage = (props) => {
       width: window.innerWidth,
       height: window.innerHeight,
     })
+  }
+
+  const handleGuestLogin = () => {
+    props.setUser({ uid: "guest", displayName: "guest" });
   }
 
   useEffect(() => {
@@ -57,7 +62,7 @@ const LandingPage = (props) => {
                Bookshelf
           </h1>
         </header>
-        <Form isNewAccount={isNewAccount}/>
+        <Form isNewAccount={isNewAccount} />
         <div className="new-account">
           <div></div>
           <div>
@@ -75,7 +80,7 @@ const LandingPage = (props) => {
         </p> */}
         <footer> 
           <p>test the app with a <button onClick={() => {
-                props.setUser(true)
+            handleGuestLogin()
             }}>guest account</button>
           </p>
         </footer>
