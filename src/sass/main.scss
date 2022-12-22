@@ -177,10 +177,18 @@
 	  }
 	  
 	 & .container-form > div {
+		position: relative;
 		padding: 1rem 3rem;
 		display: flex;
 		flex-direction: column;
 		width: min(100%, 450px);
+		& .error {
+			position: absolute;
+			bottom: 0;
+			left: 3rem;
+			color: red;
+			font-size: 0.75rem;
+		}
 	  }
 	  & .container-form > div:not(:nth-child(2)) {
 		padding-block-start: 0;
