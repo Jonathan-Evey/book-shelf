@@ -1,8 +1,18 @@
 .main-header {
+	display: flex;
+	justify-content: space-between;
 	background-color: var(--clr-main-700);
+	padding-inline: 3rem;
 	margin-block-end: 1.5rem;
+	& .user-settings-menu {
+		display: flex;
+		align-items: center;
+	}
 	@media (max-width: 650px) {
         margin-block-end: 3.5rem;
+    }
+	@media (max-width: 450px) {
+        padding-inline: 1.5rem;
     }
 }
 .header {

@@ -283,3 +283,33 @@
 	// 	text-align: right;
 	//   }
 }
+
+.settings-nav {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	right: 0;
+	top: 0;
+	bottom: 0; 
+	background-color: bisque;
+	width: min(65%, 200px);
+	z-index: 100;
+
+	& .top {
+		margin-block-start: 7.75rem;
+		& li:nth-child(2) .btn {
+			border-top: none;
+		}
+		& li:nth-child(3) .btn {
+			border-top: none;
+		}
+	}
+
+	& ul:last-child {
+		margin-block-end: 4rem;
+	}
+	// & li {
+	// 	width: ;
+	// }
+}

@@ -1,32 +1,20 @@
-import { auth } from "../firebase";
-import { signOut } from "firebase/auth";
-
 const Header = (props) => {
-	const handleSignout = () => {
-		if (props.user.uid === "guest") {
-			props.setUser(null);
-		} else {
-			signOut(auth)
-				.then(() => {})
-				.catch((error) => {
-					console.log(error);
-				});
-		}
-	};
 	return (
-		<header className="main-header | box-shadow flex">
+		<header className="main-header | box-shadow">
 			<div className="title-container">
-				<h1 className="title-main | margin-inline-start-32 fs-900">
-					My Bookshelf
-				</h1>
+				<h1 className="title-main | fs-900">My Bookshelf</h1>
 			</div>
-			<div>
+			<div className="user-settings-menu">
 				<button
+					className="btn settings-menu-toggle"
 					onClick={() => {
-						handleSignout();
+						props.toggleAccountSettingsMenu();
 					}}
 				>
-					sign out
+					<span></span>
+					<span></span>
+					<span></span>
+					<p className="screen-reader-only">Account settings menu</p>
 				</button>
 			</div>
 		</header>

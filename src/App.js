@@ -6,7 +6,7 @@ import sortFunctions from "./Functions";
 import LandingPage from "./pages/landing/LandingPage";
 import "./sass/main.scss";
 import { useEffect, useState } from "react";
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { getDoc, doc } from "firebase/firestore";
 import { auth, db, addBookToDb, updateBookInDb } from "./firebase";
 
@@ -100,6 +100,8 @@ function App() {
 	]);
 
 	const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(true);
+	const [isAccountSettingMenuOpen, setIsAccountSettingMenuOpen] =
+		useState(false);
 	const [bookToUpdate, setBookToUpdate] = useState(null);
 
 	const updateTitleKeyWord = (value) => {
@@ -321,10 +323,27 @@ function App() {
 		});
 	};
 
+	const toggleAccountSettingsMenu = () => {
+		setIsAccountSettingMenuOpen(!isAccountSettingMenuOpen);
+	};
+
 	const handleGuestLogin = () => {
 		let emptyArray = [];
 		setSavedBooks(emptyArray);
 		setUser({ uid: "guest", displayName: "guest" });
+	};
+
+	const handleSignout = () => {
+		setIsAccountSettingMenuOpen(false);
+		if (user.uid === "guest") {
+			setUser(null);
+		} else {
+			signOut(auth)
+				.then(() => {})
+				.catch((error) => {
+					console.log(error);
+				});
+		}
 	};
 
 	useEffect(() => {
@@ -353,17 +372,45 @@ function App() {
 
 	if (user) {
 		return (
-			<div className="App">
-				<FindBookModel
-					useSearchType={useSearchType}
-					useSearchKeyWord={useSearchKeyWord}
-					currentSearchPageNumber={currentSearchPageNumber}
-					updateCurrentSearchPageNumber={
-						updateCurrentSearchPageNumber
-					}
-					addBookToSavedBooks={addBookToSavedBooks}
+			<>
+				<Header
+					user={user}
+					setUser={setUser}
+					savedBooks={savedBooks}
+					toggleAccountSettingsMenu={toggleAccountSettingsMenu}
+					isAccountSettingMenuOpen={isAccountSettingMenuOpen}
 				/>
-				<Header user={user} setUser={setUser} savedBooks={savedBooks} />
+				{isAccountSettingMenuOpen ? (
+					<nav className="settings-nav">
+						<ul className="top">
+							<li>
+								<button className="btn nav">
+									Account Settings
+								</button>
+							</li>
+							<li>
+								<button className="btn nav">Sign Out</button>
+							</li>
+							<li>
+								<button className="btn nav">
+									Send Feedback
+								</button>
+							</li>
+						</ul>
+						<ul className="footer">
+							<li>
+								<button
+									className="btn nav"
+									onClick={() => {
+										handleSignout();
+									}}
+								>
+									Sign Out
+								</button>
+							</li>
+						</ul>
+					</nav>
+				) : null}
 				<Main
 					savedBooks={savedBooks}
 					bookToUpdate={bookToUpdate}
@@ -396,7 +443,16 @@ function App() {
 					addReviewToBookToUpdate={addReviewToBookToUpdate}
 					addReview={addReview}
 				/>
-			</div>
+				<FindBookModel
+					useSearchType={useSearchType}
+					useSearchKeyWord={useSearchKeyWord}
+					currentSearchPageNumber={currentSearchPageNumber}
+					updateCurrentSearchPageNumber={
+						updateCurrentSearchPageNumber
+					}
+					addBookToSavedBooks={addBookToSavedBooks}
+				/>
+			</>
 		);
 	}
 }
