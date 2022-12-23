@@ -26,3 +26,5 @@ yarn-error.log*
 /oldComponents
 API.js
 FindBooksAPI.js
+
+firebase.js
