@@ -6,7 +6,9 @@ const Header = (props) => {
 			</div>
 			<div className="user-settings-menu">
 				<button
-					className="btn settings-menu-toggle"
+					className={`btn settings-menu-toggle${
+						props.isAccountSettingMenuOpen ? " open" : ""
+					}`}
 					onClick={() => {
 						props.toggleAccountSettingsMenu();
 					}}
@@ -14,7 +16,9 @@ const Header = (props) => {
 					<span></span>
 					<span></span>
 					<span></span>
-					<p className="screen-reader-only">Account settings menu</p>
+					<span></span>
+					<span></span>
+					<p className="screen-reader-only">Account setting menu</p>
 				</button>
 			</div>
 		</header>
