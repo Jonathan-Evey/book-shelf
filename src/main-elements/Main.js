@@ -7,8 +7,6 @@ import ReviewContainer from "./ReviewContainer";
 const Main = (props) => {
 	let bookToUpdate = props.bookToUpdate;
 
-	const [isMobileShelfMenuOpen, setIsMobileShelfMenuOpen] = useState(false);
-
 	//------------------main display state---------------------------//
 	const [isFullShelfDisplayed, setIsFullShelfDisplayed] = useState(true);
 	const [isBookNotesDisplayed, setIsBookNotesDisplayed] = useState(false);
@@ -39,8 +37,10 @@ const Main = (props) => {
 				<>
 					<ShelfControlsAside
 						savedBooks={props.savedBooks}
-						isMobileShelfMenuOpen={isMobileShelfMenuOpen}
-						setIsMobileShelfMenuOpen={setIsMobileShelfMenuOpen}
+						isMobileShelfMenuOpen={props.isMobileShelfMenuOpen}
+						setIsMobileShelfMenuOpen={
+							props.setIsMobileShelfMenuOpen
+						}
 						////---find new book
 						searchTitleKeyWord={props.searchTitleKeyWord}
 						searchAuthorKeyWord={props.searchAuthorKeyWord}
@@ -76,8 +76,10 @@ const Main = (props) => {
 					<BookContainer
 						savedBooks={props.savedBooks}
 						setBookToUpdate={props.setBookToUpdate}
-						isMobileShelfMenuOpen={isMobileShelfMenuOpen}
-						setIsMobileShelfMenuOpen={setIsMobileShelfMenuOpen}
+						isMobileShelfMenuOpen={props.isMobileShelfMenuOpen}
+						setIsMobileShelfMenuOpen={
+							props.setIsMobileShelfMenuOpen
+						}
 						////---main menu state
 						isFilterMenuOpen={props.isFilterMenuOpen}
 						////---book state
