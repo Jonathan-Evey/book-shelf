@@ -2,6 +2,7 @@ import Main from "./main-elements/Main";
 import Header from "./main-elements/Header";
 import FindBookModel from "./components/findBooks/FindBookModel";
 import BookObjKeys from "./BookObjKeys";
+import _BOOKS from "./guestUserBookData";
 import sortFunctions from "./Functions";
 import LandingPage from "./pages/landing/LandingPage";
 import "./sass/main.scss";
@@ -18,88 +19,11 @@ function App() {
 	const [useSearchKeyWord, setUseSearchKeyWord] = useState(null);
 	const [currentSearchPageNumber, setCurrentSearchPageNumber] =
 		useState(null);
-	const [savedBooks, setSavedBooks] = useState([
-		{
-			author: ["J.R.R. Tolkien"],
-			id: 1,
-			thumbnail:
-				"http://books.google.com/books/content?id=yl4dILkcqm4C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
-			title: "The Lord of the Rings",
-			readStatus: "Read",
-			notes: [],
-			review: "",
-			rating: 5,
-			genres: ["Fiction", "Fantasy"],
-			dateAdded: 1663510521482,
-		},
-		{
-			author: ["J.R.R. Tolkien"],
-			id: 2,
-			thumbnail:
-				"http://books.google.com/books/content?id=aWZzLPhY4o0C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
-			title: "The Fellowship Of The Ring",
-			readStatus: "Read",
-			notes: [],
-			review: "",
-			rating: 4,
-			genres: ["Fiction"],
-			dateAdded: 1663510510254,
-		},
-		{
-			author: ["Frank Herbert"],
-			id: 3,
-			thumbnail:
-				"http://books.google.com/books/content?id=UAhAEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
-			title: "Dune",
-			readStatus: "Unread",
-			notes: [],
-			review: "",
-			rating: "",
-			genres: ["Fiction"],
-			dateAdded: 1663510496511,
-		},
-		{
-			author: ["Mark Twain"],
-			id: 4,
-			thumbnail:
-				"http://books.google.com/books/content?id=TeZvDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
-			title: "The Adventures of Huckleberry Finn",
-			readStatus: "Unread",
-			notes: [],
-			review: "",
-			rating: "",
-			genres: ["Fiction"],
-			dateAdded: 1663510481022,
-		},
-		{
-			author: ["Brian Jacques"],
-			id: 5,
-			thumbnail:
-				"http://books.google.com/books/content?id=vKGPDAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
-			title: "Redwall",
-			genres: ["Juvenile Fiction"],
-			readStatus: "Read",
-			notes: [],
-			review: "",
-			rating: 4,
-			dateAdded: 1663510456738,
-		},
-		{
-			author: ["Ernest Hemingway"],
-			id: 6,
-			thumbnail:
-				"http://books.google.com/books/content?id=rDHuAAAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
-			title: "The Old Man and the Sea",
-			genres: ["Fiction"],
-			readStatus: "Unread",
-			notes: [],
-			review: "",
-			rating: "",
-			dateAdded: 1663510396776,
-		},
-	]);
+	const [savedBooks, setSavedBooks] = useState([]);
 
 	const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(true);
+	const [isMobileShelfMenuOpen, setIsMobileShelfMenuOpen] = useState(false);
+
 	const [isAccountSettingMenuOpen, setIsAccountSettingMenuOpen] =
 		useState(false);
 	const [bookToUpdate, setBookToUpdate] = useState(null);
@@ -324,12 +248,12 @@ function App() {
 	};
 
 	const toggleAccountSettingsMenu = () => {
+		setIsMobileShelfMenuOpen(false);
 		setIsAccountSettingMenuOpen(!isAccountSettingMenuOpen);
 	};
 
 	const handleGuestLogin = () => {
-		let emptyArray = [];
-		setSavedBooks(emptyArray);
+		setSavedBooks(_BOOKS);
 		setUser({ uid: "guest", displayName: "guest" });
 	};
 
@@ -362,12 +286,7 @@ function App() {
 	}, []);
 
 	if (!user) {
-		return (
-			<LandingPage
-				handleGuestLogin={handleGuestLogin}
-				setUser={setUser}
-			/>
-		);
+		return <LandingPage handleGuestLogin={handleGuestLogin} />;
 	}
 
 	if (user) {
@@ -381,33 +300,50 @@ function App() {
 					isAccountSettingMenuOpen={isAccountSettingMenuOpen}
 				/>
 				{isAccountSettingMenuOpen ? (
-					<nav className="settings-nav">
-						<ul className="top">
-							<li>
-								<button className="btn nav">
-									Account Settings
-								</button>
-							</li>
-							<li>
-								<button className="btn nav">Sign Out</button>
-							</li>
-							<li>
-								<button className="btn nav">
-									Send Feedback
-								</button>
-							</li>
-						</ul>
-						<ul className="footer">
-							<li>
-								<button
-									className="btn nav"
-									onClick={() => {
-										handleSignout();
-									}}
-								>
-									Sign Out
-								</button>
-							</li>
+					<nav className="settings-nav | left-box-shadow-light">
+						<div
+							className={`nav-header${
+								user.displayName.length > 9 ? " long-text" : ""
+							}`}
+						>
+							<img
+								src="img/test-picture.jpg"
+								alt="profile immage"
+							/>
+
+							<p>{user.displayName}</p>
+						</div>
+						<ul className="nav-main">
+							<ul>
+								<li>
+									<button className="btn nav in-progress | box-shadow">
+										Reading Log
+									</button>
+								</li>
+								<li className="margin-block-start-24">
+									<button className="btn nav in-progress | box-shadow">
+										Account Settings
+									</button>
+								</li>
+
+								<li className="margin-block-start-24">
+									<button className="btn nav in-progress | box-shadow">
+										Give Feedback
+									</button>
+								</li>
+							</ul>
+							<ul>
+								<li>
+									<button
+										className="btn nav | box-shadow"
+										onClick={() => {
+											handleSignout();
+										}}
+									>
+										Sign Out
+									</button>
+								</li>
+							</ul>
 						</ul>
 					</nav>
 				) : null}
@@ -415,6 +351,8 @@ function App() {
 					savedBooks={savedBooks}
 					bookToUpdate={bookToUpdate}
 					isFilterMenuOpen={isFilterMenuOpen}
+					isMobileShelfMenuOpen={isMobileShelfMenuOpen}
+					setIsMobileShelfMenuOpen={setIsMobileShelfMenuOpen}
 					////---find new book
 					searchTitleKeyWord={searchTitleKeyWord}
 					searchAuthorKeyWord={searchAuthorKeyWord}
