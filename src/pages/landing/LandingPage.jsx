@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react'
-import { auth } from '../../firebase'
 import Form from './Form'
 
 const LandingPage = (props) => {
@@ -24,10 +23,6 @@ const LandingPage = (props) => {
       width: window.innerWidth,
       height: window.innerHeight,
     })
-  }
-
-  const handleGuestLogin = () => {
-    props.setUser({ uid: "guest", displayName: "guest" });
   }
 
   useEffect(() => {
@@ -74,13 +69,9 @@ const LandingPage = (props) => {
             }}>Login</button></p>
           </div>
         </div>
-        {/* <p>test the app with a <button onClick={() => {
-                props.setUser(true)
-            }}>guest account</button>
-        </p> */}
         <footer> 
           <p>test the app with a <button onClick={() => {
-            handleGuestLogin()
+            props.handleGuestLogin()
             }}>guest account</button>
           </p>
         </footer>
