@@ -36,9 +36,9 @@ const LandingPage = (props) => {
 
   return (
     <main className='landing-page'>
-      <button className={`get-started${isFormShown ? " open" : ""}`} onClick={() => {
+      <button className={`btn toggle-form get-started${isFormShown ? " open" : ""}`} onClick={() => {
         toggleLoginForm()
-        }} >login</button>
+        }} >{isFormShown ? "Cancel" : "Login"}</button>
       <section className={`panel-left${isFormShown ? " closed" : ""}`} aria-hidden={isFormShown && windowSize.width < 800 ? "true" : "false"}>
         
         <div>
@@ -61,18 +61,18 @@ const LandingPage = (props) => {
         <div className="new-account">
           <div></div>
           <div>
-            <p className={isNewAccount ? "" : "shown"} aria-hidden={isNewAccount ? "true" : "false"}>First time here? <button onClick={() => {
+            <p className={isNewAccount ? "" : "shown"} aria-hidden={isNewAccount ? "true" : "false"}>First time here? <button className='btn toggle-form' onClick={() => {
               toggleForm()
             }}>Sign up</button></p>
-            <p className={isNewAccount ? "shown" : ""} aria-hidden={isNewAccount ? "false" : "true"}>Have an account? <button onClick={() => {
+            <p className={isNewAccount ? "shown" : ""} aria-hidden={isNewAccount ? "false" : "true"}>Have an account? <button className='btn toggle-form' onClick={() => {
               toggleForm()
             }}>Login</button></p>
           </div>
         </div>
         <footer> 
-          <p>test the app with a <button onClick={() => {
+          <p className={`${windowSize.width < 800 ? "mobile-view" : ""}`}>test the app with a <button className='btn toggle-form' onClick={() => {
             props.handleGuestLogin()
-            }}>guest account</button>
+            }}>Guest Account</button>
           </p>
         </footer>
       </section>

@@ -543,4 +543,18 @@ button .menu-arrow {
 			}
 		}
 	}
+
+	&.toggle-form {
+		position: relative;
+		text-decoration: underline;
+		font-size: 0.9rem;
+		padding: 0.25rem;
+		color: var(--clr-main-300);
+		border: none;
+		background-color: transparent;
+		
+		&:hover {
+			color: var(--clr-accent-light);
+		}
+	}
 }
