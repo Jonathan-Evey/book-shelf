@@ -2,6 +2,38 @@
     width: min(100% - 2rem, 60rem);
     margin-inline: auto;
 
+    &-form-toggle-btns {
+      display: flex;
+		  width: min(80%, 450px);
+		  margin-inline: auto;
+      & p {
+        margin-top: 0.25rem;
+        font-size: 0.85rem;
+      }
+
+      & > div:first-child {
+        width: 100%;
+      }
+      &  > div:last-child {
+        overflow: hidden;
+        position: relative;
+        margin-top: 0.5rem;
+        flex-shrink: 0;
+        max-width: 75%;
+
+        & p {
+          position: absolute;
+          transition: transform 250ms ease-in-out;
+          transform: translateY(100%);
+          text-align: right;
+          &.shown {
+            position: relative;
+            transform: translateY(0);
+          }
+        }
+      }
+    }
+
     &-book {
       flex: 1;
       padding: 2rem 2rem 1.5rem 1rem;

@@ -4,7 +4,7 @@ import NewUserForm from './NewUserForm'
 const Form = (props) => {
 
   return (
-    <form className="form login | box-shadow">
+    <form className="form-landing-page | box-shadow">
         <LoginForm isNewAccount={props.isNewAccount}  />
         <NewUserForm isNewAccount={props.isNewAccount} />
     </form>

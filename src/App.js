@@ -300,9 +300,9 @@ function App() {
 					isAccountSettingMenuOpen={isAccountSettingMenuOpen}
 				/>
 				{isAccountSettingMenuOpen ? (
-					<nav className="settings-nav | left-box-shadow-light">
+					<nav className="nav-main | left-box-shadow-light">
 						<div
-							className={`nav-header${
+							className={`nav-main-header${
 								user.displayName.length > 9 ? " long-text" : ""
 							}`}
 						>
@@ -313,7 +313,7 @@ function App() {
 
 							<p>{user.displayName}</p>
 						</div>
-						<ul className="nav-main">
+						<ul className="nav-main-list-container">
 							<ul>
 								<li>
 									<button className="btn nav in-progress | box-shadow">

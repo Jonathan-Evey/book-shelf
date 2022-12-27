@@ -1,0 +1,90 @@
+.landing-page {
+	position: relative;
+	min-height: 100vh;
+  	display: flex;
+	overflow: hidden;
+    & .panel-right {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        background-color: var(--clr-main-900);
+        @media (max-width: 800px) {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            transition: transform 350ms ease-in-out;
+            transform: translateY(-100%);
+            overflow: scroll;
+
+            &.open {
+                transform: translateY(0);
+            }
+        }
+        & footer {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            flex: 1;
+            & p {
+                padding-block-start: 3rem;
+                margin-inline: 1rem 6rem;
+                margin-block-end: 1rem;
+                font-size: 0.85rem;
+                text-align: left;
+          }
+        }
+    }
+    
+    & .panel-left {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        width: 55%;
+        overflow: hidden;
+        &::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.75);
+            z-index: -1;
+        }
+
+        & img {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        & div {
+            margin-block-end: 8rem;
+            background-color: var(--clr-main-700);
+		    padding: 1rem 3rem 2rem 3rem;
+		    width: min(75%, 550px);
+		    border-radius: 50px 50px 100px 100px;
+            @media (max-width:400px) {
+                width: min(90%, 550px);
+            }
+        }
+        & h2 {
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
+        & p {
+            padding-inline-start: 0.5rem;
+        }
+
+        @media (max-width: 800px) {
+            width: 100%;
+            transition: transform 350ms ease-in-out;
+            transform: translateY(0);
+            &.closed {
+                transform: translateY(100%);
+            }
+        }
+    }
+
+}

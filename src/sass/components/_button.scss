@@ -54,7 +54,6 @@ button .menu-arrow {
 			
 		}
 		&.in-card-found-book {
-			border-top: 1px solid var(--clr-main-700);
 			@media (max-width: 550px) {
 				background-image: linear-gradient(var(--clr-main-700), var(--clr-main-900));
 			}
@@ -555,6 +554,21 @@ button .menu-arrow {
 		
 		&:hover {
 			color: var(--clr-accent-light);
+		}
+		&.landing-toggle {
+			display: none;
+			@media (max-width: 800px) {
+				position: absolute;
+				top: 1rem;
+				right:1rem;
+				display: block;
+				z-index: 2;
+				transition: transform 350ms ease-in-out;
+				transform: translateY(0);
+				&.open {
+					transform: translateY(calc(100vh - 3rem));
+				}
+			}
 		}
 	}
 }

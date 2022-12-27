@@ -80,7 +80,7 @@ const NewUserForm = (props) => {
     }
   return (
     <div className={`container-form creat-account${props.isNewAccount ? " shown" : ""}`} aria-hidden={props.isNewAccount ? "false" : "true"}>
-            <header className="header form-header">
+            <header className="header-form-login">
               <h3>Creat Account</h3>
             </header>
             <div>

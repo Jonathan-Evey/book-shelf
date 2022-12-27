@@ -30,7 +30,7 @@ const LoginForm = (props) => {
 
   return (
     <div className={`container-form${props.isNewAccount ? "" : " shown"}`} aria-hidden={props.isNewAccount ? "true" : "false"}>
-            <header className="header form-header">
+            <header className="header-form-login">
               <h3>Login</h3>
             </header>
             <div>
