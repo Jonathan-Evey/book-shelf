@@ -34,17 +34,25 @@ Filter functions -
 #### Current known issues and bugs
 
 -   minor bug where focuse stays active on menu buttons after clicking on them.
--   visual differences between FireFox and Chrome.
+-   minor overflow of btns for notes/review container at smaller screens
 
 #### Current list of updates and upgrades to work on
+
+-   full review of applications accessibility
 
 -   add a default book cover image if one is not found with googles API.
 -   Remove a book from shelf. (toggle option from menu, and then select the book to remove).
 -   Filter by genres.
 -   Filter by author.
 -   Owned/unowned toggle.
--   User login to save the users bookshelf.
+-   User login to save the users bookshelf. (done )
 -   User option to pick a color scheme.
+-   Set Errors when user enters wrong password or email
+-   Set up reset password functions
+-   User profile pictures
+-   User account settings page
+-   Feedback page/form
+-   Reading log page/functions
 
 Site Demo -
 
