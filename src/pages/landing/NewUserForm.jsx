@@ -84,8 +84,8 @@ const NewUserForm = (props) => {
               <h3>Creat Account</h3>
             </header>
             <div>
-              <label>Display Name</label>
-              <input ref={userNameRef} className='box-shadow-lightest' onChange={() => {
+              <label htmlFor='user-name'>Display Name</label>
+              <input name='user-name' type={"text"} ref={userNameRef} className='box-shadow-lightest' onChange={() => {
                 if (validUserName()) {
                   setUserNameError(false)
                 }
@@ -93,8 +93,8 @@ const NewUserForm = (props) => {
               {userNameError ? (<p className='error'>Display name must be at least three letters</p>) : null}
             </div>
             <div>
-              <label>Email</label>
-              <input ref={emailRef} className='box-shadow-lightest' onChange={(e) => {
+              <label htmlFor='email'>Email</label>
+              <input name='email' type={"email"} ref={emailRef} className='box-shadow-lightest' onChange={(e) => {
                 if (emailError) {
                   if (validEmail(e.target.value)) {
                     setEmailError(false)
@@ -104,8 +104,8 @@ const NewUserForm = (props) => {
               {emailError ? (<p className='error'>Please verify that email entered is valid.</p>) : null}
             </div>
             <div>
-              <label>Password</label>
-              <input ref={passwordRef} className='box-shadow-lightest' onChange={() => {
+              <label htmlFor='password'>Password</label>
+              <input name='password' type={"password"} ref={passwordRef} className='box-shadow-lightest' onChange={() => {
                 if (passwordError) {
                   if (validPassword()) {
                     setPasswordError(false)
@@ -115,8 +115,8 @@ const NewUserForm = (props) => {
               {passwordError ? (<p className='error'>Password must be at least six characters long.</p>) : null}
             </div>
             <div>
-              <label>Confirm Password</label>
-              <input ref={confirmPassworkRef} className='box-shadow-lightest' onChange={() => {
+              <label htmlFor='confirm-password' >Confirm Password</label>
+              <input name="confirm-password" type={"password"} ref={confirmPassworkRef} className='box-shadow-lightest' onChange={() => {
                 if (confirmPasswordError) {
                   if (passwordsMatch()) {
                     setConfirmPasswordError(false)

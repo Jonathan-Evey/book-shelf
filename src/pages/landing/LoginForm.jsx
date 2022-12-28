@@ -34,13 +34,13 @@ const LoginForm = (props) => {
               <h3>Login</h3>
             </header>
             <div>
-              <label>Email</label>
-              <input ref={emailRef} className='box-shadow-lightest'/>
+              <label htmlFor='email'>Email</label>
+              <input name="email" type={"email"} ref={emailRef} className='box-shadow-lightest'/>
               {isEmailError ? (<p>Please verify that email entered is correct.</p>) : null}
             </div>
             <div>
-              <label>Password</label>
-              <input ref={passwordRef} className='box-shadow-lightest'/>
+              <label htmlFor='password'>Password</label>
+              <input name="password" type={"password"} ref={passwordRef} className='box-shadow-lightest'/>
               {isPasswordError ? (<p className='error'>Password does not match account.</p>) : null}
             </div>
             <button onClick={(e) => {
