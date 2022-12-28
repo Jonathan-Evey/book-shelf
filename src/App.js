@@ -260,6 +260,7 @@ function App() {
 	const handleSignout = () => {
 		setIsAccountSettingMenuOpen(false);
 		if (user.uid === "guest") {
+			setSavedBooks([]);
 			setUser(null);
 		} else {
 			signOut(auth)
@@ -271,9 +272,7 @@ function App() {
 	};
 
 	useEffect(() => {
-		console.log("run once");
 		onAuthStateChanged(auth, (user) => {
-			console.log("onAuthStateChanged");
 			if (user) {
 				//user.photoURL
 				setUser({ uid: user.uid, displayName: user.displayName });
