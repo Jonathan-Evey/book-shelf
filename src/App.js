@@ -80,14 +80,14 @@ function App() {
 
 	//-------------passed down to /Main/BookContainer to update each book state
 	const updateReadStatus = (id, value) => {
-		let updatedBook = savedBooks.filter((book) => book.id === id);
+		let updatedBook = findBookToUpdate(savedBooks, id);
 		updatedBook = {
-			...updatedBook[0],
+			...updatedBook,
 			readStatus: value,
 			rating:
 				value === BookObjKeys.readStatus.unread
 					? ""
-					: updatedBook[0].rating,
+					: updatedBook.rating,
 		};
 		if (user.uid !== "guest") {
 			updateBookInDb(updatedBook, user.uid);
@@ -98,16 +98,19 @@ function App() {
 		);
 	};
 
+	const findBookToUpdate = (allBooks, id) => {
+		let book = allBooks.filter((book) => book.id === id);
+		return book[0];
+	};
+
 	const updateRating = (id, value) => {
+		let bookToUpdate = findBookToUpdate(savedBooks, id);
+		bookToUpdate = { ...bookToUpdate, rating: value };
+		if (user.uid !== "guest") {
+			updateBookInDb(bookToUpdate, user.uid);
+		}
 		return setSavedBooks(
-			savedBooks.map((book) =>
-				book.id === id
-					? {
-							...book,
-							rating: value,
-					  }
-					: book
-			)
+			savedBooks.map((book) => (book.id === id ? bookToUpdate : book))
 		);
 	};
 
@@ -131,20 +134,30 @@ function App() {
 	};
 
 	const addNewNote = (id, note) => {
+		let bookToUpdate = findBookToUpdate(savedBooks, id);
+		bookToUpdate = {
+			...bookToUpdate,
+			notes: [note, ...bookToUpdate.notes],
+		};
+		if (user.uid !== "guest") {
+			updateBookInDb(bookToUpdate, user.uid);
+		}
 		return setSavedBooks(
-			savedBooks.map((book) =>
-				book.id === id
-					? { ...book, notes: [note, ...book.notes] }
-					: book
-			)
+			savedBooks.map((book) => (book.id === id ? bookToUpdate : book))
 		);
 	};
 
 	const addReview = (id, reviewToAdd) => {
+		let bookToUpdate = findBookToUpdate(savedBooks, id);
+		bookToUpdate = {
+			...bookToUpdate,
+			review: reviewToAdd,
+		};
+		if (user.uid !== "guest") {
+			updateBookInDb(bookToUpdate, user.uid);
+		}
 		return setSavedBooks(
-			savedBooks.map((book) =>
-				book.id === id ? { ...book, review: reviewToAdd } : book
-			)
+			savedBooks.map((book) => (book.id === id ? bookToUpdate : book))
 		);
 	};
 
