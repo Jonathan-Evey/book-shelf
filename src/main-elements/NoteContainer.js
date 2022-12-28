@@ -82,7 +82,7 @@ const NoteContainer = (props) => {
 					></textarea>
 					<div className="card-note-btn-container">
 						<button
-							className="btn linear-gradient clr-800-850"
+							className="btn linear-gradient clr-800-850 notes-reviews-edit"
 							onClick={() => {
 								saveNewNoteEvent();
 							}}
@@ -90,7 +90,7 @@ const NoteContainer = (props) => {
 							Save
 						</button>
 						<button
-							className="btn linear-gradient clr-800-850"
+							className="btn linear-gradient clr-800-850 notes-reviews-edit"
 							onClick={() => {
 								cancelBtnEvent();
 							}}
