@@ -171,11 +171,14 @@ function App() {
 		let newNotes = savedBooks[index].notes.map((note) =>
 			note.id === noteId ? { ...note, noteText: updatedNote } : note
 		);
+		let currentBook = findBookToUpdate(savedBooks, bookToUpdate.id);
+		currentBook = { ...currentBook, notes: newNotes };
+		if (user.uid !== "guest") {
+			updateBookInDb(currentBook, user.uid);
+		}
 		return setSavedBooks(
 			savedBooks.map((book) =>
-				book.id === bookToUpdate.id
-					? { ...book, notes: newNotes }
-					: book
+				book.id === bookToUpdate.id ? currentBook : book
 			)
 		);
 	};
@@ -202,11 +205,14 @@ function App() {
 		let newNotes = savedBooks[index].notes.filter((note) =>
 			note.id !== noteId ? note : null
 		);
+		let currentBook = findBookToUpdate(savedBooks, bookToUpdate.id);
+		currentBook = { ...currentBook, notes: newNotes };
+		if (user.uid !== "guest") {
+			updateBookInDb(currentBook, user.uid);
+		}
 		return setSavedBooks(
 			savedBooks.map((book) =>
-				book.id === bookToUpdate.id
-					? { ...book, notes: newNotes }
-					: book
+				book.id === bookToUpdate.id ? currentBook : book
 			)
 		);
 	};
