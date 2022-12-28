@@ -40,6 +40,8 @@ Filter functions -
 
 -   full review of applications accessibility
 
+-   update notes and reviews to save formate of how they were typed.
+-   add dates to when a note or review was added.
 -   add a default book cover image if one is not found with googles API.
 -   Remove a book from shelf. (toggle option from menu, and then select the book to remove).
 -   Filter by genres.
@@ -53,6 +55,7 @@ Filter functions -
 -   User account settings page
 -   Feedback page/form
 -   Reading log page/functions
+-   Add friends by email, and let them see your book shelf
 
 Site Demo -
 
