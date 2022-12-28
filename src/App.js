@@ -235,10 +235,9 @@ function App() {
 		if (docSnap.exists()) {
 			let data = docSnap.data();
 			getAllbooksFromDb(data.allBookIds);
-			console.log(data.allBookIds);
 			return;
 		} else {
-			console.log("No such document!");
+			// need to set a db catch for error messages
 		}
 	};
 
@@ -256,12 +255,11 @@ function App() {
 			if (docSnap.exists()) {
 				let data = docSnap.data();
 				allBooks.push(data.data);
-				console.log("book found");
 				if (index === array.length - 1) {
 					setSavedBooks(allBooks);
 				}
 			} else {
-				console.log("No such document!");
+				// need to set a db catch for error messages
 			}
 		});
 	};
@@ -285,7 +283,7 @@ function App() {
 			signOut(auth)
 				.then(() => {})
 				.catch((error) => {
-					console.log(error);
+					// need to set a db catch for error messages
 				});
 		}
 	};

@@ -12,14 +12,14 @@ const LoginForm = (props) => {
   const signInUser = async (email, password) => {
     await signInWithEmailAndPassword(auth, email, password)
       .then(() => {
-        console.log("signed in");
+        
         return;
       })
       .catch((error) => {
         if (error.message.includes("auth/wrong-password")) {
           setIsPasswordError(true)
         }
-        console.log(error.message);
+        // need to set a db catch for error messages
       });
   };
 

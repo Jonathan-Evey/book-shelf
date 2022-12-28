@@ -50,7 +50,6 @@ const NewUserForm = (props) => {
     }
     const checkInputs = () => {
       if (!validUserName()) {
-        console.log("error")
         setUserNameError(true)
       }
       if (!validEmail(emailRef.current.value)) {
@@ -69,14 +68,12 @@ const NewUserForm = (props) => {
         if (validEmail(emailRef.current.value)) {
           if(validPassword()) {
             if (passwordsMatch()) {
-              console.log("Registered")
               registerUser(emailRef.current.value, passwordRef.current.value, userNameRef.current.value)
               return 
             }
           }
         }
       }
-      console.log("Not Valid")
     }
   return (
     <div className={`container-form creat-account${props.isNewAccount ? " shown" : ""}`} aria-hidden={props.isNewAccount ? "false" : "true"}>
