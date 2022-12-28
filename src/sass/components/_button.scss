@@ -41,7 +41,14 @@ button .menu-arrow {
 			background-image: linear-gradient(var(--clr-main-800), var(--clr-main-850));
 			
 		}
-
+		&.sign-up-in {
+			&:hover {
+				background-image: none;
+				background-color: var(--clr-accent-dark);
+				border-color: var(--clr-accent-light);
+				color: var(--clr-accent-light);
+			}
+		}
 		&.in-input-group {
 			margin-inline: 1rem;
 			border-top: 1px solid var(--clr-main-680);
@@ -52,6 +59,22 @@ button .menu-arrow {
 				color: var(--clr-accent-light);
 			}
 			
+		}
+		&.notes-reviews {
+			&:hover {
+				background-image: none;
+				background-color: var(--clr-accent-dark);
+				border-color: var(--clr-accent-light);
+				color: var(--clr-accent-light);
+			}
+			&-edit {
+				&:hover {
+					background-image: none;
+					background-color: var(--clr-accent-light);
+					
+					color: black;
+				}
+			}
 		}
 		&.in-card-found-book {
 			@media (max-width: 550px) {

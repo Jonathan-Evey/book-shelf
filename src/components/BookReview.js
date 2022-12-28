@@ -8,7 +8,7 @@ const BookReview = (props) => {
 	};
 
 	return (
-		<div className="card-note">
+		<div className="card-note | box-shadow-light">
 			{props.isEditReview ? (
 				<>
 					<textarea
@@ -17,7 +17,7 @@ const BookReview = (props) => {
 					></textarea>
 					<div className="card-note-btn-container">
 						<button
-							className="btn linear-gradient clr-800-850"
+							className="btn linear-gradient clr-800-850 notes-reviews-edit"
 							onClick={() => {
 								props.saveReviewEvent();
 							}}
@@ -25,7 +25,7 @@ const BookReview = (props) => {
 							Save
 						</button>
 						<button
-							className="btn linear-gradient clr-800-850"
+							className="btn linear-gradient clr-800-850 notes-reviews-edit"
 							onClick={() => {
 								cancelEdit();
 							}}

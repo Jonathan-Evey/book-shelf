@@ -125,7 +125,7 @@ const NewUserForm = (props) => {
               }}/>
               {confirmPasswordError ? (<p className='error'>Passwords do not match.</p>) : null}
             </div>
-            <button className='btn linear-gradient clr-700-800' onClick={(e) => {
+            <button className='btn linear-gradient clr-700-800 sign-up-in' onClick={(e) => {
               handleSignUp(e)
             }}>Sign Up</button>
           </div>

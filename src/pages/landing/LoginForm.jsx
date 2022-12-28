@@ -45,7 +45,7 @@ const LoginForm = (props) => {
             </div>
             <button onClick={(e) => {
               handleSignin(e)
-            }} className='btn linear-gradient clr-700-800'>Sign In</button>
+            }} className='btn linear-gradient clr-700-800 sign-up-in'>Sign In</button>
           </div>
   )
 }
