@@ -31,7 +31,7 @@ const BookNote = (props) => {
 	};
 
 	return (
-		<div className="card-note">
+		<div className="card-note | box-shadow-light">
 			{isNoteOnEdit ? (
 				<>
 					<textarea

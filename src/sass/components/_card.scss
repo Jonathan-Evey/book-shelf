@@ -112,6 +112,13 @@
         color: var(--clr-main-300);
         background-color: var(--clr-accent-dark);
 
+        @media (max-width: 550px) {
+            flex-direction: column;
+            padding-inline-end: 1rem;
+            padding-block-end: 0.5rem;
+            margin-inline: 0;
+        }
+
         &-btn-container {
             margin-inline-start: 0.5rem;
             & button:nth-child(2) {
@@ -125,6 +132,16 @@
                 margin-block-start: 0.5rem;
             }
         }
+
+        @media (max-width: 550px) {
+            flex-direction: row;
+            align-items: flex-end;
+            justify-content: flex-end;
+            & button:nth-child(2) {
+                margin-inline-start: 0.5rem;
+            }
+        }
+
         }
 
         & textarea {
@@ -138,12 +155,19 @@
             font-size: 1rem;
             background-color: var(--clr-main-300);
             color: var(--clr-black);
+            @media (max-width: 550px) {
+                
+                max-width: 100%;
+            }
         }
 
         & p {
             flex-grow: 1;
             padding-top: 0.25rem;
             padding-bottom: 0.125rem;
+            @media (max-width: 550px){
+                margin-bottom: 0.5rem;
+            }
         }
     }
 }
